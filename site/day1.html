@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>当日の流れ — AI合宿</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">AI合宿</a>
+    <nav class="navlinks">
+      <a href="why.html">なぜ</a>
+      <a href="setup.html">環境</a>
+      <a href="build.html">作る</a>
+      <a href="pstack.html">進め方</a>
+      <a href="skills.html">道具</a>
+      <a href="day1.html" aria-current="page">当日</a>
+      <a href="day2.html">翌日以降</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<h1>当日の流れ</h1>
+<p class="lede">まる1日で、自社のURLまで行きます。</p>
+
+<div class="goal">
+  <strong>このページを終えると</strong>、いま何をすべきかと、どこで休憩するかが分かります。
+</div>
+
+<h2>タイムテーブル</h2>
+<table>
+  <tr><th>時刻</th><th>内容</th><th>参照</th></tr>
+  <tr><td>09:30</td><td>オープニング。なぜやるのかを腹落ちさせる</td><td><a href="why.html">why</a></td></tr>
+  <tr><td>10:00</td><td>環境の最終確認（詰まりを潰す）</td><td><a href="setup.html">setup</a></td></tr>
+  <tr><td>10:30</td><td>題材を決めて、画面をArtifactsで作る</td><td>Step 1〜2</td></tr>
+  <tr><td>12:00</td><td>昼食</td><td>—</td></tr>
+  <tr><td>13:00</td><td>スキーマとER図、ロードマップ</td><td>Step 3〜4</td></tr>
+  <tr><td>14:30</td><td>キーの棚卸し、リポジトリとSecret</td><td>Step 5〜6</td></tr>
+  <tr><td>15:30</td><td>docsとAGENTS/CLAUDE.md、スライス実装</td><td>Step 7〜8</td></tr>
+  <tr><td>17:00</td><td>デプロイと動作確認</td><td>Step 9</td></tr>
+  <tr><td>17:30</td><td>発表（1社5分）と次の一手の確定</td><td>Step 10</td></tr>
+</table>
+
+<h2>チェックポイント</h2>
+<p>次の3つを過ぎたら、講師に声をかけてください。ここで一度止めて確認する方が、後で速くなります。</p>
+<ol class="steps">
+  <li><h3>12:00 — 画面が1枚できているか</h3><p>できていなければ、題材を小さくします。</p></li>
+  <li><h3>15:00 — スキーマとロードマップがあるか</h3><p>ここが無いと、実装が迷走します。最優先で戻ります。</p></li>
+  <li><h3>17:00 — 本番URLがあるか</h3><p>無くても大丈夫。原因を記録して、次の一手にします。</p></li>
+</ol>
+
+<h2>発表フォーマット（5分）</h2>
+<table>
+  <tr><th>項目</th><th>話すこと</th></tr>
+  <tr><td>作ったもの</td><td>何の業務を、どう見えるようにしたか（画面を見せる）</td></tr>
+  <tr><td>できたこと</td><td>本番URL、動いている操作</td></tr>
+  <tr><td>詰まったこと</td><td>どこで止まったか（これが一番価値があります）</td></tr>
+  <tr><td>次にやること</td><td>明日の1スライス</td></tr>
+</table>
+
+<h2>うまくいかないときの合図</h2>
+<table>
+  <tr><th>症状</th><th>やること</th></tr>
+  <tr><td>同じエラーで10分止まっている</td><td>エラー文をそのまま講師に見せる（自分で直そうとしない）</td></tr>
+  <tr><td>何を作るか決まらない</td><td>いま使っているスプレッドシートの列名をそのまま持ってくる</td></tr>
+  <tr><td>時間が足りない</td><td>スコープを半分に割る。半分でも「動く」を作る</td></tr>
+</table>
+
+<div class="pager">
+  <a href="skills.html">← 道具</a>
+  <a href="day2.html">次: 翌日以降 →</a>
+</div>
+
+</main>
+
+<footer>AI合宿 — 会社用ダッシュボード構築キット</footer>
+</body>
+</html>

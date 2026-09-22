@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>環境を整える — AI合宿</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">AI合宿</a>
+    <nav class="navlinks">
+      <a href="why.html">なぜ</a>
+      <a href="setup.html" aria-current="page">環境</a>
+      <a href="build.html">作る</a>
+      <a href="pstack.html">進め方</a>
+      <a href="skills.html">道具</a>
+      <a href="day1.html">当日</a>
+      <a href="day2.html">翌日以降</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<h1>環境を整える</h1>
+<p class="lede">画面はCodexを基準に説明します。Claudeを使う人は、オレンジの注記だけ読んでください。</p>
+
+<div class="goal">
+  <strong>このページを終えると</strong>、エージェントが起動し、キットのフォルダを開いて、最初のプロンプトを送れる状態になります。
+</div>
+
+<h2>事前準備（当日までに）</h2>
+<p>詳細はリポジトリ直下の<code>PREP.md</code>にあります。要点だけ再掲します。</p>
+<table>
+  <tr><th>やること</th><th>確認コマンド</th><th>期待する結果</th></tr>
+  <tr><td>git</td><td><code>git --version</code></td><td><code>git version 2.x.x</code></td></tr>
+  <tr><td>Node.js 20以上</td><td><code>node -v</code></td><td><code>v20</code>以上</td></tr>
+  <tr><td>GitHub CLI</td><td><code>gh --version</code></td><td><code>gh version 2.x.x</code></td></tr>
+  <tr><td>Codexへのサインイン</td><td>—</td><td>アプリが起動する</td></tr>
+</table>
+
+<h2>当日の手順</h2>
+
+<ol class="steps">
+  <li>
+    <h3>Codexを起動してサインインする</h3>
+    <p>初回だけです。すでにサインイン済みなら、この手順は飛ばしてください。</p>
+    <figure>
+      <div class="shot">ここに画像: Codexのサインイン直後の画面（台帳#2）</div>
+      <figcaption>台帳#2。アカウント名が写る場合はマスクする</figcaption>
+    </figure>
+  </li>
+
+  <li>
+    <h3>キットをcloneする</h3>
+    <pre><code>git clone https://github.com/sento-group-inc/Aigassyuku07.git
+cd Aigassyuku07/kit</code></pre>
+    <figure>
+      <div class="shot">ここに画像: ターミナルでcloneが終わった画面（台帳#5）</div>
+    </figure>
+  </li>
+
+  <li>
+    <h3>環境をチェックする</h3>
+    <pre><code>./setup.sh</code></pre>
+    <p><b>何もインストールしません。</b>足りないものを表示するだけです。<code>NG</code>が出たら<code>PREP.md</code>を見て直し、もう一度実行します。</p>
+    <figure>
+      <div class="shot">ここに画像: setup.shの結果（台帳#6）</div>
+    </figure>
+  </li>
+
+  <li>
+    <h3>キットのフォルダをCodexで開く</h3>
+    <p><code>Aigassyuku07/kit</code>をフォルダとして開きます。ここが今日の作業場所です。</p>
+    <figure>
+      <div class="shot">ここに画像: フォルダを開いた画面（台帳#3）</div>
+    </figure>
+    <div class="note">
+      <p><b>Claudeを使う人の場合:</b> Claude Codeで同じフォルダを開きます。<code>kit/CLAUDE.md</code>が自動で読まれ、<code>kit/.claude/skills/</code>のスキルが使える状態になります。</p>
+    </div>
+  </li>
+
+  <li>
+    <h3>最初のプロンプトを送る</h3>
+    <p>リポジトリ直下の<code>PROMPT.md</code>の「最初に貼るもの」をコピーして送ります。</p>
+    <figure>
+      <div class="shot">ここに画像: 最初のプロンプトと応答（台帳#4）</div>
+      <figcaption>エージェントが「次にやること」を1つ返してくれば成功</figcaption>
+    </figure>
+  </li>
+</ol>
+
+<h2>うまくいかないとき</h2>
+<table>
+  <tr><th>症状</th><th>対処</th></tr>
+  <tr><td><code>command not found: node</code></td><td>Node.jsをインストールし、ターミナルを閉じて開き直す</td></tr>
+  <tr><td><code>gh</code>で認証を求められる</td><td><code>gh auth login</code>を実行する</td></tr>
+  <tr><td>Codexにサインインできない</td><td>アプリを再起動する。ブラウザで別アカウントにログインしていないか確認</td></tr>
+  <tr><td>会社のPCで入れられない</td><td>当日、管理者権限なしで進める代替手順を案内します</td></tr>
+</table>
+
+<div class="pager">
+  <a href="why.html">← なぜやるのか</a>
+  <a href="readme-driven.html">次: README駆動開発 →</a>
+</div>
+
+</main>
+
+<footer>AI合宿 — 会社用ダッシュボード構築キット</footer>
+</body>
+</html>

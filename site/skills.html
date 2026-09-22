@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>道具（スキル） — AI合宿</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">AI合宿</a>
+    <nav class="navlinks">
+      <a href="why.html">なぜ</a>
+      <a href="setup.html">環境</a>
+      <a href="build.html">作る</a>
+      <a href="pstack.html">進め方</a>
+      <a href="skills.html" aria-current="page">道具</a>
+      <a href="day1.html">当日</a>
+      <a href="day2.html">翌日以降</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<h1>道具 — 今日使うスキル</h1>
+<p class="lede">結論: <b>覚えるのは4つだけ。</b>ガイド、JEV、LP、そして画面・スキーマ・ロードマップの実務スキルです。</p>
+
+<div class="goal">
+  <strong>このページを読むと</strong>、どの場面でどれを呼べばいいかが分かります。
+</div>
+
+<h2>進行役: guide</h2>
+<p>迷ったら、まずこれ。<b>現在地を判定して、次の一手を1つだけ</b>返します。</p>
+<pre><code>次は何をすればいい？</code></pre>
+<table>
+  <tr><th>返ってくるもの</th><th>例</th></tr>
+  <tr><td>現在地</td><td>Step 3（スキーマとER図）</td></tr>
+  <tr><td>次の一手</td><td>画面の情報を全部書き出し、テーブルにまとめる</td></tr>
+  <tr><td>使うスキル</td><td>dashboard-schema</td></tr>
+  <tr><td>終わりの状態</td><td>schema.mdに一覧とER図がある</td></tr>
+</table>
+<figure>
+  <div class="shot">ここに画像: ガイドに「次は？」と聞いた応答（台帳#23）</div>
+</figure>
+
+<h2>実務: dashboard-* の4本</h2>
+<div class="grid">
+  <div class="card">
+    <h3>dashboard-screen</h3>
+    <p>困りごとを、見える画面にする。まだコードは書かない。</p>
+  </div>
+  <div class="card">
+    <h3>dashboard-schema</h3>
+    <p>画面の情報を、テーブルと関連に落とす。ER図で漏れを潰す。</p>
+  </div>
+  <div class="card">
+    <h3>dashboard-roadmap</h3>
+    <p>実装を確認できる単位に切り、手前で価値が出る順に並べる。</p>
+  </div>
+  <div class="card">
+    <h3>dashboard-keys</h3>
+    <p>必要なキーを棚卸しし、置き場所を決めてSecretにする。</p>
+  </div>
+</div>
+
+<h2>判断: JEV</h2>
+<p>JEVは<b>会話用のAIではなく、判断用のAI</b>です。ふわっとした入力を、コードで分岐できる形で返します。</p>
+<table>
+  <tr><th>型</th><th>何を返すか</th><th>例</th></tr>
+  <tr><td>選択</td><td>どれか1つ</td><td>この問い合わせはどの担当か</td></tr>
+  <tr><td>点数</td><td>段階の値</td><td>緊急度は1〜5のどれか</td></tr>
+  <tr><td>はい/いいえ</td><td>確率</td><td>この内容は外部に出してよいか</td></tr>
+</table>
+<div class="note"><p><b>向く場面:</b> 何度も同じ判断を繰り返すとき。<b>向かない場面:</b> 1回だけの大きな判断（人間が考えた方が速い）。</p></div>
+<p>設定と使い方は<code>kit/.claude/skills/jev-guide/SKILL.md</code>にあります。</p>
+<figure>
+  <div class="shot">ここに画像: JEVの型つき応答（台帳#21）</div>
+</figure>
+
+<h2>見た目: LP（参照から作る）</h2>
+<p>ゼロから考えず、<b>世の中の良い例を集めてから作る</b>進め方です。画面の見た目に迷ったときに使います。</p>
+<ol class="steps">
+  <li><h3>目的を固定する</h3><p>誰が、何をして、どうなる画面か。</p></li>
+  <li><h3>参照を3つ集める</h3><p>同じ受け手・同じ操作・同じ価格帯の実例。</p></li>
+  <li><h3>借りる範囲を決める</h3><p>配置・文字・余白・色のどこを借りるか。</p></li>
+  <li><h3>実装して、同じ画面幅で見比べる</h3><p>並べないと違いは分からない。</p></li>
+</ol>
+<figure>
+  <div class="shot">ここに画像: 参照サイトを取得している流れ（台帳#22）</div>
+</figure>
+
+<h2>説明: eli5</h2>
+<p>前提知識のない人に説明するときの型です。<b>結論を1文 → 身近な比喩 → 覚える点は3つまで</b>。社内に説明するときや、経営層に伝えるときに使います。</p>
+
+<div class="pager">
+  <a href="pstack.html">← 進め方</a>
+  <a href="day1.html">次: 当日の流れ →</a>
+</div>
+
+</main>
+
+<footer>AI合宿 — 会社用ダッシュボード構築キット</footer>
+</body>
+</html>

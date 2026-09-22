@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>翌日以降の進め方 — AI合宿</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">AI合宿</a>
+    <nav class="navlinks">
+      <a href="why.html">なぜ</a>
+      <a href="setup.html">環境</a>
+      <a href="build.html">作る</a>
+      <a href="pstack.html">進め方</a>
+      <a href="skills.html">道具</a>
+      <a href="day1.html">当日</a>
+      <a href="day2.html" aria-current="page">翌日以降</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<h1>翌日以降の進め方</h1>
+<p class="lede">ここからの主役はあなたです。AIは手を動かしますが、決めるのはあなたです。</p>
+
+<div class="goal">
+  <strong>このページを読むと</strong>、誰に何を頼めばいいかが分かります。
+</div>
+
+<h2>毎日の始め方</h2>
+<ol class="steps">
+  <li><h3>今日やるスライスを1つ選ぶ</h3><p><code>docs/roadmap.md</code>の未完了から1つ。<b>複数選ばない。</b></p></li>
+  <li><h3>ガイドに確認する</h3><pre><code>次は何をすればいい？</code></pre></li>
+  <li><h3>1つ終わったら記録する</h3><p>PRを出してマージし、roadmapの状態を更新します。</p></li>
+  <li><h3>一日の終わりに振り返る</h3><pre><code>今日の結果をまとめて、明日の1スライスを決めて</code></pre></li>
+</ol>
+
+<h2>自分で進める部分と、頼る部分</h2>
+<table>
+  <tr><th></th><th>自分でやる</th><th>外に頼む</th></tr>
+  <tr><td>決めること</td><td>何を作るか、優先順位、業務のルール</td><td>—</td></tr>
+  <tr><td>作ること</td><td>指示、確認、採用の判断</td><td>実装はAIが担当</td></tr>
+  <tr><td>詰まったとき</td><td>詰まった場所の記録</td><td>設計・移行・公開の判断</td></tr>
+</table>
+
+<h2>自分たちの限界の見つけ方</h2>
+<p>次に当てはまったら、それが限界のサインです。早めに共有した方が得です。</p>
+<table>
+  <tr><th>サイン</th><th>起きていること</th></tr>
+  <tr><td>考慮点が多すぎて決められない</td><td>業務の例外を全部同時に解こうとしている</td></tr>
+  <tr><td>いまのデータを移せない</td><td>データの持ち主・形式・重複が整理できていない</td></tr>
+  <tr><td>公開や権限で止まる</td><td>誰が見てよいかの決めが要る</td></tr>
+  <tr><td>自分たちしか触れない</td><td>引き継ぎの設計が要る</td></tr>
+</table>
+
+<h2>人に聞くときの型</h2>
+<pre><code>【何をしたいか】案件の進捗を、全員が見えるようにしたい
+【いまどこまで】一覧画面は本番で動いている。編集がまだ
+【どこで止まったか】誰が編集できるかの決め方で止まっている
+【自分で試したこと】担当者全員に編集権限を付ける案を試したが、間違って消されるのが怖い
+【決めたいこと】編集と閲覧の分け方</code></pre>
+<p>この5行があれば、答えはすぐ返ってきます。<b>詰まった場所が具体的なほど、助けが正確になります。</b></p>
+
+<h2>続けるコツ</h2>
+<table>
+  <tr><th>やること</th><th>なぜ</th></tr>
+  <tr><td>1スライス＝1PRを守る</td><td>小さく出すほど、詰まっても戻れる</td></tr>
+  <tr><td>週に1回、docsを更新する</td><td>AIへの説明が減り続ける</td></tr>
+  <tr><td>振り返り（reflect）を月1回</td><td>うまくいった進め方が自分の環境に残る</td></tr>
+  <tr><td>決めた理由を書き残す</td><td>半年後の自分とAIが同じ判断をやり直さずに済む</td></tr>
+</table>
+
+<div class="pager">
+  <a href="day1.html">← 当日の流れ</a>
+  <span></span>
+</div>
+
+</main>
+
+<footer>AI合宿 — 会社用ダッシュボード構築キット</footer>
+</body>
+</html>

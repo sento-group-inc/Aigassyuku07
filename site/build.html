@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作る — 8ステップ — AI合宿</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">AI合宿</a>
+    <nav class="navlinks">
+      <a href="why.html">なぜ</a>
+      <a href="setup.html">環境</a>
+      <a href="build.html" aria-current="page">作る</a>
+      <a href="pstack.html">進め方</a>
+      <a href="skills.html">道具</a>
+      <a href="day1.html">当日</a>
+      <a href="day2.html">翌日以降</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<h1>ダッシュボードを作る — 8ステップ</h1>
+<p class="lede">実際にある会社のダッシュボードを作ったときに回った順序です。この順番に意味があります。</p>
+
+<div class="goal">
+  <strong>このページを終えると</strong>、自社の画面が本番URLで開きます。
+</div>
+
+<h2>順序の考え方</h2>
+<p>ポイントは<b>「コードを書く前に決め切る」</b>ことと、<b>「手前で価値が出る順に出す」</b>ことです。順番を飛ばすと、あとで全部やり直しになります。</p>
+
+<ol class="steps">
+  <li>
+    <h3>題材を決める</h3>
+    <p>業務の困りごとを1つ選びます。「誰が、何に困っていて、何が見えると嬉しいか」の1文を作ります。</p>
+    <div class="note"><p><b>コツ:</b> 大きい課題を選ばないこと。「案件の進捗が全員に見えない」くらいの粒度が最適です。</p></div>
+  </li>
+
+  <li>
+    <h3>画面をArtifactsで作る</h3>
+    <p>コードはまだ書きません。見た目と操作を先に固めます。<b>Artifacts（Claude）またはHTMLファイル（Codex）</b>で、開いて触れる画面を作ります。</p>
+    <figure>
+      <div class="shot">ここに画像: Artifactsで画面ができた状態（台帳#11）</div>
+      <figcaption>この時点ではダミーのデータでよい</figcaption>
+    </figure>
+    <div class="note"><p><b>Claudeを使う人の場合:</b> Artifactsがそのまま使えます。<b>Codexの場合:</b> <code>docs/prototype.html</code>としてHTMLを作り、ブラウザで開きます。</p></div>
+  </li>
+
+  <li>
+    <h3>スキーマとER図を作る</h3>
+    <p>画面に出ている情報を全部書き出し、テーブルにまとめ、ER図にして<b>漏れと繋がり</b>を確認します。</p>
+    <p>使うスキル: <code>dashboard-schema</code></p>
+    <figure>
+      <div class="shot">ここに画像: ER図ができた状態（台帳#12）</div>
+      <figcaption>「この情報はどこに入るか」に全部答えられるまで確認する</figcaption>
+    </figure>
+    <div class="note warn"><p><b>ここが一番大事です。</b>スキーマが固まると、あとの作業が一気に速くなります。逆にここが曖昧だと、実装してから作り直しになります。</p></div>
+  </li>
+
+  <li>
+    <h3>ロードマップを書く</h3>
+    <p>スキーマが固まった瞬間に、実装を<b>確認できる単位（スライス）</b>に切ります。手前で価値が出る順に並べます。</p>
+    <p>使うスキル: <code>dashboard-roadmap</code></p>
+    <figure>
+      <div class="shot">ここに画像: roadmap.mdのスライス一覧（台帳#13）</div>
+    </figure>
+  </li>
+
+  <li>
+    <h3>キーとアカウントを棚卸しする</h3>
+    <p>外部と繋がる箇所を洗い出し、必要なキーと<b>置き場所</b>を決めます。<b>値はファイルに書きません。</b></p>
+    <p>使うスキル: <code>dashboard-keys</code></p>
+    <figure>
+      <div class="shot">ここに画像: keys.mdの表（台帳#14）</div>
+    </figure>
+  </li>
+
+  <li>
+    <h3>リポジトリとSecretを作る</h3>
+    <p>GitHubにリポジトリを作り、データベースとホスティングをつなぎ、キーをSecretに登録します。</p>
+    <figure>
+      <div class="shot">ここに画像: GitHubでリポジトリを作る画面（台帳#7）</div>
+    </figure>
+    <figure>
+      <div class="shot">ここに画像: VercelでImportする画面（台帳#10）</div>
+    </figure>
+    <div class="note warn"><p><b>キーが写る画面は撮らないでください。</b>撮る必要があるときは、値の部分を隠してから撮ります。</p></div>
+  </li>
+
+  <li>
+    <h3>docsとAGENTS.md / CLAUDE.mdを整える</h3>
+    <p>スキーマの<b>背景</b>、UIガイドライン、インフラ、ロードマップを埋めます。ここを整えるほど、次の作業が速くなります。</p>
+    <p>使うスキル: <code>dashboard-docs</code></p>
+    <figure>
+      <div class="shot">ここに画像: 「作業前に読む」の一覧（台帳#13）</div>
+    </figure>
+  </li>
+
+  <li>
+    <h3>スライスを実装する</h3>
+    <p>1スライス = 1PRで回します。実装 → 実際に動かす → PR → レビュー → マージ。これを繰り返すだけで前に進みます。</p>
+    <p>使うスキル: <code>dashboard-slice</code></p>
+    <figure>
+      <div class="shot">ここに画像: PRの作成画面（台帳#15）</div>
+    </figure>
+    <figure>
+      <div class="shot">ここに画像: レビュー指摘と修正の往復（台帳#16）</div>
+    </figure>
+  </li>
+</ol>
+
+<h2>最後のステップ: デプロイ</h2>
+<p>本番へ出して、自分のURLで開きます。<b>ここまで来て初めて「できた」と言えます。</b></p>
+<p>使うスキル: <code>dashboard-deploy</code></p>
+<figure>
+  <div class="shot">ここに画像: デプロイ完了（Ready）の画面（台帳#17）</div>
+</figure>
+<figure>
+  <div class="shot">ここに画像: 完成した自社ダッシュボードの本番画面（台帳#18）</div>
+  <figcaption>これが今日の成果物</figcaption>
+</figure>
+
+<h2>時間が押したとき</h2>
+<p>次の順で優先します。<b>残りのスライスが書かれていること</b>が、明日以降の自走に一番効きます。</p>
+<table>
+  <tr><th>優先</th><th>やること</th><th>理由</th></tr>
+  <tr><td>1</td><td>デプロイ（本番URL）</td><td>「できた」の実感が次につながる</td></tr>
+  <tr><td>2</td><td>ロードマップ</td><td>明日自分で進められる</td></tr>
+  <tr><td>3</td><td>スキーマ</td><td>後からでも直せる</td></tr>
+  <tr><td>4</td><td>画面の作り込み</td><td>一番後回しでよい</td></tr>
+</table>
+
+<div class="pager">
+  <a href="readme-driven.html">← README駆動開発</a>
+  <a href="pstack.html">次: 進め方（pstack） →</a>
+</div>
+
+</main>
+
+<footer>AI合宿 — 会社用ダッシュボード構築キット</footer>
+</body>
+</html>

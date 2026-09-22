@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>README駆動開発 — AI合宿</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">AI合宿</a>
+    <nav class="navlinks">
+      <a href="why.html">なぜ</a>
+      <a href="setup.html">環境</a>
+      <a href="build.html">作る</a>
+      <a href="pstack.html">進め方</a>
+      <a href="skills.html">道具</a>
+      <a href="day1.html">当日</a>
+      <a href="day2.html">翌日以降</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<h1>README駆動開発</h1>
+<p class="lede">結論: <b>先に文章を書き、その文章に合わせて作る。</b>コードより先に、言葉を固めます。</p>
+
+<div class="goal">
+  <strong>このページを読むと</strong>、AIに何を渡せば意図通りに動くかが分かります。
+</div>
+
+<h2>なぜ文章から始めるのか</h2>
+<p>AIは、言われていないことを勝手に決めます。決めた結果が気に入らないと、あとで全部やり直しになります。</p>
+<p>逆に、<b>先に決めて文章にしておけば</b>、AIは毎回そこへ戻って作業します。人の記憶も曖昧になりません。</p>
+
+<h2>書く順番</h2>
+<ol class="steps">
+  <li>
+    <h3>何のためかを1文で書く</h3>
+    <p>「誰が、何に困っていて、どうなったら嬉しいか」。この1文が全部の判断基準になります。</p>
+  </li>
+  <li>
+    <h3>画面を言葉にする（または画面を先に作る）</h3>
+    <p>何が見えるか、何が押せるかを書きます。図や画像の方が早いこともあります。</p>
+  </li>
+  <li>
+    <h3>データの形を書く</h3>
+    <p>何を、どんな項目で持つか。関連（1対多など）も書きます。ここが一番効きます。</p>
+  </li>
+  <li>
+    <h3>作業を一覧にする</h3>
+    <p>確認できる単位に切って、順番を決めます。これが<code>roadmap</code>です。</p>
+  </li>
+  <li>
+    <h3>決めたことの「なぜ」を残す</h3>
+    <p>あとで自分が読み返したときに、同じ議論をやり直さずに済みます。</p>
+  </li>
+</ol>
+
+<h2>キットでの置き場</h2>
+<table>
+  <tr><th>ファイル</th><th>何を書くか</th></tr>
+  <tr><td><code>docs/schema.md</code></td><td>データの形と、そう決めた理由</td></tr>
+  <tr><td><code>docs/ui-guidelines.md</code></td><td>UIの原則。指摘されたことを足していく</td></tr>
+  <tr><td><code>docs/infra.md</code></td><td>どこで動かすか、秘密情報の置き場</td></tr>
+  <tr><td><code>docs/roadmap.md</code></td><td>作業の一覧と、終わりの状態</td></tr>
+  <tr><td><code>docs/keys.md</code></td><td>必要なキーと、その置き場所（値は書かない）</td></tr>
+  <tr><td><code>AGENTS.md</code> / <code>CLAUDE.md</code></td><td>「作業前に読む」の一覧と、守る決まり</td></tr>
+</table>
+
+<h2>効き方の違い</h2>
+<table>
+  <tr><th></th><th>文章が無いとき</th><th>文章があるとき</th></tr>
+  <tr><td>毎回の説明</td><td>必要</td><td>不要</td></tr>
+  <tr><td>AIの判断</td><td>セッションごとに変わる</td><td>同じ前提で揃う</td></tr>
+  <tr><td>作り直し</td><td>起きやすい</td><td>起きにくい</td></tr>
+  <tr><td>引き継ぎ</td><td>できない</td><td>そのまま渡せる</td></tr>
+</table>
+
+<div class="note">
+  <p><b>コツ:</b> 完璧に書こうとしないこと。決まっていない箇所は「未確定」と書いておけば十分です。空欄より「未確定」の方が価値があります。</p>
+</div>
+
+<div class="pager">
+  <a href="setup.html">← 環境を整える</a>
+  <a href="build.html">次: 作る（8ステップ） →</a>
+</div>
+
+</main>
+
+<footer>AI合宿 — 会社用ダッシュボード構築キット</footer>
+</body>
+</html>
