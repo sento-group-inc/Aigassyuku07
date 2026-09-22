@@ -8,22 +8,26 @@
 
 ## 最初にやること
 
-1. [PREP.md](PREP.md) を読んで、当日までに環境を用意する
+1. [PREP.md](PREP.md) を読んで、当日までに用意する（clone・JEVキー・アカウント）
 2. このリポジトリをcloneする
-3. [PROMPT.md](PROMPT.md) のプロンプトをCodex（またはClaude）に貼る
-4. あとはガイドが順番に案内します
+3. `kit/`で`./setup.sh --check-services`を実行し、足りないものを確認する
+4. [PROMPT.md](PROMPT.md) のプロンプトをCodex（またはClaude）に貼る
+5. あとはガイドが順番に案内します
 
 ```bash
 git clone https://github.com/sento-group-inc/Aigassyuku07.git
 cd Aigassyuku07/kit
+./setup.sh --check-services
 ```
+
+**公開URL（当日投影用）**: https://aigassyuku07.vercel.app
 
 ## 当日の流れ
 
 | # | やること | 終わりの状態 |
 |---|---|---|
 | 1 | なぜやるのかを腹落ちさせる | 自分の言葉で1文言える |
-| 2 | 環境を整える | エージェントが起動し、リポジトリを開ける |
+| 2 | 環境とJEVキーをそろえる | `setup.sh`が通り、JEVが1回呼べる |
 | 3 | 画面をArtifactsで作る | 自社ダッシュボードの画面が1枚ある |
 | 4 | スキーマとER図を作る | テーブル・カラム・関連の漏れを潰した |
 | 5 | ロードマップ（スライス）を書く | 残りの作業が一覧になっている |

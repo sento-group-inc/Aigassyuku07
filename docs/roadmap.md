@@ -20,15 +20,18 @@
 | 参加者の環境 | Codex と Claude の両方。**画面・スクショはCodex基準**、Claudeの差分は注記で吸収 |
 | 事前準備 | PC準備の案内を配布し、事前にcloneさせる（`PREP.md` / `PROMPT.md`） |
 | 公開範囲 | **public**。事前配布してcloneさせる |
-| 時間 | **実質まる1日**。2日目は各社が個別学習へ進む前提で、初日から自社題材でよい |
+| 日程と規模 | **2026-10-06（火）・07（水）／10社** |
+| 時間 | **初日がまる1日**。2日目は各社が個別学習へ進む前提で、初日から自社題材でよい |
 | 題材 | 各社の実業務。会計事務所の実例は「こう作った」の参照として見せる |
+| JEV | **各社でAPIキーを取得**。取得手順を`docs/jev-setup.md`に置き、ガイドが順番どおりに案内する |
 
 ## 学ぶ内容（ページとキットの対応）
 
 | 学ぶこと | 講義ページ | キット側の実体 |
 |---|---|---|
 | なぜやるのか（腹落ち） | `why.html`（eli5） | — |
-| 環境セットアップと使い方 | `setup.html` | `kit/setup.sh` |
+| 環境セットアップと使い方 | `setup.html` | `kit/setup.sh`（`--check-services`） |
+| JEV（型つきの判断AI）とAPIキー取得 | `jev.html` | `kit/docs/jev-setup.md` / `kit/tools/jev-configure.py` |
 | README駆動開発 | `readme-driven.html` | `kit/docs/` テンプレと`kit/README.md` |
 | pstack / poteto-mode / reflect / 原則 | `pstack.html` | `kit/.claude/skills/pstack-guide/` |
 | 配布スキル（jev / lp / eli5 / guide） | `skills.html` | `kit/.claude/skills/` |
@@ -136,6 +139,6 @@ Codex中心に、インストール → サインイン → リポジトリ → 
 
 ## 未決・保留
 
-- 開催日と参加社数（時間割の確定に必要。S11のリハーサルで実測して合わせる）
-- JEVのキー配布方法（各社が自分のキーを取るか、合宿用のキーを配るか）
-- スクリーンショットのうち手動が要るもの（`docs/screenshots.md`の「手動」列）
+- **why（腹落ち）の深掘り（S2）**: 2026-09-22 本人指示により、**後日あらためて対話して決める**。それまでは現行版を暫定とする
+- 当日の時間割の実測（S11のリハーサルで合わせる）
+- スクリーンショットのうち手動が要るもの（`docs/screenshots.md`の「手動」列。JEVは#26が手動）

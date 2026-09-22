@@ -7,6 +7,7 @@
 ```bash
 cd kit
 ./setup.sh          # 足りないものを表示する（何もインストールしない）
+./setup.sh --check-services   # 外部サービスの準備状況
 ```
 
 そのあと、Codex（またはClaude）でこのフォルダを開き、リポジトリ直下の [PROMPT.md](../PROMPT.md) を貼ってください。
@@ -20,6 +21,9 @@ cd kit
 | `.claude/skills/` | この合宿で使うスキル一式（Claude Codeは自動で読む。Codexは`AGENTS.md`経由） |
 | `docs/` | 設計ドキュメントの置き場。**作業前にAIが読む正本** |
 | `docs/guide-steps.md` | 当日の進行台本。ガイドはこれを見て次の一手を決める |
+| `docs/jev-setup.md` | JEVのAPIキー取得手順（順番どおりに進める） |
+| `docs/links.md` | まとめて開くリンク一覧 |
+| `tools/jev-configure.py` | キーの保存（画面に出ない）と疎通確認 |
 | `.env.example` | 必要な環境変数の一覧（値は入れない） |
 
 ## 自分のリポジトリにする

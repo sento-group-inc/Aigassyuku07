@@ -14,6 +14,7 @@
     <nav class="navlinks">
       <a href="why.html">なぜ</a>
       <a href="setup.html" aria-current="page">環境</a>
+      <a href="jev.html">JEV</a>
       <a href="build.html">作る</a>
       <a href="pstack.html">進め方</a>
       <a href="skills.html">道具</a>
@@ -26,31 +27,48 @@
 <main>
 
 <h1>環境を整える</h1>
-<p class="lede">画面はCodexを基準に説明します。Claudeを使う人は、オレンジの注記だけ読んでください。</p>
+<p class="lede">Codex／Claude、git、Node.jsは<b>事前準備で済んでいる前提</b>です。ここでは当日使うもの（JEV・外部サービス・キット）をそろえます。画面はCodex基準で説明します。</p>
 
 <div class="goal">
-  <strong>このページを終えると</strong>、エージェントが起動し、キットのフォルダを開いて、最初のプロンプトを送れる状態になります。
+  <strong>このページを終えると</strong>、エージェントが起動し、キットが動き、JEVが呼べる状態になります。
 </div>
 
-<h2>事前準備（当日までに）</h2>
-<p>詳細はリポジトリ直下の<code>PREP.md</code>にあります。要点だけ再掲します。</p>
+<h2>当日そろえるもの</h2>
 <table>
-  <tr><th>やること</th><th>確認コマンド</th><th>期待する結果</th></tr>
-  <tr><td>git</td><td><code>git --version</code></td><td><code>git version 2.x.x</code></td></tr>
-  <tr><td>Node.js 20以上</td><td><code>node -v</code></td><td><code>v20</code>以上</td></tr>
-  <tr><td>GitHub CLI</td><td><code>gh --version</code></td><td><code>gh version 2.x.x</code></td></tr>
-  <tr><td>Codexへのサインイン</td><td>—</td><td>アプリが起動する</td></tr>
+  <tr><th>#</th><th>もの</th><th>どこで</th><th>所要</th></tr>
+  <tr><td>1</td><td>キット（clone）</td><td>このリポジトリ</td><td>2分</td></tr>
+  <tr><td>2</td><td>JEVのAPIキー</td><td><a href="jev.html">JEVのページ</a></td><td>5分</td></tr>
+  <tr><td>3</td><td>GitHubアカウント</td><td><a href="https://github.com/signup">github.com/signup</a></td><td>—</td></tr>
+  <tr><td>4</td><td>Vercel（GitHubで連携）</td><td><a href="https://vercel.com/signup">vercel.com/signup</a></td><td>3分</td></tr>
+  <tr><td>5</td><td>Supabase</td><td><a href="https://supabase.com/dashboard">supabase.com/dashboard</a></td><td>3分</td></tr>
+  <tr><td>6</td><td>GitHub CLIのサインイン</td><td><code>gh auth login</code></td><td>2分</td></tr>
 </table>
+
+<h2>関連リンク（まとめて開く）</h2>
+<table>
+  <tr><th>用途</th><th>リンク</th></tr>
+  <tr><td>このキット</td><td><a href="https://github.com/sento-group-inc/Aigassyuku07">github.com/sento-group-inc/Aigassyuku07</a></td></tr>
+  <tr><td>JEV（APIキー）</td><td><a href="https://typesafe.ai">typesafe.ai</a> → Sign In</td></tr>
+  <tr><td>JEVの仕様</td><td><a href="https://docs.typesafe.ai/">docs.typesafe.ai</a></td></tr>
+  <tr><td>Node.js（20以上）</td><td><a href="https://nodejs.org/ja/download">nodejs.org/ja/download</a></td></tr>
+  <tr><td>git</td><td><a href="https://git-scm.com/downloads">git-scm.com/downloads</a></td></tr>
+  <tr><td>GitHub CLI</td><td><a href="https://cli.github.com/">cli.github.com</a></td></tr>
+  <tr><td>Codex</td><td><a href="https://openai.com/codex/">openai.com/codex</a></td></tr>
+  <tr><td>Claude</td><td><a href="https://claude.ai/download">claude.ai/download</a></td></tr>
+  <tr><td>Supabase</td><td><a href="https://supabase.com/dashboard">supabase.com/dashboard</a></td></tr>
+  <tr><td>Vercel</td><td><a href="https://vercel.com/new">vercel.com/new</a></td></tr>
+</table>
+<p>同じ一覧はキットの<code>kit/docs/links.md</code>にあります。まとめて開きたいときに使ってください。</p>
 
 <h2>当日の手順</h2>
 
 <ol class="steps">
   <li>
-    <h3>Codexを起動してサインインする</h3>
-    <p>初回だけです。すでにサインイン済みなら、この手順は飛ばしてください。</p>
+    <h3>エージェントを起動する</h3>
+    <p>サインインは事前準備で済んでいる前提です。起動できることだけ確認します。</p>
     <figure>
-      <div class="shot">ここに画像: Codexのサインイン直後の画面（台帳#2）</div>
-      <figcaption>台帳#2。アカウント名が写る場合はマスクする</figcaption>
+      <div class="shot">ここに画像: Codexの起動直後の画面（台帳#2）</div>
+      <figcaption>アカウント名が写る場合はマスクする</figcaption>
     </figure>
   </li>
 
@@ -64,22 +82,35 @@ cd Aigassyuku07/kit</code></pre>
   </li>
 
   <li>
-    <h3>環境をチェックする</h3>
+    <h3>足りないものを確認する</h3>
     <pre><code>./setup.sh</code></pre>
-    <p><b>何もインストールしません。</b>足りないものを表示するだけです。<code>NG</code>が出たら<code>PREP.md</code>を見て直し、もう一度実行します。</p>
+    <p><b>何もインストールしません。</b>足りないものと入手先URLを表示するだけです。<code>NG</code>が出たらURLから入れて、もう一度実行します。</p>
     <figure>
       <div class="shot">ここに画像: setup.shの結果（台帳#6）</div>
     </figure>
   </li>
 
   <li>
-    <h3>キットのフォルダをCodexで開く</h3>
+    <h3>外部サービスの準備状況を見る</h3>
+    <pre><code>./setup.sh --check-services</code></pre>
+    <p>JEV・GitHub・Supabase・Vercelのどれが済んでいて、どれが残っているかを一覧で出します。</p>
+  </li>
+
+  <li>
+    <h3>JEVのAPIキーを取って設定する</h3>
+    <p><a href="jev.html">JEVのページ</a>の手順で取得します。<b>各社で取得</b>してください。取得後の設定はキットのスクリプトで行います。</p>
+    <pre><code>python3 tools/jev-configure.py</code></pre>
+    <div class="note warn"><p>キーはチャットに貼らないでください。スクリプトは入力した値を画面に表示せず、そのまま保存します。</p></div>
+  </li>
+
+  <li>
+    <h3>キットをエージェントで開く</h3>
     <p><code>Aigassyuku07/kit</code>をフォルダとして開きます。ここが今日の作業場所です。</p>
     <figure>
       <div class="shot">ここに画像: フォルダを開いた画面（台帳#3）</div>
     </figure>
     <div class="note">
-      <p><b>Claudeを使う人の場合:</b> Claude Codeで同じフォルダを開きます。<code>kit/CLAUDE.md</code>が自動で読まれ、<code>kit/.claude/skills/</code>のスキルが使える状態になります。</p>
+      <p><b>Claudeを使う人の場合:</b> Claude Codeで同じフォルダを開きます。<code>kit/CLAUDE.md</code>が読まれ、<code>kit/.claude/skills/</code>のスキルが使えます。</p>
     </div>
   </li>
 
@@ -98,13 +129,14 @@ cd Aigassyuku07/kit</code></pre>
   <tr><th>症状</th><th>対処</th></tr>
   <tr><td><code>command not found: node</code></td><td>Node.jsをインストールし、ターミナルを閉じて開き直す</td></tr>
   <tr><td><code>gh</code>で認証を求められる</td><td><code>gh auth login</code>を実行する</td></tr>
-  <tr><td>Codexにサインインできない</td><td>アプリを再起動する。ブラウザで別アカウントにログインしていないか確認</td></tr>
+  <tr><td>JEVのキーが分からない</td><td><a href="jev.html">JEVのページ</a>へ戻る。5分で取れます</td></tr>
+  <tr><td>JEVが呼べない</td><td>キーの置き場所を確認。環境変数と設定ファイルの両方に違う値を入れない</td></tr>
   <tr><td>会社のPCで入れられない</td><td>当日、管理者権限なしで進める代替手順を案内します</td></tr>
 </table>
 
 <div class="pager">
   <a href="why.html">← なぜやるのか</a>
-  <a href="readme-driven.html">次: README駆動開発 →</a>
+  <a href="jev.html">次: JEV →</a>
 </div>
 
 </main>

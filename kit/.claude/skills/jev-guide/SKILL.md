@@ -31,9 +31,26 @@ JEVは**会話用のAIではなく、判断用のAI**。ふわっとした入力
 | 何 | どこ |
 |---|---|
 | APIキー | 環境変数`JEV_API_KEY`、または`~/.config/typesafe/api-key` |
-| 呼び出し先 | TypeSafeの公式エンドポイント |
+| 呼び出し先 | `POST https://api.typesafe.ai/v1/systemone` |
+| モデル | `jev-latest`（固定したいときは`jev-1.13.0`） |
 
-**キーをコードやチャットに書かない。**
+**キーをコードやチャットに書かない。** 取得の手順は`docs/jev-setup.md`にある。ユーザーがキー未設定のときは、この手順を**順番どおり**に案内する（順序を飛ばさない）。
+
+```bash
+python3 tools/jev-configure.py          # 保存（入力は画面に出ない）
+python3 tools/jev-configure.py --verify # 疎通確認
+```
+
+呼び出しの形（最小）:
+
+```bash
+curl https://api.typesafe.ai/v1/systemone \
+  -H "Authorization: Bearer $JEV_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"model":"jev-latest","state":"判定したい内容","questions":{"gate":{"type":"noul","instructions":"この内容は外部に出してよいか"}}}'
+```
+
+`state`に材料、`questions`に問いを置く。問いは`noul`（確率）/`choice`（選択）/`score`（段階）の3種類だけ。
 
 ## 終わりの状態
 

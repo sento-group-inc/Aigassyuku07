@@ -36,9 +36,13 @@
 | 18 | 完成した自社ダッシュボードの本番画面 | 半自動 | `index.html` | 未 |
 | 19 | `/poteto-mode`の発火と最初の応答 | 自動 | `pstack.html` | 未 |
 | 20 | `/reflect`の出力 | 自動 | `pstack.html` | 未 |
-| 21 | JEVの型つき応答 | 自動 | `skills.html` | 未 |
+| 21 | JEVの型つき応答 | 半自動 | `skills.html` / `jev.html` | 未 |
 | 22 | `lp`が参照サイトを取得している流れ | 自動 | `skills.html` | 未 |
 | 23 | ガイドエージェントに「次は？」と聞いた応答 | 自動 | `skills.html` | 未 |
+| 24 | JEV公式サイトのトップと`Sign In`の位置 | 自動 | `jev.html` | 未 |
+| 25 | TypeSafeのサインイン画面 | 自動 | `jev.html` | **取得済み**（`assets/images/jev/01-login.jpg`） |
+| 26 | 管理画面でAPIキーを発行する画面 | 手動（キーを隠して） | `jev.html` | 未 |
+| 27 | キー保存スクリプトの実行結果 | 自動 | `jev.html` | 未（値が出ないことを確認して撮る） |
 
 ## 画像の置き場と命名
 

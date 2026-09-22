@@ -14,6 +14,7 @@
     <nav class="navlinks">
       <a href="why.html">なぜ</a>
       <a href="setup.html">環境</a>
+      <a href="jev.html">JEV</a>
       <a href="build.html">作る</a>
       <a href="pstack.html">進め方</a>
       <a href="skills.html">道具</a>
@@ -26,40 +27,138 @@
 <main>
 
 <h1>当日の流れ</h1>
-<p class="lede">まる1日で、自社のURLまで行きます。</p>
+<p class="lede">初日で自社のURLまで行きます。2日目は各社が自分のペースで個別学習に入ります。</p>
 
-<div class="goal">
-  <strong>このページを終えると</strong>、いま何をすべきかと、どこで休憩するかが分かります。
+<div class="facts">
+  <div class="fact"><div class="k">日程</div><div class="v">10月6日(火)・7日(水)</div></div>
+  <div class="fact"><div class="k">参加</div><div class="v">10社</div></div>
+  <div class="fact"><div class="k">初日</div><div class="v">まる1日</div></div>
+  <div class="fact"><div class="k">2日目</div><div class="v">個別学習（自社題材）</div></div>
 </div>
 
-<h2>タイムテーブル</h2>
+<div class="goal">
+  <strong>このページを見ると</strong>、いま全体のどこにいて、次に何が来るかが分かります。
+</div>
+
+<h2>全体の流れ（D1〜D11）</h2>
+<p class="lede">上から下へ進みます。各ブロックが「終わりの状態」を持っています。</p>
+
+<div class="phase">
+  <div class="phase-label">午前 — 腹落ちと準備</div>
+  <div class="flownode">
+    <div class="d">D1</div>
+    <div class="t">なぜやるのかを腹落ちさせる</div>
+    <div class="s">終わり: 自分の言葉で1文言える</div>
+  </div>
+  <div class="flowarrow">▼</div>
+  <div class="flownode">
+    <div class="d">D2</div>
+    <div class="t">環境とJEVキーをそろえる</div>
+    <div class="s">終わり: setup.shが通る／JEVが1回呼べる</div>
+  </div>
+  <div class="flowarrow">▼</div>
+  <div class="flownode">
+    <div class="d">D3</div>
+    <div class="t">題材を決めて、画面をArtifactsで作る</div>
+    <div class="s">終わり: 自分の目で開いて操作できる</div>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="phase-label">午後 — 設計と土台</div>
+  <div class="flownode">
+    <div class="d">D4</div>
+    <div class="t">スキーマとER図を作る</div>
+    <div class="s">終わり: 「この情報はどこに入るか」に全部答えられる</div>
+  </div>
+  <div class="flowarrow">▼</div>
+  <div class="flownode">
+    <div class="d">D5</div>
+    <div class="t">ロードマップ（スライス）を書く</div>
+    <div class="s">終わり: 1番目が今日中に終わる大きさになっている</div>
+  </div>
+  <div class="flowarrow">▼</div>
+  <div class="flownode">
+    <div class="d">D6</div>
+    <div class="t">キーとアカウントを棚卸しする</div>
+    <div class="s">終わり: keys.mdに表があり、値はどこにも書かれていない</div>
+  </div>
+  <div class="flowarrow">▼</div>
+  <div class="flownode">
+    <div class="d">D7</div>
+    <div class="t">リポジトリとSecretを作る</div>
+    <div class="s">終わり: ローカルで画面が開く</div>
+  </div>
+  <div class="flowarrow">▼</div>
+  <div class="flownode">
+    <div class="d">D8</div>
+    <div class="t">docsとAGENTS/CLAUDE.mdを整える</div>
+    <div class="s">終わり: AIが作業前に読む状態になっている</div>
+  </div>
+  <div class="flowarrow">▼</div>
+  <div class="flownode">
+    <div class="d">D9</div>
+    <div class="t">スライスを実装する（PR→レビュー→マージ）</div>
+    <div class="s">終わり: 1つがマージされ、動いている</div>
+  </div>
+  <div class="flowarrow">▼</div>
+  <div class="flownode">
+    <div class="d">D10</div>
+    <div class="t">デプロイする</div>
+    <div class="s">終わり: 本番URLを開き、ログインして1画面が動く</div>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="phase-label">夕方 — 振り返りと翌日へ</div>
+  <div class="flownode hand-off">
+    <div class="d">D11</div>
+    <div class="t">発表と、次の一手の確定</div>
+    <div class="s">終わり: 明日やることが1行で書かれている</div>
+  </div>
+</div>
+
+<div class="note">
+  <p><b>順番の意味:</b> D4（スキーマ）が固まってからD5（ロードマップ）に進みます。逆にすると、作ってから作り直しになります。時間が押したときはD10→D5→D4の順で優先し、<b>残りのスライスが書かれていること</b>を守ってください。</p>
+</div>
+
+<h2>タイムテーブル（10月6日）</h2>
 <table>
-  <tr><th>時刻</th><th>内容</th><th>参照</th></tr>
-  <tr><td>09:30</td><td>オープニング。なぜやるのかを腹落ちさせる</td><td><a href="why.html">why</a></td></tr>
-  <tr><td>10:00</td><td>環境の最終確認（詰まりを潰す）</td><td><a href="setup.html">setup</a></td></tr>
-  <tr><td>10:30</td><td>題材を決めて、画面をArtifactsで作る</td><td>Step 1〜2</td></tr>
-  <tr><td>12:00</td><td>昼食</td><td>—</td></tr>
-  <tr><td>13:00</td><td>スキーマとER図、ロードマップ</td><td>Step 3〜4</td></tr>
-  <tr><td>14:30</td><td>キーの棚卸し、リポジトリとSecret</td><td>Step 5〜6</td></tr>
-  <tr><td>15:30</td><td>docsとAGENTS/CLAUDE.md、スライス実装</td><td>Step 7〜8</td></tr>
-  <tr><td>17:00</td><td>デプロイと動作確認</td><td>Step 9</td></tr>
-  <tr><td>17:30</td><td>発表（1社5分）と次の一手の確定</td><td>Step 10</td></tr>
+  <tr><th>時刻</th><th>内容</th><th>対応</th><th>参照</th></tr>
+  <tr><td>09:30</td><td>オープニング。なぜやるのかを腹落ちさせる</td><td>D1</td><td><a href="why.html">why</a></td></tr>
+  <tr><td>10:00</td><td>環境とJEVキーの確認（詰まりを潰す）</td><td>D2</td><td><a href="setup.html">setup</a> / <a href="jev.html">jev</a></td></tr>
+  <tr><td>10:30</td><td>題材を決めて、画面をArtifactsで作る</td><td>D3</td><td><a href="build.html">build</a> 1〜2</td></tr>
+  <tr><td>12:00</td><td>昼食</td><td>—</td><td>—</td></tr>
+  <tr><td>13:00</td><td>スキーマとER図、ロードマップ</td><td>D4〜D5</td><td><a href="build.html">build</a> 3〜4</td></tr>
+  <tr><td>14:30</td><td>キーの棚卸し、リポジトリとSecret</td><td>D6〜D7</td><td><a href="build.html">build</a> 5〜6</td></tr>
+  <tr><td>15:30</td><td>docsとAGENTS/CLAUDE.md、スライス実装</td><td>D8〜D9</td><td><a href="build.html">build</a> 7〜8</td></tr>
+  <tr><td>17:00</td><td>デプロイと動作確認</td><td>D10</td><td><a href="build.html">build</a> 9</td></tr>
+  <tr><td>17:30</td><td>発表（1社5分）と次の一手の確定</td><td>D11</td><td>—</td></tr>
+</table>
+
+<h2>2日目（10月7日）</h2>
+<p>2日目は各社が自分のペースで進めます。会場は開放し、詰まったところを個別に拾います。<b>最初の30分で「今日の1スライス」を決めてから始めてください。</b></p>
+<table>
+  <tr><th>使うもの</th><th>やること</th></tr>
+  <tr><td><code>guide</code></td><td>「次は何をすればいい？」で今日の1スライスを受け取る</td></tr>
+  <tr><td><a href="day2.html">翌日以降のページ</a></td><td>1日の進め方と、人に聞くときの型</td></tr>
+  <tr><td><a href="pstack.html">進め方</a></td><td>詰まったときに、何を先に確かめるか</td></tr>
 </table>
 
 <h2>チェックポイント</h2>
-<p>次の3つを過ぎたら、講師に声をかけてください。ここで一度止めて確認する方が、後で速くなります。</p>
+<p>次の3つを過ぎたら講師に声をかけてください。ここで一度止めて確認する方が後で速くなります。</p>
 <ol class="steps">
   <li><h3>12:00 — 画面が1枚できているか</h3><p>できていなければ、題材を小さくします。</p></li>
-  <li><h3>15:00 — スキーマとロードマップがあるか</h3><p>ここが無いと、実装が迷走します。最優先で戻ります。</p></li>
+  <li><h3>15:00 — スキーマとロードマップがあるか</h3><p>無いと実装が迷走します。最優先で戻ります。</p></li>
   <li><h3>17:00 — 本番URLがあるか</h3><p>無くても大丈夫。原因を記録して、次の一手にします。</p></li>
 </ol>
 
-<h2>発表フォーマット（5分）</h2>
+<h2>発表フォーマット（1社5分）</h2>
 <table>
   <tr><th>項目</th><th>話すこと</th></tr>
   <tr><td>作ったもの</td><td>何の業務を、どう見えるようにしたか（画面を見せる）</td></tr>
   <tr><td>できたこと</td><td>本番URL、動いている操作</td></tr>
-  <tr><td>詰まったこと</td><td>どこで止まったか（これが一番価値があります）</td></tr>
+  <tr><td>詰まったこと</td><td>どこで止まったか（ここが一番価値があります）</td></tr>
   <tr><td>次にやること</td><td>明日の1スライス</td></tr>
 </table>
 
