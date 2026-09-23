@@ -47,7 +47,7 @@ check_tools() {
 
   echo
   echo "== 作業フォルダ =="
-  if [ -f "./AGENTS.md" ] && [ -d "./.claude/skills" ]; then
+  if [ -f "./AGENTS.md" ] && [ -d "./.claude/skills" ] && [ -e "./.agents/skills" ]; then
     mark_ok "kit/ の中で実行しています"
   else
     mark_ng "kit/ の中で実行してください（cd kit してから ./setup.sh）"
@@ -56,14 +56,6 @@ check_tools() {
 
 check_services() {
   echo "== 外部サービス =="
-
-  if [ -n "${JEV_API_KEY:-}" ] || [ -n "${TYPESAFE_API_KEY:-}" ]; then
-    mark_ok "JEVのキー: 環境変数で設定済み（値は表示しません）"
-  elif [ -f "$HOME/.config/typesafe/api-key" ]; then
-    mark_ok "JEVのキー: 登録済み（値は表示しません）"
-  else
-    mark_ng "JEVのキー: 未設定。https://typesafe.ai → Sign In で取得し、python3 tools/jev-configure.py で保存"
-  fi
 
   if command -v gh >/dev/null 2>&1; then
     if gh auth status >/dev/null 2>&1; then
@@ -78,13 +70,13 @@ check_services() {
   if command -v supabase >/dev/null 2>&1; then
     mark_ok "Supabase CLI: $(supabase --version 2>&1 | head -1)"
   else
-    mark_info "Supabase CLI: 未導入（当日はブラウザ操作でも進められます） https://supabase.com/dashboard"
+    mark_info "Supabase CLI: 未導入（当日はブラウザで進めるので不要） https://supabase.com/dashboard"
   fi
 
   if command -v vercel >/dev/null 2>&1; then
     mark_ok "Vercel CLI: $(vercel --version 2>&1 | head -1)"
   else
-    mark_info "Vercel CLI: 未導入（当日はGitHub連携で進められます） https://vercel.com/new"
+    mark_info "Vercel CLI: 未導入（当日はブラウザのGitHub連携で進めるので不要） https://vercel.com/new"
   fi
 }
 
@@ -92,7 +84,6 @@ print_links() {
   echo
   echo "----------------------------------------"
   echo "足りないものの入手先"
-  echo "  JEV（APIキー）  https://typesafe.ai → Sign In"
   echo "  Node.js         https://nodejs.org/ja/download"
   echo "  git             https://git-scm.com/downloads"
   echo "  GitHub CLI      https://cli.github.com/"

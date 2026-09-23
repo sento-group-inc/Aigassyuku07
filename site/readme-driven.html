@@ -3,8 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>README駆動開発 — AI合宿</title>
+<title>書いてから作る（README駆動） — AI合宿</title>
 <link rel="stylesheet" href="assets/style.css">
+<script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict", flowchart: { htmlLabels: true, curve: "basis" } });
+</script>
 </head>
 <body>
 
@@ -12,13 +16,15 @@
   <div class="topbar-inner">
     <a class="brand" href="index.html">AI合宿</a>
     <nav class="navlinks">
+      <a href="prep.html">準備</a>
+      <a href="schedule.html">日程</a>
       <a href="why.html">なぜ</a>
       <a href="setup.html">環境</a>
-      <a href="jev.html">JEV</a>
+      <a href="readme-driven.html" aria-current="page">書いてから作る</a>
       <a href="build.html">作る</a>
       <a href="pstack.html">進め方</a>
       <a href="skills.html">道具</a>
-      <a href="day1.html">当日</a>
+      <a href="repos.html">リポジトリ</a>
       <a href="day2.html">翌日以降</a>
     </nav>
   </div>
@@ -26,50 +32,55 @@
 
 <main>
 
-<h1>README駆動開発</h1>
-<p class="lede">結論: <b>先に文章を書き、その文章に合わせて作る。</b>コードより先に、言葉を固めます。</p>
+<h1>書いてから作る（README駆動）</h1>
+<p class="lede"><b>結論:</b> コードより先に、言葉を決めます。先に書いた文章に合わせてAIに作らせると、作り直しが減ります。</p>
 
-<div class="goal">
-  <strong>このページを読むと</strong>、AIに何を渡せば意図通りに動くかが分かります。
-</div>
+<div class="goal"><strong>このページを読むと</strong>、AIに何を渡せば意図どおりに動くかが分かります。</div>
+
+<section class="map"><div class="map-label">このページの地図</div><pre class="mermaid">
+flowchart LR
+  A["README<br/>誰が何に困り<br/>何ができるか"] --> B["グリル<br/>grill-with-docs<br/>質問で詰める"]
+  B --> C["CONTEXT.md / ADR<br/>言葉と決定を残す"]
+  C --> D["画面・スキーマ<br/>2〜3案で比べる"]
+  D --> E["実装→確かめる"]
+</pre></section>
+
+<div class="analogy"><div class="k">たとえるなら</div><p><b>家を建てる前の打ち合わせと図面</b>です。「誰が住む？部屋はいくつ？」を先に決めて図面に書けば、大工さん（AI）は毎回図面に戻って作業します。口約束だけだと、毎回違う家が建ちます。</p></div>
 
 <h2>なぜ文章から始めるのか</h2>
 <p>AIは、言われていないことを勝手に決めます。決めた結果が気に入らないと、あとで全部やり直しになります。</p>
-<p>逆に、<b>先に決めて文章にしておけば</b>、AIは毎回そこへ戻って作業します。人の記憶も曖昧になりません。</p>
+<p>逆に、先に決めて文章にしておけば、AIは毎回そこへ戻って作業します。人の記憶も曖昧になりません。</p>
+
+<h2>グリルだけで作り始めない</h2>
+<p>AIに質問攻めにしてもらう「グリル」は強力ですが、<b>答えが会話の中に消える</b>と、次のセッションでまた同じ質問が来ます。だから合宿では、答えをファイルに残す <code>grill-with-docs</code> を使います。</p>
+<table>
+  <tr><th></th><th>grill-me（質問するだけ）</th><th>grill-with-docs（合宿で使う）</th></tr>
+  <tr><td>質問</td><td>される</td><td>される（番号付きで一度に、推奨回答つき）</td></tr>
+  <tr><td>答え</td><td>会話に残るだけ</td><td>README / CONTEXT.md / ADR に書かれる</td></tr>
+  <tr><td>次の日</td><td>また説明し直す</td><td>AIがファイルを読んで続きから</td></tr>
+</table>
+<div class="call"><span>Codex: <b>$grill-with-docs</b></span><span>Claude: <b>/grill-with-docs</b></span><span>文章でも: 「grill-with-docsで〜して」</span></div>
 
 <h2>書く順番</h2>
 <ol class="steps">
-  <li>
-    <h3>何のためかを1文で書く</h3>
-    <p>「誰が、何に困っていて、どうなったら嬉しいか」。この1文が全部の判断基準になります。</p>
-  </li>
-  <li>
-    <h3>画面を言葉にする（または画面を先に作る）</h3>
-    <p>何が見えるか、何が押せるかを書きます。図や画像の方が早いこともあります。</p>
-  </li>
-  <li>
-    <h3>データの形を書く</h3>
-    <p>何を、どんな項目で持つか。関連（1対多など）も書きます。ここが一番効きます。</p>
-  </li>
-  <li>
-    <h3>作業を一覧にする</h3>
-    <p>確認できる単位に切って、順番を決めます。これが<code>roadmap</code>です。</p>
-  </li>
-  <li>
-    <h3>決めたことの「なぜ」を残す</h3>
-    <p>あとで自分が読み返したときに、同じ議論をやり直さずに済みます。</p>
-  </li>
+  <li><h3>何のためかを1文で書く（README）</h3><p>「誰が、何に困っていて、どうなったら嬉しいか」。この1文が全部の判断基準になります。</p></li>
+  <li><h3>業務の言葉をそろえる（CONTEXT.md）</h3><p>「案件」「見積」「完了」など、人によって意味がぶれる言葉を定義します。AIが勝手に別の言葉を使わなくなります。</p></li>
+  <li><h3>画面を言葉にする（または画面を先に作る）</h3><p>何が見えるか、何が押せるかを書きます。図や画像の方が早いこともあります。</p></li>
+  <li><h3>データの形を書く（schema.md）</h3><p>何を、どんな項目で持つか。つながり（1対多など）も書きます。ここが一番効きます。</p></li>
+  <li><h3>作業を一覧にする（roadmap.md）</h3><p>確認できる単位に切って、順番を決めます。</p></li>
+  <li><h3>戻しにくい決定の「なぜ」を残す（ADR）</h3><p>あとで自分とAIが読み返したときに、同じ議論をやり直さずに済みます。</p></li>
 </ol>
 
 <h2>キットでの置き場</h2>
 <table>
-  <tr><th>ファイル</th><th>何を書くか</th></tr>
-  <tr><td><code>docs/schema.md</code></td><td>データの形と、そう決めた理由</td></tr>
-  <tr><td><code>docs/ui-guidelines.md</code></td><td>UIの原則。指摘されたことを足していく</td></tr>
-  <tr><td><code>docs/infra.md</code></td><td>どこで動かすか、秘密情報の置き場</td></tr>
-  <tr><td><code>docs/roadmap.md</code></td><td>作業の一覧と、終わりの状態</td></tr>
-  <tr><td><code>docs/keys.md</code></td><td>必要なキーと、その置き場所（値は書かない）</td></tr>
-  <tr><td><code>AGENTS.md</code> / <code>CLAUDE.md</code></td><td>「作業前に読む」の一覧と、守る決まり</td></tr>
+  <tr><th>ファイル</th><th>何を書くか</th><th>いつ</th></tr>
+  <tr><td><code>README.md</code></td><td>誰が・何に困り・何ができるようになるか</td><td>Step 1</td></tr>
+  <tr><td><code>CONTEXT.md</code></td><td>業務で使う言葉の意味</td><td>Step 1</td></tr>
+  <tr><td><code>docs/adr/</code></td><td>戻しにくい決定と理由（1ファイル1決定）</td><td>必要になったとき</td></tr>
+  <tr><td><code>docs/schema.md</code></td><td>データの形と、そう決めた理由</td><td>Step 3</td></tr>
+  <tr><td><code>docs/roadmap.md</code></td><td>作業の一覧と、終わりの状態</td><td>Step 4</td></tr>
+  <tr><td><code>docs/ui-guidelines.md</code></td><td>画面の原則。指摘されたことを足していく</td><td>Step 7〜</td></tr>
+  <tr><td><code>AGENTS.md</code> / <code>CLAUDE.md</code></td><td>「作業前に読む」の一覧と、守る決まり</td><td>Step 7</td></tr>
 </table>
 
 <h2>効き方の違い</h2>
@@ -80,18 +91,17 @@
   <tr><td>作り直し</td><td>起きやすい</td><td>起きにくい</td></tr>
   <tr><td>引き継ぎ</td><td>できない</td><td>そのまま渡せる</td></tr>
 </table>
+<div class="note"><p><b>完璧に書こうとしないこと。</b>決まっていない箇所は「未確定」と書いておけば十分です。空欄より「未確定」の方が価値があります。</p></div>
 
-<div class="note">
-  <p><b>コツ:</b> 完璧に書こうとしないこと。決まっていない箇所は「未確定」と書いておけば十分です。空欄より「未確定」の方が価値があります。</p>
-</div>
+<h2>覚えること（3つ）</h2><ol class="remember"><li><b>作る前に書く</b>。READMEの1文がすべての判断基準</li><li>グリルの答えは<b>ファイルに残す</b>（grill-with-docs）</li><li>決まらない所は<b>「未確定」</b>と書いて先へ進む</li></ol>
 
 <div class="pager">
   <a href="setup.html">← 環境を整える</a>
-  <a href="build.html">次: 作る（8ステップ） →</a>
+  <a href="build.html">次: 作る（10ステップ） →</a>
 </div>
 
 </main>
 
-<footer>AI合宿 — 会社用ダッシュボード構築キット</footer>
+<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
 </body>
 </html>

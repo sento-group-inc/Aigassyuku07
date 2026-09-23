@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>環境を整える — AI合宿</title>
 <link rel="stylesheet" href="assets/style.css">
+<script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict", flowchart: { htmlLabels: true, curve: "basis" } });
+</script>
 </head>
 <body>
 
@@ -12,13 +16,15 @@
   <div class="topbar-inner">
     <a class="brand" href="index.html">AI合宿</a>
     <nav class="navlinks">
+      <a href="prep.html">準備</a>
+      <a href="schedule.html">日程</a>
       <a href="why.html">なぜ</a>
       <a href="setup.html" aria-current="page">環境</a>
-      <a href="jev.html">JEV</a>
+      <a href="readme-driven.html">書いてから作る</a>
       <a href="build.html">作る</a>
       <a href="pstack.html">進め方</a>
       <a href="skills.html">道具</a>
-      <a href="day1.html">当日</a>
+      <a href="repos.html">リポジトリ</a>
       <a href="day2.html">翌日以降</a>
     </nav>
   </div>
@@ -27,120 +33,89 @@
 <main>
 
 <h1>環境を整える</h1>
-<p class="lede">Codex／Claude、git、Node.jsは<b>事前準備で済んでいる前提</b>です。ここでは当日使うもの（JEV・外部サービス・キット）をそろえます。画面はCodex基準で説明します。</p>
+<p class="lede">当日の朝にやることです。インストールは<a href="prep.html">事前準備</a>で済んでいる前提で、ここではキットを開いてガイドに最初の一言を送るところまで進めます。画面はCodex基準で説明します。</p>
 
-<div class="goal">
-  <strong>このページを終えると</strong>、エージェントが起動し、キットが動き、JEVが呼べる状態になります。
-</div>
+<div class="goal"><strong>このページを終えると</strong>、エージェントがキットを読み、「次にやること」を1つ返してくれる状態になります。</div>
 
-<h2>当日そろえるもの</h2>
-<table>
-  <tr><th>#</th><th>もの</th><th>どこで</th><th>所要</th></tr>
-  <tr><td>1</td><td>キット（clone）</td><td>このリポジトリ</td><td>2分</td></tr>
-  <tr><td>2</td><td>JEVのAPIキー</td><td><a href="jev.html">JEVのページ</a></td><td>5分</td></tr>
-  <tr><td>3</td><td>GitHubアカウント</td><td><a href="https://github.com/signup">github.com/signup</a></td><td>—</td></tr>
-  <tr><td>4</td><td>Vercel（GitHubで連携）</td><td><a href="https://vercel.com/signup">vercel.com/signup</a></td><td>3分</td></tr>
-  <tr><td>5</td><td>Supabase</td><td><a href="https://supabase.com/dashboard">supabase.com/dashboard</a></td><td>3分</td></tr>
-  <tr><td>6</td><td>GitHub CLIのサインイン</td><td><code>gh auth login</code></td><td>2分</td></tr>
-</table>
+<section class="map"><div class="map-label">このページの地図</div><pre class="mermaid">
+flowchart LR
+  A["1 足りない物を確認<br/>setup.sh"] --> B["2 サービスを確認<br/>--check-services"]
+  B --> C["3 キットを開く<br/>Codex / Claude"]
+  C --> D["4 最初の一言<br/>PROMPT.md"]
+  D --> E["ガイドが<br/>次の一手を返す"]
+</pre></section>
 
-<h2>関連リンク（まとめて開く）</h2>
-<table>
-  <tr><th>用途</th><th>リンク</th></tr>
-  <tr><td>このキット</td><td><a href="https://github.com/sento-group-inc/Aigassyuku07">github.com/sento-group-inc/Aigassyuku07</a></td></tr>
-  <tr><td>JEV（APIキー）</td><td><a href="https://typesafe.ai">typesafe.ai</a> → Sign In</td></tr>
-  <tr><td>JEVの仕様</td><td><a href="https://docs.typesafe.ai/">docs.typesafe.ai</a></td></tr>
-  <tr><td>Node.js（20以上）</td><td><a href="https://nodejs.org/ja/download">nodejs.org/ja/download</a></td></tr>
-  <tr><td>git</td><td><a href="https://git-scm.com/downloads">git-scm.com/downloads</a></td></tr>
-  <tr><td>GitHub CLI</td><td><a href="https://cli.github.com/">cli.github.com</a></td></tr>
-  <tr><td>Codex</td><td><a href="https://openai.com/codex/">openai.com/codex</a></td></tr>
-  <tr><td>Claude</td><td><a href="https://claude.ai/download">claude.ai/download</a></td></tr>
-  <tr><td>Supabase</td><td><a href="https://supabase.com/dashboard">supabase.com/dashboard</a></td></tr>
-  <tr><td>Vercel</td><td><a href="https://vercel.com/new">vercel.com/new</a></td></tr>
-</table>
-<p>同じ一覧はキットの<code>kit/docs/links.md</code>にあります。まとめて開きたいときに使ってください。</p>
+<div class="analogy"><div class="k">たとえるなら</div><p><b>料理教室の調理台の準備</b>です。包丁とまな板（道具）が揃っているか確かめ、レシピ（キット）を開き、先生（ガイド）に「何から始めますか？」と聞きます。</p></div>
 
 <h2>当日の手順</h2>
-
 <ol class="steps">
   <li>
-    <h3>エージェントを起動する</h3>
-    <p>サインインは事前準備で済んでいる前提です。起動できることだけ確認します。</p>
-    <figure>
-      <div class="shot">ここに画像: Codexの起動直後の画面（台帳#2）</div>
-      <figcaption>アカウント名が写る場合はマスクする</figcaption>
-    </figure>
-  </li>
-
-  <li>
-    <h3>キットをcloneする</h3>
-    <pre><code>git clone https://github.com/sento-group-inc/Aigassyuku07.git
-cd Aigassyuku07/kit</code></pre>
-    <figure>
-      <div class="shot">ここに画像: ターミナルでcloneが終わった画面（台帳#5）</div>
-    </figure>
-  </li>
-
-  <li>
     <h3>足りないものを確認する</h3>
-    <pre><code>./setup.sh</code></pre>
+    <pre><code>cd ~/Documents/Aigassyuku07/kit
+./setup.sh</code></pre>
     <p><b>何もインストールしません。</b>足りないものと入手先URLを表示するだけです。<code>NG</code>が出たらURLから入れて、もう一度実行します。</p>
-    <figure>
-      <div class="shot">ここに画像: setup.shの結果（台帳#6）</div>
-    </figure>
+    <figure><img src="assets/images/setup/01-setup-sh.png" alt="setup.shの実行結果" loading="lazy"><figcaption>最後の行が「要対応: 0」なら次へ</figcaption></figure>
   </li>
-
   <li>
     <h3>外部サービスの準備状況を見る</h3>
     <pre><code>./setup.sh --check-services</code></pre>
-    <p>JEV・GitHub・Supabase・Vercelのどれが済んでいて、どれが残っているかを一覧で出します。</p>
+    <p>GitHubにサインイン済みかを確かめます。<code>NG</code>が出たら <code>gh auth login</code> を実行します。SupabaseとVercelは当日ブラウザで使うので、CLIは入っていなくて構いません。</p>
+    <figure><img src="assets/images/setup/02-check-services.png" alt="setup.sh --check-servicesの実行結果" loading="lazy"><figcaption>GitHubがOKなら次へ</figcaption></figure>
   </li>
-
-  <li>
-    <h3>JEVのAPIキーを取って設定する</h3>
-    <p><a href="jev.html">JEVのページ</a>の手順で取得します。<b>各社で取得</b>してください。取得後の設定はキットのスクリプトで行います。</p>
-    <pre><code>python3 tools/jev-configure.py</code></pre>
-    <div class="note warn"><p>キーはチャットに貼らないでください。スクリプトは入力した値を画面に表示せず、そのまま保存します。</p></div>
-  </li>
-
   <li>
     <h3>キットをエージェントで開く</h3>
-    <p><code>Aigassyuku07/kit</code>をフォルダとして開きます。ここが今日の作業場所です。</p>
-    <figure>
-      <div class="shot">ここに画像: フォルダを開いた画面（台帳#3）</div>
-    </figure>
-    <div class="note">
-      <p><b>Claudeを使う人の場合:</b> Claude Codeで同じフォルダを開きます。<code>kit/CLAUDE.md</code>が読まれ、<code>kit/.claude/skills/</code>のスキルが使えます。</p>
-    </div>
+    <p>Codexを起動し、<code>Aigassyuku07/kit</code> フォルダを作業フォルダとして開きます。ここが今日の午前の作業場所です。</p>
+    <figure><div class="shot">ここに画像: Codexでkitフォルダを開いた画面</div><figcaption>Codexでフォルダを開く</figcaption></figure>
+    <div class="note claude"><p><b>Claudeを使う人:</b> Claude Codeで同じフォルダを開きます。<code>CLAUDE.md</code>が読まれ、<code>.claude/skills/</code>のスキルが使えます。Codexは同じスキルを<code>.agents/skills/</code>から読みます。</p></div>
   </li>
-
   <li>
-    <h3>最初のプロンプトを送る</h3>
-    <p>リポジトリ直下の<code>PROMPT.md</code>の「最初に貼るもの」をコピーして送ります。</p>
-    <figure>
-      <div class="shot">ここに画像: 最初のプロンプトと応答（台帳#4）</div>
-      <figcaption>エージェントが「次にやること」を1つ返してくれば成功</figcaption>
-    </figure>
+    <h3>最初の一言を送る</h3>
+    <p>リポジトリ直下の<a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/PROMPT.md">PROMPT.md</a>の「最初に貼るもの」をコピーして送ります。</p>
+    <pre><code>このフォルダで作業します。guide スキルを使って、docs/guide-steps.md を読み、
+いまの状態（どのステップまで終わっているか）を判定してから、
+次にやることを1つだけ指示してください。（以下、PROMPT.md のとおり）</code></pre>
+    <p>エージェントが「現在地・次の一手・使うスキル・終わりの状態」を返してくれば成功です。</p>
+    <div class="note"><p><b>実際の応答例（Codexでリハーサルした結果）</b></p><pre><code>現在地: Step 0の途中です。ツール確認は完了（要対応0）ですが、GitHub未サインインのためStep 0は未完了です。Step 1以降も未着手です。
+
+次の一手: GitHubへサインインする。
+
+使うスキル: `guide`
+
+あなたがやること:
+
+1. このフォルダのターミナルで `gh auth login` を実行
+2. `GitHub.com` → `HTTPS` → `Login with a web browser` を選択
+3. 表示されたURLをブラウザで開き、コードを入力して「Authorize GitHub CLI」を押す
+4. 終わったら `./setup.sh --check-services` を実行
+
+終わりの状態: `GitHub: ... でサインイン済み` と表示され、`NG` が1つもない。</code></pre></div>
   </li>
 </ol>
+
+<h2>スキルの呼び方</h2>
+<p>キットには16本のスキル（AIへの手順書）が入っています。呼び方は3通りあり、どれでも動きます。</p>
+<div class="call"><span>Codex: <b>$guide</b></span><span>Claude: <b>/guide</b></span><span>文章でも: 「guideで〜して」</span></div>
+<p>一覧は<a href="skills.html">道具のページ</a>にあります。<b>覚えるのは <code>guide</code> だけ</b>で大丈夫です。次に使うスキルは、ガイドが教えてくれます。</p>
 
 <h2>うまくいかないとき</h2>
 <table>
   <tr><th>症状</th><th>対処</th></tr>
-  <tr><td><code>command not found: node</code></td><td>Node.jsをインストールし、ターミナルを閉じて開き直す</td></tr>
-  <tr><td><code>gh</code>で認証を求められる</td><td><code>gh auth login</code>を実行する</td></tr>
-  <tr><td>JEVのキーが分からない</td><td><a href="jev.html">JEVのページ</a>へ戻る。5分で取れます</td></tr>
-  <tr><td>JEVが呼べない</td><td>キーの置き場所を確認。環境変数と設定ファイルの両方に違う値を入れない</td></tr>
-  <tr><td>会社のPCで入れられない</td><td>当日、管理者権限なしで進める代替手順を案内します</td></tr>
+  <tr><td><code>command not found: node</code></td><td><code>brew install node</code> のあと、ターミナルを閉じて開き直す</td></tr>
+  <tr><td><code>gh</code>で認証を求められる</td><td><code>gh auth login</code> → <code>GitHub.com</code> → <code>HTTPS</code> → ブラウザでログイン</td></tr>
+  <tr><td><code>kit/ の中で実行してください</code>と出る</td><td><code>cd ~/Documents/Aigassyuku07/kit</code> してからもう一度</td></tr>
+  <tr><td>エージェントがスキルを知らないと言う</td><td>開いているフォルダが<code>kit</code>か確認する。親の<code>Aigassyuku07</code>を開いていると読めない</td></tr>
+  <tr><td>会社のPCで入れられない</td><td>隣の人と2人1組で1台を使い、自社の題材で進める。帰社後のインストール依頼は<a href="prep.html">事前準備</a>の依頼文を使う</td></tr>
 </table>
+
+<h2>覚えること（3つ）</h2><ol class="remember"><li>開くのは <b><code>kit</code> フォルダ</b>（親フォルダではない）</li><li>最初の一言は <b>PROMPT.md をそのまま貼る</b></li><li>覚えるスキルは <b><code>guide</code> だけ</b></li></ol>
 
 <div class="pager">
   <a href="why.html">← なぜやるのか</a>
-  <a href="jev.html">次: JEV →</a>
+  <a href="readme-driven.html">次: 書いてから作る（README駆動） →</a>
 </div>
 
 </main>
 
-<footer>AI合宿 — 会社用ダッシュボード構築キット</footer>
+<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
 </body>
 </html>

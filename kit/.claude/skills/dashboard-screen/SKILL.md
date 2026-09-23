@@ -1,9 +1,11 @@
 ---
 name: dashboard-screen
-description: 業務の困りごとを、Artifactsで見える画面にするときに使う。実装はまだしない。
+description: 業務の困りごとを、ブラウザで開ける画面の試作（docs/prototype.html）にするときに使う。実装はまだしない。
 ---
 
-# dashboard-screen — 画面をArtifactsで作る
+# dashboard-screen — 画面を試作する
+
+たとえるなら、**家具を置く前の段ボール模型**。本物を作る前に、置いた感じを目で確かめる。
 
 ## 手順
 
@@ -12,7 +14,7 @@ description: 業務の困りごとを、Artifactsで見える画面にすると�
    - 一覧（今日見るもの）
    - 詳細（1件の中身）
    - 入力（追加・更新）
-3. Artifacts（Claude）／HTMLファイル（Codex）で作る
+3. `docs/prototype.html` として1つのHTMLファイルに作る（Codex・Claude共通）。Claudeのチャット画面を使う人はArtifactsで作ってから保存してもよい
 4. 見た目と操作を固める。**動くことより、現場で使える形かを見る**
 
 ## 作るときの原則

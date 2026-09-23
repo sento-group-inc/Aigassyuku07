@@ -21,21 +21,26 @@
 
 ## スキル
 
-スキルの実体は`.claude/skills/<名前>/SKILL.md`。ユーザーが「〈名前〉で」と言ったら、そのファイルを読んでから従う。
+スキルの実体は`.claude/skills/<名前>/SKILL.md`（Codexは`.agents/skills/`から同じものを読む）。ユーザーが「〈名前〉で」と言ったら、そのファイルを読んでから従う。
 
 | 名前 | 何をするとき |
 |---|---|
 | `guide` | 「次は何をすればいい？」と聞かれたとき。現在地を判定して次の一手を1つ出す |
-| `dashboard-screen` | 画面プロトタイプをArtifactsで作るとき |
+| `grill-with-docs` | 題材を決める・計画を詰めるとき。質問で詰めて README / CONTEXT.md / ADR に残す |
+| `dashboard-screen` | 画面の試作（`docs/prototype.html`）を作るとき |
 | `dashboard-schema` | スキーマとER図を作り、漏れを潰すとき |
 | `dashboard-roadmap` | 実装をスライスに切ってロードマップを書くとき |
 | `dashboard-keys` | 外部連携に必要なキーを棚卸しするとき |
+| `dashboard-repo` | Supabase・アプリの土台・GitHubリポジトリを作るとき |
 | `dashboard-docs` | `docs/`と`AGENTS.md`/`CLAUDE.md`を整えるとき |
+| `dashboard-auth` | ログインして一覧が見える状態（最初のスライス）を作るとき |
 | `dashboard-slice` | 1スライスを実装→PR→レビュー→マージするとき |
 | `dashboard-deploy` | 本番へ出すとき |
-| `pstack-guide` | 開発の進め方（原則・検証）を確認するとき |
-| `jev-guide` | 曖昧な判断を型つきで出したいとき |
-| `lp-guide` | 参考サイトや部品から画面を作りたいとき |
+| `poteto-mode` | 「開発をガイドして」と言われたとき。足りないものから次の一手を出す |
+| `pstack-guide` | 開発の原則（足す前に引く、実物で示す等）を確認するとき |
+| `reflect` | 一区切りついたとき。学びをdocsやスキルへ残す案を出す |
+| `eli5` | 前提知識のない人にやさしく説明するとき |
+| `lp-guide` | 参考サイトや部品から画面の見た目を作るとき |
 
 ## 守る決まり
 

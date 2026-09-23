@@ -1,0 +1,25 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>見本: ロードマップとキー棚卸し</title><link rel="stylesheet" href="_style.css"></head><body><div class="doc">
+<p class="note">見本（架空の会社「サンプル工務店」）。Step 4 の docs/roadmap.md と Step 5 の docs/keys.md の例です。</p>
+<section id="roadmap">
+<span class="path">docs/roadmap.md</span>
+<h1>実装ロードマップ（番号＝実施順）</h1>
+<table><tr><th>#</th><th>スライス</th><th>何ができるようになるか</th><th>終わりの状態</th><th>状態</th></tr>
+<tr><td>S1</td><td>ログインと案件一覧</td><td>社員がログインし、ダミーの案件一覧が見える</td><td>本番URLでログインして12件が見える</td><td>今日</td></tr>
+<tr><td>S2</td><td>状況の変更</td><td>一覧から状況と次の担当を変えられる</td><td>変更すると最終更新が「0日前」になる</td><td>明日</td></tr>
+<tr><td>S3</td><td>停滞の表示</td><td>7日以上動きのない案件が目立つ</td><td>上部に件数が出て、行が赤くなる</td><td>未</td></tr>
+<tr><td>S4</td><td>絞り込み</td><td>自分の案件・今週着工だけを見られる</td><td>ボタンで件数が変わる</td><td>未</td></tr>
+<tr><td>S5</td><td>案件の追加</td><td>問い合わせを自分で登録できる</td><td>追加した行が一覧の先頭に出る</td><td>未</td></tr>
+<tr><td>S6</td><td>履歴</td><td>いつ誰が状況を変えたか見られる</td><td>案件を開くと履歴が並ぶ</td><td>未</td></tr>
+</table>
+<p class="note">今日やらないもの（消さずに残す）: 見積書の自動作成、会計ソフト連携、お客様への通知</p>
+</section>
+<section id="keys">
+<span class="path">docs/keys.md</span>
+<h1>外部連携に必要なキー（値は書かない）</h1>
+<table><tr><th>#</th><th>サービス</th><th>何に使うか</th><th>必要なもの</th><th>取得場所</th><th>置き場所</th><th>状態</th></tr>
+<tr><td>1</td><td>GitHub</td><td>コードの置き場</td><td>CLIの認証</td><td><code>gh auth login</code></td><td>CLI（手元のPC）</td><td>済</td></tr>
+<tr><td>2</td><td>Supabase</td><td>データとログイン</td><td>Project URL / Publishable key</td><td>画面上部の Connect</td><td><code>.env.local</code> と Vercel の環境変数</td><td>未</td></tr>
+<tr><td>3</td><td>Vercel</td><td>本番URL</td><td>（GitHub連携のみ）</td><td>—</td><td>—</td><td>未</td></tr>
+</table>
+</section>
+</div></body></html>

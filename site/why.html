@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>なぜやるのか — AI合宿</title>
 <link rel="stylesheet" href="assets/style.css">
+<script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict", flowchart: { htmlLabels: true, curve: "basis" } });
+</script>
 </head>
 <body>
 
@@ -12,13 +16,15 @@
   <div class="topbar-inner">
     <a class="brand" href="index.html">AI合宿</a>
     <nav class="navlinks">
+      <a href="prep.html">準備</a>
+      <a href="schedule.html">日程</a>
       <a href="why.html" aria-current="page">なぜ</a>
       <a href="setup.html">環境</a>
-      <a href="jev.html">JEV</a>
+      <a href="readme-driven.html">書いてから作る</a>
       <a href="build.html">作る</a>
       <a href="pstack.html">進め方</a>
       <a href="skills.html">道具</a>
-      <a href="day1.html">当日</a>
+      <a href="repos.html">リポジトリ</a>
       <a href="day2.html">翌日以降</a>
     </nav>
   </div>
@@ -32,6 +38,13 @@
 <div class="goal">
   <strong>このページを読むと</strong>、今日やることが「ただの作業」ではなく、何のための時間なのかが分かります。
 </div>
+
+<section class="map"><div class="map-label">このページの地図</div><pre class="mermaid">
+flowchart LR
+  A["昔: 料理を頼む<br/>システムは外注"] --> B["今: 台所を持つ<br/>言葉にすれば形になる"]
+  B --> C["でも壁がある<br/>考慮点・移行・権限・保守"]
+  C --> D["壁の手前で頼む<br/>限界を早く正確に知る"]
+</pre></section>
 
 <h2>たとえ話: 料理と台所</h2>
 <p>これまで、システムは「料理を頼む」ものでした。作りたい料理を言葉で伝えて、専門の人に作ってもらう。だから、<b>メニューに無いものは頼めない</b>し、味の微調整も毎回お願いすることになります。</p>
@@ -90,12 +103,12 @@
 </table>
 
 <div class="pager">
-  <a href="index.html">← 入口</a>
+  <a href="schedule.html">← 合宿スケジュール</a>
   <a href="setup.html">次: 環境を整える →</a>
 </div>
 
 </main>
 
-<footer>AI合宿 — 会社用ダッシュボード構築キット</footer>
+<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
 </body>
 </html>

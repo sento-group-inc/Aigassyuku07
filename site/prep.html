@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>事前準備 — AI合宿</title>
+<link rel="stylesheet" href="assets/style.css">
+<script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict", flowchart: { htmlLabels: true, curve: "basis" } });
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">AI合宿</a>
+    <nav class="navlinks">
+      <a href="prep.html" aria-current="page">準備</a>
+      <a href="schedule.html">日程</a>
+      <a href="why.html">なぜ</a>
+      <a href="setup.html">環境</a>
+      <a href="readme-driven.html">書いてから作る</a>
+      <a href="build.html">作る</a>
+      <a href="pstack.html">進め方</a>
+      <a href="skills.html">道具</a>
+      <a href="repos.html">リポジトリ</a>
+      <a href="day2.html">翌日以降</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<h1>事前準備</h1>
+<p class="lede">当日は朝から自社のダッシュボードを作り始めます。インストールとアカウント作成は、ここで済ませてきてください。所要1〜2時間。</p>
+
+<section class="map"><div class="map-label">このページの地図</div><pre class="mermaid">
+flowchart LR
+  A["0 宿題<br/>困りごとメモ"] --> B["1 道具を入れる<br/>Node・git・gh"]
+  B --> C["2 Codexを入れる"]
+  C --> D["3 キットをclone"]
+  D --> E["4 アカウント<br/>GitHub・Vercel・Supabase"]
+  E --> F["5 最終チェック"]
+</pre></section>
+
+<div class="analogy"><div class="k">たとえるなら</div><p><b>料理教室の前の買い出し</b>です。材料（困りごとのメモ）と道具（ソフトとアカウント）が揃っていれば、教室の時間を全部「作る」に使えます。</p></div>
+
+<div class="note"><p><b>詰まったらAIに聞けばOK。</b>完璧でなくて大丈夫です。当日の10:00〜に詰まりを拾う時間もあります。</p></div>
+
+<h2>0. 宿題: 困りごとをメモする（いちばん大事）</h2>
+<p>当日、AIがあなたの業務について質問します（<code>grill-with-docs</code>）。材料が多いほど、作るものが良くなります。<b>インストールより、これがいちばん効きます。</b></p>
+<table>
+  <tr><th>メモすること</th><th>例</th></tr>
+  <tr><td>(a) 困りごとを1つ以上<br>誰が、何に困っていて、何が見えると嬉しいか</td><td>案件の進捗が誰にも見えず、毎朝口頭で確認している</td></tr>
+  <tr><td>(b) いま使っている帳票の項目名<br>スプレッドシートや紙の見出しをそのまま</td><td>顧客名 / 担当 / 受付日 / 見積金額 / 状況 / 次アクション</td></tr>
+</table>
+<p>うまく書けないときは、ChatGPTやClaudeに次を貼ると、AIが質問しながら引き出してくれます。</p>
+<pre><code>私の仕事の困りごとを言語化したいです。業務で「面倒なこと」「誰にも見えていないこと」
+「毎回確認していること」を一緒に掘り下げてください。
+質問は番号付きでまとめて出し、それぞれに推奨回答を添えてください。</code></pre>
+<div class="note warn"><p><b>個人情報や実データは持ち込まないでください。</b>画面はダミーデータで作ります。項目名（見出し）だけで十分です。</p></div>
+
+<h2>1. 道具を入れる（Mac・20分）</h2>
+<p>ターミナル（<code>アプリケーション</code> → <code>ユーティリティ</code> → <code>ターミナル</code>）を開いて、1行ずつ貼ります。</p>
+<pre><code># Homebrew（道具を入れる道具）。最後に出る「Next steps」の2行も実行する
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Node.js・git・GitHub CLI
+brew install node git gh</code></pre>
+<p>Windowsの人は <a href="https://nodejs.org/ja/download">Node.js</a>・<a href="https://git-scm.com/downloads">git</a>・<a href="https://cli.github.com/">GitHub CLI</a> をそれぞれのページから入れてください。</p>
+
+<h2>2. Codexを入れてサインインする（10分）</h2>
+<p><a href="https://openai.com/codex/">openai.com/codex</a> からCodexアプリを入れ、会社のChatGPTアカウントでサインインします。Claudeを使う人は <a href="https://claude.ai/download">claude.ai/download</a> も入れてください。</p>
+
+<h2>3. キットをcloneする（2分）</h2>
+<pre><code>cd ~/Documents
+git clone https://github.com/sento-group-inc/Aigassyuku07.git
+cd Aigassyuku07/kit
+./setup.sh</code></pre>
+<p><code>setup.sh</code>は<b>何もインストールしません</b>。足りないものと入手先URLを表示するだけです。</p>
+<figure><img src="assets/images/setup/01-setup-sh.png" alt="setup.shの実行結果" loading="lazy"><figcaption>setup.shの実行結果（実際の出力）。最後が「要対応: 0」なら完了</figcaption></figure>
+
+<h2>4. アカウントを作る（15分）</h2>
+<table>
+  <tr><th>サービス</th><th>何に使うか</th><th>やること</th></tr>
+  <tr><td>GitHub</td><td>コードの置き場</td><td><a href="https://github.com/signup">github.com/signup</a> で作成 → ターミナルで <code>gh auth login</code></td></tr>
+  <tr><td>Vercel</td><td>本番URLで公開する</td><td><a href="https://vercel.com/signup">vercel.com/signup</a> で <b>Continue with GitHub</b></td></tr>
+  <tr><td>Supabase</td><td>データベースとログイン</td><td><a href="https://supabase.com/dashboard/sign-in">supabase.com/dashboard/sign-in</a> で <b>Continue with GitHub</b></td></tr>
+</table>
+<div class="grid">
+  <figure><img src="assets/images/prep/03-vercel-signup.png" alt="Vercelのサインアップ画面" loading="lazy"><figcaption>Vercel: 「Continue with GitHub」を押す</figcaption></figure>
+  <figure><img src="assets/images/prep/04-supabase-signin.png" alt="Supabaseのサインイン画面" loading="lazy"><figcaption>Supabase: 「Continue with GitHub」を押す</figcaption></figure>
+</div>
+<p><b>クレジットカードは不要です。</b>無料枠の範囲で作ります。会社で使うので、会社のメールで作るのがおすすめです。</p>
+<p><code>gh auth login</code> は、質問に <code>GitHub.com</code> → <code>HTTPS</code> → <code>Login with a web browser</code> の順で答え、表示されたコードをブラウザに入れます。</p>
+
+<h2>5. 最終チェック</h2>
+<pre><code>cd ~/Documents/Aigassyuku07/kit
+./setup.sh                    # 最後が「要対応: 0」
+./setup.sh --check-services   # NG が無い</code></pre>
+<table>
+  <tr><th>確認</th><th>OKの状態</th></tr>
+  <tr><td>困りごとメモ</td><td>困りごとの1文と、帳票の項目名がある</td></tr>
+  <tr><td><code>./setup.sh</code></td><td>最後が <code>要対応: 0</code></td></tr>
+  <tr><td><code>./setup.sh --check-services</code></td><td><code>NG</code> が無い</td></tr>
+  <tr><td>Codex</td><td>開いてチャットできる</td></tr>
+  <tr><td>Vercel / Supabase</td><td>GitHubでサインインできる</td></tr>
+</table>
+
+<h2>うまくいかないとき</h2>
+<table>
+  <tr><th>症状</th><th>対処</th></tr>
+  <tr><td><code>command not found: brew</code></td><td>Homebrewのインストール最後に出た「Next steps」の2行を実行し、ターミナルを開き直す</td></tr>
+  <tr><td><code>command not found: node</code></td><td><code>brew install node</code> のあと、ターミナルを開き直す</td></tr>
+  <tr><td>会社のPCで管理者権限がない</td><td>情報システム担当に「Homebrew・Node.js・git・GitHub CLI・Codexを入れたい」と事前に依頼する。間に合わなければ講師へ事前に連絡</td></tr>
+</table>
+<p>詰まったら、次をAIに貼ってください。</p>
+<pre><code>MacでAI合宿の事前準備をしています。
+やりたいこと: Node.js / git / GitHub CLI / Codex を使える状態にしたい
+実行したコマンド: [ここに貼る]
+出たエラー: [ここに貼る]
+初心者にもわかるように、次に確認することと、実行するコマンドを1つずつ教えてください。</code></pre>
+
+<h2>覚えること（3つ）</h2><ol class="remember"><li>いちばん大事なのは<b>困りごとのメモ</b>。インストールより効く</li><li><code>./setup.sh</code> の最後が <b>要対応: 0</b> なら道具は揃っている</li><li>解決しなくても大丈夫。<b>当日10:00〜</b>で拾う</li></ol>
+
+<div class="pager">
+  <a href="index.html">← 入口</a>
+  <a href="schedule.html">次: 合宿スケジュール →</a>
+</div>
+
+</main>
+
+<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
+</body>
+</html>

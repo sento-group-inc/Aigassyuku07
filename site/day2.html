@@ -3,8 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>翌日以降の進め方 — AI合宿</title>
+<title>翌日以降 — AI合宿</title>
 <link rel="stylesheet" href="assets/style.css">
+<script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict", flowchart: { htmlLabels: true, curve: "basis" } });
+</script>
 </head>
 <body>
 
@@ -12,13 +16,15 @@
   <div class="topbar-inner">
     <a class="brand" href="index.html">AI合宿</a>
     <nav class="navlinks">
+      <a href="prep.html">準備</a>
+      <a href="schedule.html">日程</a>
       <a href="why.html">なぜ</a>
       <a href="setup.html">環境</a>
-      <a href="jev.html">JEV</a>
+      <a href="readme-driven.html">書いてから作る</a>
       <a href="build.html">作る</a>
       <a href="pstack.html">進め方</a>
       <a href="skills.html">道具</a>
-      <a href="day1.html">当日</a>
+      <a href="repos.html">リポジトリ</a>
       <a href="day2.html" aria-current="page">翌日以降</a>
     </nav>
   </div>
@@ -29,16 +35,25 @@
 <h1>翌日以降の進め方</h1>
 <p class="lede">ここからの主役はあなたです。AIは手を動かしますが、決めるのはあなたです。</p>
 
-<div class="goal">
-  <strong>このページを読むと</strong>、誰に何を頼めばいいかが分かります。
-</div>
+<div class="goal"><strong>このページを読むと</strong>、毎日の回し方と、誰に何を頼めばいいかが分かります。</div>
+
+<section class="map"><div class="map-label">このページの地図</div><pre class="mermaid">
+flowchart LR
+  A["朝<br/>今日の1スライスを選ぶ"] --> B["guideに確認"]
+  B --> C["実装→動かす"]
+  C --> D["PR→マージ→本番"]
+  D --> E["夕方<br/>reflectで振り返る"]
+  E -. 翌朝 .-> A
+</pre></section>
+
+<div class="analogy"><div class="k">たとえるなら</div><p><b>毎日1皿ずつ増えていく定食屋のメニュー</b>です。1日1皿を確実に出し、出した皿のレシピを書き残す。これを続けると、メニュー（機能）が自然に揃います。</p></div>
 
 <h2>毎日の始め方</h2>
 <ol class="steps">
   <li><h3>今日やるスライスを1つ選ぶ</h3><p><code>docs/roadmap.md</code>の未完了から1つ。<b>複数選ばない。</b></p></li>
   <li><h3>ガイドに確認する</h3><pre><code>次は何をすればいい？</code></pre></li>
-  <li><h3>1つ終わったら記録する</h3><p>PRを出してマージし、roadmapの状態を更新します。</p></li>
-  <li><h3>一日の終わりに振り返る</h3><pre><code>今日の結果をまとめて、明日の1スライスを決めて</code></pre></li>
+  <li><h3>1つ終わったら記録する</h3><p>PRを出してマージし、本番に出して、roadmapの状態を更新します（<code>dashboard-slice</code> → <code>dashboard-deploy</code>）。</p></li>
+  <li><h3>一日の終わりに振り返る</h3><pre><code>今日の結果をまとめて、明日の1スライスを決めて。そのあと reflect で学びを残す案を出して</code></pre></li>
 </ol>
 
 <h2>自分で進める部分と、頼る部分</h2>
@@ -72,17 +87,20 @@
   <tr><th>やること</th><th>なぜ</th></tr>
   <tr><td>1スライス＝1PRを守る</td><td>小さく出すほど、詰まっても戻れる</td></tr>
   <tr><td>週に1回、docsを更新する</td><td>AIへの説明が減り続ける</td></tr>
-  <tr><td>振り返り（reflect）を月1回</td><td>うまくいった進め方が自分の環境に残る</td></tr>
-  <tr><td>決めた理由を書き残す</td><td>半年後の自分とAIが同じ判断をやり直さずに済む</td></tr>
+  <tr><td>一区切りごとに <code>reflect</code></td><td>うまくいった進め方が自分の環境に残る</td></tr>
+  <tr><td>決めた理由を書き残す（ADR）</td><td>半年後の自分とAIが同じ判断をやり直さずに済む</td></tr>
+  <tr><td>社内への説明は <code>eli5</code></td><td>前提知識のない人にも、変わったことが伝わる</td></tr>
 </table>
 
+<h2>覚えること（3つ）</h2><ol class="remember"><li><b>1日1スライス</b>。複数選ばない</li><li>終わったら <b>PR→マージ→本番→reflect</b></li><li>人に聞くときは<b>5行の型</b>で</li></ol>
+
 <div class="pager">
-  <a href="day1.html">← 当日の流れ</a>
+  <a href="repos.html">← リポジトリ一覧</a>
   <span></span>
 </div>
 
 </main>
 
-<footer>AI合宿 — 会社用ダッシュボード構築キット</footer>
+<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
 </body>
 </html>

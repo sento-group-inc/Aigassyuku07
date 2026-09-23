@@ -1,0 +1,9 @@
+body{margin:0;background:#fff;color:#1c1c1e;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.75}
+.doc{max-width:860px;margin:0 auto;padding:28px 24px 60px}
+.path{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#6b6b70;border:1px solid #e3e3e6;border-radius:6px;display:inline-block;padding:2px 8px;margin-bottom:10px;background:#f7f7f8}
+h1{font-size:24px;margin:4px 0 8px}h2{font-size:18px;margin:26px 0 8px;border-top:1px solid #e3e3e6;padding-top:12px}
+table{border-collapse:collapse;width:100%;font-size:14px;margin:10px 0}th,td{border:1px solid #e3e3e6;padding:7px 10px;text-align:left;vertical-align:top}th{background:#f7f7f8}
+blockquote{margin:10px 0;padding:10px 14px;border-left:3px solid #1b4d8f;background:#eef3fa;border-radius:0 8px 8px 0}
+.note{font-size:12px;color:#6b6b70}
+code{font-family:ui-monospace,Menlo,monospace;background:#f4f4f6;padding:1px 5px;border-radius:4px;font-size:.92em}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}@media(max-width:700px){.cols{grid-template-columns:1fr}}

@@ -18,25 +18,16 @@ cd kit
 |---|---|
 | `AGENTS.md` | Codex向けの入口。作業前に読むもの、守る決まり |
 | `CLAUDE.md` | Claude向けの入口。同じ内容をClaudeの読み方で |
-| `.claude/skills/` | この合宿で使うスキル一式（Claude Codeは自動で読む。Codexは`AGENTS.md`経由） |
+| `.claude/skills/` | この合宿で使うスキル一式（Claude Codeが読む） |
+| `.agents/skills/` | 同じスキルへのリンク（Codexが読む） |
 | `docs/` | 設計ドキュメントの置き場。**作業前にAIが読む正本** |
 | `docs/guide-steps.md` | 当日の進行台本。ガイドはこれを見て次の一手を決める |
-| `docs/jev-setup.md` | JEVのAPIキー取得手順（順番どおりに進める） |
 | `docs/links.md` | まとめて開くリンク一覧 |
-| `tools/jev-configure.py` | キーの保存（画面に出ない）と疎通確認 |
 | `.env.example` | 必要な環境変数の一覧（値は入れない） |
 
 ## 自分のリポジトリにする
 
-```bash
-mkdir my-dashboard && cd my-dashboard
-git init
-cp -r ../Aigassyuku07/kit/* .
-git add -A && git commit -m "chore: 合宿キットから初期化"
-gh repo create my-dashboard --private --source=. --push
-```
-
-会社名やプロジェクト名は`AGENTS.md`と`CLAUDE.md`の冒頭を書き換えてください。
+Step 6で、ログイン画面つきのテンプレートからアプリを作り、このフォルダの中身をコピーします。手順は [dashboard-repo](.claude/skills/dashboard-repo/SKILL.md) にあります。ガイドに「次は何をすればいい？」と聞けば、その時点で案内されます。
 
 ## 大事な約束
 

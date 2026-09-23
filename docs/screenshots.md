@@ -1,64 +1,43 @@
 # スクリーンショット台帳
 
-講義サイトに挿入する画像の一覧。**あとから撮り直して手戻りしない**ために、撮る前にこの台帳で「誰が・どう撮るか」を確定させる。
+講義サイトに挿入する画像の一覧。**秘密情報が写った画像は使わない。** APIキー・トークン・DB接続文字列・顧客名・アカウント名が写る場合は、撮り直すか隠す。
 
-## 撮り方の区分
+## 撮り方
 
-| 区分 | 意味 | 手段 |
-|---|---|---|
-| 自動 | エージェントが操作して撮れる | `agent-browser`（ブラウザ）／computer use（デスクトップアプリ） |
-| 半自動 | ログインだけ人の手が要る。以降は自動 | 本人がログイン→エージェントが操作 |
-| 手動 | 撮影のみ人がやる（秘密情報が写る、決済、本人確認など） | 本人が撮って`assets/images/`へ置く |
-
-**秘密情報が写った画像は使わない。** APIキー・トークン・DB接続文字列・顧客名が写る場合は、撮り直すかマスクする。迷ったら撮らずに図で代替する。
+| 区分 | 手段 |
+|---|---|
+| 自動 | `agent-browser`（公開ページ・見本・ローカルHTML）。`setup.sh`は実出力を端末風HTMLに表示して撮影し、アカウント名を伏せる |
+| 半自動 | 本人が `agent-browser --headed` でログイン → エージェントが画面を開いて撮る（送信・作成ボタンは押さない） |
+| 撮らない | bot検知（CAPTCHA）で止まるページ。CAPTCHAは突破しない |
 
 ## 台帳
 
-| # | 画面 | 撮り方 | 挿入先 | 状態 |
+| 画像 | 画面 | 区分 | 挿入先 | 状態 |
 |---|---|---|---|---|
-| 1 | Codexのダウンロードページ | 自動 | `setup.html` | 未 |
-| 2 | Codexにサインインした直後 | 半自動 | `setup.html` | 未 |
-| 3 | Codexで作業フォルダを開く | 自動 | `setup.html` | 未 |
-| 4 | 最初のプロンプトと応答 | 自動 | `setup.html` | 未 |
-| 5 | ターミナルで`git clone` | 自動 | `setup.html` | 未 |
-| 6 | `./setup.sh`の実行結果 | 自動 | `setup.html` | 未 |
-| 7 | GitHubで新規リポジトリ作成 | 半自動 | `build.html` | 未 |
-| 8 | Supabaseでプロジェクト作成 | 半自動 | `build.html` | 未 |
-| 9 | SupabaseのAPIキー画面 | 手動（キーを隠して） | `build.html` | 未 |
-| 10 | VercelでImport | 半自動 | `build.html` | 未 |
-| 11 | Artifactsで画面プロトタイプができた状態 | 自動 | `build.html` | 未 |
-| 12 | ER図ができた状態 | 自動 | `build.html` | 未 |
-| 13 | `docs/roadmap.md`のスライス一覧 | 自動 | `build.html` | 未 |
-| 14 | キー棚卸し表（`docs/keys.md`） | 自動 | `build.html` | 未 |
-| 15 | PRの作成画面 | 自動 | `build.html` | 未 |
-| 16 | レビュー指摘と修正の往復 | 自動 | `build.html` | 未 |
-| 17 | Vercelのデプロイ完了（Ready） | 自動 | `build.html` | 未 |
-| 18 | 完成した自社ダッシュボードの本番画面 | 半自動 | `index.html` | 未 |
-| 19 | `/poteto-mode`の発火と最初の応答 | 自動 | `pstack.html` | 未 |
-| 20 | `/reflect`の出力 | 自動 | `pstack.html` | 未 |
-| 21 | JEVの型つき応答 | 半自動 | `skills.html` / `jev.html` | 未 |
-| 22 | `lp`が参照サイトを取得している流れ | 自動 | `skills.html` | 未 |
-| 23 | ガイドエージェントに「次は？」と聞いた応答 | 自動 | `skills.html` | 未 |
-| 24 | JEV公式サイトのトップと`Sign In`の位置 | 自動 | `jev.html` | 未 |
-| 25 | TypeSafeのサインイン画面 | 自動 | `jev.html` | **取得済み**（`assets/images/jev/01-login.jpg`） |
-| 26 | 管理画面でAPIキーを発行する画面 | 手動（キーを隠して） | `jev.html` | 未 |
-| 27 | キー保存スクリプトの実行結果 | 自動 | `jev.html` | 未（値が出ないことを確認して撮る） |
+| `setup/01-setup-sh.png` | `./setup.sh` の実出力 | 自動 | prep / setup | 取得済み（2026-09-23） |
+| `setup/02-check-services.png` | `./setup.sh --check-services` の実出力 | 自動 | setup | 取得済み |
+| `setup/03-codex-open.png` | Codexで `kit` フォルダを開いた画面 | 半自動（デスクトップアプリ） | setup | 未 |
+| `prep/03-vercel-signup.png` | Vercel サインアップ | 自動 | prep | 取得済み |
+| `prep/04-supabase-signin.png` | Supabase サインイン | 自動 | prep | 取得済み |
+| `build/01-readme.png` | 見本: README と CONTEXT.md | 自動（`site/samples/readme.html`） | build Step 1 | 取得済み |
+| `build/02-prototype.png` | 見本: 画面の試作 | 自動（`site/samples/prototype.html`） | build Step 2 | 取得済み |
+| `build/03-er.png` | 見本: スキーマとER図 | 自動（`site/samples/schema.html`） | build Step 3 | 取得済み |
+| `build/04-roadmap.png` | 見本: ロードマップ | 自動（`site/samples/roadmap.html`） | build Step 4 | 取得済み |
+| `build/05-keys.png` | 見本: キー棚卸し表 | 自動（`site/samples/roadmap.html#keys`） | build Step 5 | 取得済み |
+| `build/06-template.png` | with-supabase テンプレート（公式デモ） | 自動 | build Step 6 | 取得済み |
+| `build/07-supabase-connect.png` | Supabase の Connect（値は隠す） | 半自動 | build Step 6 | 未 |
+| `build/08-login.png` | テンプレートのログイン画面（公式デモ） | 自動 | build Step 8 | 取得済み |
+| `build/09-supabase-users.png` | Supabase の Add user | 半自動 | build Step 8 | 未 |
+| `build/10-pr.png` | GitHub の PR 画面 | 半自動（github.com はbot検知） | build Step 8 | 未 |
+| `build/11-vercel-import.png` | Vercel の Import | 半自動 | build Step 9 | 未 |
+| `build/12-vercel-ready.png` | Vercel のデプロイ完了（Ready） | 半自動 | build Step 9 | 未 |
 
-## 画像の置き場と命名
+撮らないと決めたもの: openai.com/codex と github.com/signup（どちらもbot検知で止まる）。本文のリンクで代替する。
+
+## 置き場と命名
 
 ```
-assets/images/<ページ名>/<連番>-<内容>.png
-例: assets/images/setup/03-open-folder.png
+site/assets/images/<ページ名>/<連番>-<内容>.png
 ```
 
-- 幅は1440px（デスクトップ）と390px（モバイル）の2種が必要な箇所だけ撮る。
-- 個人情報・社名が写る場合はモザイクか、ダミーの会社名に差し替えた画面で撮る。
-- 撮影日を残す: `assets/images/<ページ名>/MANIFEST.md`へ「日付・アプリのバージョン・撮影者」を追記する。
-
-## 手戻りを減らす順序
-
-1. サイトの本文を先に書き、**どの段落に何の画像が要るか**を確定する（画像ありきで文章を書かない）。
-2. この台帳を更新する。
-3. 自動・半自動のものをまとめて撮る（1回のアプリ起動で済ませる）。
-4. 手動のものだけ本人へ依頼する。
-5. 挿入し、altと本文の記述が画面と一致するか確認する。
+画像を置いたら、該当ページの `<div class="shot">ここに画像: …</div>` を `<img src="…" alt="…">` に置き換え、`./scripts/check-links.sh` を通す。

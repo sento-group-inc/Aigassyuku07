@@ -3,8 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>進め方（pstack / poteto-mode / reflect） — AI合宿</title>
+<title>進め方（pstack） — AI合宿</title>
 <link rel="stylesheet" href="assets/style.css">
+<script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict", flowchart: { htmlLabels: true, curve: "basis" } });
+</script>
 </head>
 <body>
 
@@ -12,13 +16,15 @@
   <div class="topbar-inner">
     <a class="brand" href="index.html">AI合宿</a>
     <nav class="navlinks">
+      <a href="prep.html">準備</a>
+      <a href="schedule.html">日程</a>
       <a href="why.html">なぜ</a>
       <a href="setup.html">環境</a>
-      <a href="jev.html">JEV</a>
+      <a href="readme-driven.html">書いてから作る</a>
       <a href="build.html">作る</a>
       <a href="pstack.html" aria-current="page">進め方</a>
       <a href="skills.html">道具</a>
-      <a href="day1.html">当日</a>
+      <a href="repos.html">リポジトリ</a>
       <a href="day2.html">翌日以降</a>
     </nav>
   </div>
@@ -26,65 +32,92 @@
 
 <main>
 
-<h1>進め方 — pstack / poteto-mode / reflect</h1>
-<p class="lede">結論: <b>順序を暗記しないでください。</b>「ガイドして」と頼めば、現在地と次の一手が出ます。</p>
+<h1>進め方 — pstack</h1>
+<p class="lede"><b>結論:</b> 順序を暗記しないでください。「開発をガイドして」と頼めば、足りないものから次の一手が出ます。</p>
 
-<div class="goal">
-  <strong>このページを読むと</strong>、開発の進め方をAIに任せつつ、自分で判断すべきところが分かります。
-</div>
+<div class="goal"><strong>このページを読むと</strong>、開発の進め方をAIに任せつつ、自分で判断すべきところが分かります。</div>
+
+<section class="map"><div class="map-label">このページの地図</div><pre class="mermaid">
+flowchart LR
+  A["地図を作る<br/>README・グリル"] --> B["複数案<br/>2〜3案を並べる"]
+  B --> C["設計<br/>データの形"]
+  C --> D["実装<br/>1スライスずつ"]
+  D --> E["検証<br/>実物で確かめる"]
+  E --> F["振り返り<br/>reflect"]
+  F -. 次のスライス .-> D
+</pre></section>
+
+<div class="analogy"><div class="k">たとえるなら</div><p>pstackは包丁1本ではなく、<b>調べる・比べる・焼く・味見する道具が揃った道具箱</b>です。中身を全部覚える必要はありません。「次は何？」と聞けば、今使う1本を渡してくれます。</p></div>
 
 <h2>pstack とは</h2>
-<p>「速く行きたいなら、先に深く行く」という進め方の束です。急いで手を動かすより、<b>問題と構造を先に固めた方が結果的に速い</b>という考え方に基づいています。</p>
-<p>特徴は、<b>原則に名前が付いている</b>こと。名前があると、AIに「今はこの原則で」と一言で指示できます。</p>
+<p>「速く行きたいなら、先に深く行く」という進め方の束です。作者はpoteto（Lauren Tan）で、MITライセンスで公開されています（<a href="repos.html">リポジトリ一覧</a>）。合宿では、その中から参加者に効くものだけを日本語のスキルにして入れています。</p>
+<p>一番大事なメッセージは、<b>質問で深掘りした気になって、すぐ実装に走らない</b>こと。地図（README・CONTEXT.md）→ 複数案 → 設計 → 実装 → 検証、の順に進みます。</p>
+
+<h2>いつ、何を使うか</h2>
+<table>
+  <tr><th>タイミング</th><th>使うスキル</th><th>一言</th></tr>
+  <tr><td>着手前</td><td><code>grill-with-docs</code></td><td>答えを口頭で終わらせず、README / CONTEXT.md / ADRへ</td></tr>
+  <tr><td>形を決める</td><td><code>dashboard-screen</code> / <code>dashboard-schema</code></td><td>最初の1案で決めない。2〜3案を並べて比べる</td></tr>
+  <tr><td>実装中</td><td><code>dashboard-slice</code></td><td>1スライス＝1PR。動かして確かめてからマージ</td></tr>
+  <tr><td>迷ったとき</td><td><code>poteto-mode</code></td><td>足りないものを1つ見つけて、次の一手を理由つきで</td></tr>
+  <tr><td>原則を思い出したい</td><td><code>pstack-guide</code></td><td>場面から原則を引く</td></tr>
+  <tr><td>一区切りついた</td><td><code>reflect</code></td><td>学びをdocsやスキルへ残す</td></tr>
+</table>
+
+<h2>poteto-mode — 開発のカーナビ</h2>
+<div class="call"><span>Codex: <b>$poteto-mode</b></span><span>Claude: <b>/poteto-mode</b></span><span>文章でも: 「poteto-modeで〜して」</span></div>
+<p>「この開発をガイドして」「次は何を確かめる？」と頼むと、次の形で答えます。</p>
+<pre><code>私の理解: 営業担当が、案件の進み具合を毎朝口頭で確認していて困っている。
+現在地: 画面の試作はあるが、データの形が決まっていない。
+次の一手: 画面の項目をテーブルに落とし、ER図にする（使うスキル: dashboard-schema）
+なぜ今これか: データの形が決まらないと、実装しても作り直しになるため。
+確認のしかた: 「この情報はどこに入る？」に全部答えられたら次へ。</code></pre>
+<p>上から順に「最初に足りないもの」を見つけます。済んでいる工程はやり直しません。</p>
+<table>
+  <tr><th>足りないもの</th><th>次の一手</th></tr>
+  <tr><td>誰が何に困っているかが言えない</td><td>困りごとを1文にし、READMEに書く</td></tr>
+  <tr><td>使う場面が思い浮かばない</td><td>「誰が、いつ、何を押して、何が分かるか」を1つ書く</td></tr>
+  <tr><td>画面の良し悪しが決められない</td><td>2〜3案を同じダミーデータで並べて比べる</td></tr>
+  <tr><td>データの形が決まっていない</td><td>テーブルに落とし、ER図にする</td></tr>
+  <tr><td>作業が大きすぎる</td><td>確認できる単位に切る</td></tr>
+  <tr><td>動くものがない／確認していない</td><td>1スライス作って、実際に動かす</td></tr>
+</table>
 
 <h2>よく使う原則（場面で覚える）</h2>
 <table>
   <tr><th>場面</th><th>原則</th><th>やること</th></tr>
-  <tr><td>追加しようとしている</td><td>足す前に引く</td><td>先に不要なものを消す。消せないなら足さない</td></tr>
+  <tr><td>何か足したくなった</td><td>足す前に引く</td><td>先に要らないものを消す。消せないなら足さない</td></tr>
   <tr><td>設計で迷っている</td><td>2〜3案を並べる</td><td>比べてから決める。1案で決めない</td></tr>
+  <tr><td>聞けば分かるか迷った</td><td>試せば分かることは試す</td><td>小さく作って動かし、結果で決める</td></tr>
   <tr><td>作る順番で迷う</td><td>検証できる単位で切る</td><td>1つ確認してから次へ</td></tr>
-  <tr><td>完了と言いたくなった</td><td>実物で示す</td><td>ログではなく、実際に動かした結果を見る</td></tr>
+  <tr><td>完了と言いたくなった</td><td>実物で示す</td><td>ログではなく、画面を開いて操作した結果を見る</td></tr>
   <tr><td>エラーが出た</td><td>根本原因を直す</td><td>再現 → なぜ → 根本を直す</td></tr>
-  <tr><td>同じ指示を繰り返している</td><td>ルールを構造にする</td><td>文章で足さず、設定・テスト・スクリプトにする</td></tr>
+  <tr><td>同じ指示を繰り返している</td><td>仕組みにする</td><td>文章で足さず、docs・スキル・テストにする</td></tr>
 </table>
 
-<h2>/poteto-mode — 開発のガイド</h2>
-<p>「この開発をガイドして」「次は何を確かめる？」と頼むと、<b>現在地・次の一手・理由・確認条件</b>を返します。当てはまるものを次から選びます。</p>
-<ol class="steps">
-  <li><h3>何を作るか、なぜ作るかを固める</h3><p>目的が曖昧なまま設計に入らない。</p></li>
-  <li><h3>利用シーンを具体的にする</h3><p>誰が、いつ、何をするのかを1つに絞る。</p></li>
-  <li><h3>設計する</h3><p>2〜3案を並べて比べる。</p></li>
-  <li><h3>実装する</h3><p>小さい単位で、動くたびに確認する。</p></li>
-  <li><h3>検証する</h3><p>実物を動かして確かめる。</p></li>
-</ol>
-<figure>
-  <div class="shot">ここに画像: /poteto-modeの発火と最初の応答（台帳#19）</div>
-</figure>
-
-<h2>/reflect — 振り返り</h2>
-<p>作業が一区切りしたときに、<b>今回うまくいった進め方を、次に使い回せる形にする</b>ための振り返りです。会話から学びを拾い、「どの設定やスキルに反映するか」を整理します。</p>
+<h2>reflect — 振り返りをレシピに書き込む</h2>
+<div class="call"><span>Codex: <b>$reflect</b></span><span>Claude: <b>/reflect</b></span><span>文章でも: 「reflectで〜して」</span></div>
+<p>作業が一区切りしたときに、今回うまくいった進め方を、次に使い回せる形にします。AIが学びを3つまで拾い、「どのファイルに、何を書き足すか」の案を出します。</p>
 <table>
   <tr><th>使うタイミング</th><th>何が得られるか</th></tr>
-  <tr><td>大きい作業が終わったあと</td><td>次に同じことをする時間が短くなる</td></tr>
-  <tr><td>遠回りしたあと、正しい道が見つかったとき</td><td>同じ遠回りをしなくなる</td></tr>
-  <tr><td>「このやり方は今後も使える」と感じたとき</td><td>自分の環境に残る</td></tr>
+  <tr><td>1スライスをマージした、本番に出せた</td><td>次に同じことをする時間が短くなる</td></tr>
+  <tr><td>遠回りしたあと、正しい道が見つかった</td><td>同じ遠回りをしなくなる</td></tr>
+  <tr><td>AIに同じ注意を2回した</td><td>次からAIが最初から守る</td></tr>
 </table>
-<figure>
-  <div class="shot">ここに画像: /reflectの出力（台帳#20）</div>
-</figure>
-<div class="note"><p><b>注意:</b> 反映は自分で選びます。提案されたものを全部入れる必要はありません。</p></div>
+<div class="note"><p><b>反映は自分で選びます。</b>提案されたものを全部入れる必要はありません。書くほどAIが読む量が増えるので、効くものだけ残します。</p></div>
 
-<h2>キットでの呼び方</h2>
-<p>キットの<code>pstack-guide</code>スキルが、この内容を参加者向けに要約して持っています。</p>
-<pre><code>pstack-guideで、次に何を確かめるべきか教えて</code></pre>
+<h2>合宿では使わないもの（興味があれば）</h2>
+<p>pstack本体には、複数案を並列で競わせる <code>arena</code> / <code>swarm</code>、詳細設計の <code>architect</code>、別のAIによる二重レビューなど、さらに強力な道具があります。仕組みが分かってきたら、<a href="repos.html">リポジトリ一覧</a>の本体を覗いてみてください。</p>
+
+<h2>覚えること（3つ）</h2><ol class="remember"><li><b>質問で深掘りした気になって、すぐ実装しない</b>。地図→複数案→設計→実装→検証</li><li>迷ったら <b><code>poteto-mode</code></b>。足りないものから次の一手が出る</li><li>一区切りしたら <b><code>reflect</code></b> で学びを残す</li></ol>
 
 <div class="pager">
-  <a href="build.html">← 作る（8ステップ）</a>
-  <a href="skills.html">次: 道具 →</a>
+  <a href="build.html">← 作る（10ステップ）</a>
+  <a href="skills.html">次: 道具（スキル） →</a>
 </div>
 
 </main>
 
-<footer>AI合宿 — 会社用ダッシュボード構築キット</footer>
+<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
 </body>
 </html>

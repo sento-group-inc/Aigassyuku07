@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>リポジトリ一覧 — AI合宿</title>
+<link rel="stylesheet" href="assets/style.css">
+<script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict", flowchart: { htmlLabels: true, curve: "basis" } });
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">AI合宿</a>
+    <nav class="navlinks">
+      <a href="prep.html">準備</a>
+      <a href="schedule.html">日程</a>
+      <a href="why.html">なぜ</a>
+      <a href="setup.html">環境</a>
+      <a href="readme-driven.html">書いてから作る</a>
+      <a href="build.html">作る</a>
+      <a href="pstack.html">進め方</a>
+      <a href="skills.html">道具</a>
+      <a href="repos.html" aria-current="page">リポジトリ</a>
+      <a href="day2.html">翌日以降</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<h1>リポジトリ一覧</h1>
+<p class="lede">今回の合宿で使うリポジトリとサービス、手順の出典をまとめました。<b>当日使うのは「当日使う」の表だけ</b>で十分です。</p>
+
+<section class="map"><div class="map-label">このページの地図</div><pre class="mermaid">
+flowchart LR
+  K["合宿キット<br/>Aigassyuku07"] --> T["アプリの土台<br/>with-supabase"]
+  T --> S["データとログイン<br/>Supabase"]
+  T --> V["公開<br/>Vercel"]
+  K --> G["コードの置き場<br/>GitHub"]
+  K -. 出典 .-> P["pstack / grill-with-docs"]
+</pre></section>
+
+<div class="analogy"><div class="k">たとえるなら</div><p><b>台所の道具と、レシピ本の棚</b>です。当日使う道具は手の届く所に、レシピの出典は棚に並べておきます。</p></div>
+
+<h2>当日使う</h2>
+<table>
+  <tr><th>リポジトリ / サービス</th><th>何に使うか</th><th>いつ</th></tr>
+  <tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07">sento-group-inc/Aigassyuku07</a></td><td>この合宿のキット（スキル16本・docs雛形・setup.sh）と講義サイト</td><td>事前準備〜</td></tr>
+  <tr><td><a href="https://github.com/vercel/next.js/tree/canary/examples/with-supabase">vercel/next.js — with-supabase</a></td><td>ログイン画面つきのアプリの土台。<code>npx create-next-app --example with-supabase</code> で作る</td><td>Step 6</td></tr>
+  <tr><td><a href="https://supabase.com/dashboard">Supabase</a>（<a href="https://github.com/supabase/supabase">supabase/supabase</a>）</td><td>データベースとログイン（社員アカウント）</td><td>Step 6・8</td></tr>
+  <tr><td><a href="https://vercel.com/new">Vercel</a>（<a href="https://github.com/vercel/vercel">vercel/vercel</a>）</td><td>GitHubにつなぐだけで本番URLを作る</td><td>Step 9</td></tr>
+  <tr><td><a href="https://github.com/">GitHub</a> / <a href="https://github.com/cli/cli">cli/cli</a></td><td>コードの置き場と、ターミナルからの操作（<code>gh</code>）</td><td>Step 6・8</td></tr>
+  <tr><td><a href="https://openai.com/codex/">Codex</a>（<a href="https://github.com/openai/codex">openai/codex</a>）</td><td>合宿のメインのAIエージェント</td><td>全Step</td></tr>
+  <tr><td><a href="https://claude.ai/download">Claude Code</a></td><td>Claudeを使う人のエージェント。同じキットで動く</td><td>全Step</td></tr>
+</table>
+
+<h2>スキルの出典</h2>
+<table>
+  <tr><th>リポジトリ</th><th>キットのどのスキルか</th><th>ライセンス</th></tr>
+  <tr><td><a href="https://github.com/cursor/plugins/tree/main/pstack">cursor/plugins — pstack</a></td><td><code>poteto-mode</code> / <code>pstack-guide</code> / <code>reflect</code>（日本語で書き直し）</td><td>MIT</td></tr>
+  <tr><td><a href="https://github.com/mattpocock/skills">mattpocock/skills</a></td><td><code>grill-with-docs</code>（日本語で書き直し。CONTEXT.md・ADRの書式を同梱）</td><td>MIT</td></tr>
+</table>
+
+<h2>慣れてきたら</h2>
+<table>
+  <tr><th>リポジトリ</th><th>何ができるか</th></tr>
+  <tr><td><a href="https://github.com/vercel-labs/agent-browser">vercel-labs/agent-browser</a></td><td>AIにブラウザを操作させ、公開した画面を確認・撮影させる（この講義サイトのスクリーンショットもこれで撮影）</td></tr>
+  <tr><td><a href="https://github.com/supabase/cli">supabase/cli</a></td><td>データベースの変更をファイル（migration）で管理する。スライスが増えてきたら</td></tr>
+  <tr><td><a href="https://github.com/cursor/plugins/tree/main/pstack">pstack本体</a></td><td>複数案の競争（arena / swarm）、詳細設計（architect）など、合宿で入れなかった道具</td></tr>
+</table>
+
+<h2>追記のしかた</h2>
+<p>合宿中に見つけた便利なリポジトリは、Codexに次のように頼むと、この一覧に足す文面を作ってくれます。</p>
+<pre><code>このリポジトリが私たちのダッシュボード作りに使えるか、何に使えるかを3行で教えて。URL: （ここに貼る）</code></pre>
+
+<h2>覚えること（3つ）</h2><ol class="remember"><li>当日使うのは <b>キット・with-supabase・Supabase・Vercel・GitHub</b></li><li>スキルの一部は <b>pstack と mattpocock/skills（MIT）</b>の日本語版</li><li>便利そうなものは<b>AIに「使えるか」を先に聞く</b></li></ol>
+
+<div class="pager">
+  <a href="skills.html">← 道具（スキル）</a>
+  <a href="day2.html">次: 翌日以降 →</a>
+</div>
+
+</main>
+
+<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
+</body>
+</html>

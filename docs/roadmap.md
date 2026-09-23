@@ -9,8 +9,8 @@
 当日の終了時（まる1日）に、参加者が次を持っていること。
 
 1. 自社ダッシュボードの本番URL（ログインして1画面が一覧・更新できる）
-2. 手元の環境（Codex または Claude、Skill、`setup.sh`、JEV）
-3. `CLAUDE.md` / `docs/schema.md` / `docs/ui-guidelines.md` / `docs/roadmap.md`
+2. 手元の環境（Codex または Claude、スキル16本、`setup.sh`）
+3. `README.md` / `CONTEXT.md` / `AGENTS.md` / `CLAUDE.md` / `docs/schema.md` / `docs/ui-guidelines.md` / `docs/roadmap.md`
 4. 2日目以降に自分でスライスを足せる状態（ガイドエージェントに聞けば次が出る）
 
 ## 前提（本人回答 2026-09-22）
@@ -23,19 +23,22 @@
 | 日程と規模 | **2026-10-06（火）・07（水）／10社** |
 | 時間 | **初日がまる1日**。2日目は各社が個別学習へ進む前提で、初日から自社題材でよい |
 | 題材 | 各社の実業務。会計事務所の実例は「こう作った」の参照として見せる |
-| JEV | **各社でAPIキーを取得**。取得手順を`docs/jev-setup.md`に置き、ガイドが順番どおりに案内する |
+| JEV | **扱わない**（2026-09-23 本人決定）。ページ・スキル・設定スクリプトを撤去 |
+| 認証 | 初日のゴールは「ログインして一覧」を維持。Next.js公式 with-supabase テンプレートで土台を作り、S1をログインに固定（2026-09-23） |
 
 ## 学ぶ内容（ページとキットの対応）
 
 | 学ぶこと | 講義ページ | キット側の実体 |
 |---|---|---|
 | なぜやるのか（腹落ち） | `why.html`（eli5） | — |
-| 環境セットアップと使い方 | `setup.html` | `kit/setup.sh`（`--check-services`） |
-| JEV（型つきの判断AI）とAPIキー取得 | `jev.html` | `kit/docs/jev-setup.md` / `kit/tools/jev-configure.py` |
-| README駆動開発 | `readme-driven.html` | `kit/docs/` テンプレと`kit/README.md` |
-| pstack / poteto-mode / reflect / 原則 | `pstack.html` | `kit/.claude/skills/pstack-guide/` |
-| 配布スキル（jev / lp / eli5 / guide） | `skills.html` | `kit/.claude/skills/` |
-| ダッシュボードを作る8ステップ | `build.html` | `kit/.claude/skills/dashboard-*/` |
+| 事前準備 | `prep.html` | `PREP.md` |
+| 合宿スケジュール | `schedule.html` | — |
+| 環境セットアップと使い方 | `setup.html` | `kit/setup.sh`（`--check-services`） / `kit/.agents/skills`（Codex用） |
+| README駆動開発 | `readme-driven.html` | `grill-with-docs`（README / CONTEXT.md / ADR） |
+| pstack / poteto-mode / reflect / 原則 | `pstack.html` | `poteto-mode` / `pstack-guide` / `reflect` |
+| 配布スキル16本 | `skills.html` | `kit/.claude/skills/`（`scripts/check-skills.sh`で実在を検査） |
+| 使うリポジトリと出典 | `repos.html` | — |
+| ダッシュボードを作る10ステップ | `build.html` | `kit/.claude/skills/dashboard-*/` / `site/samples/`（見本） |
 | 実例（会計事務所のダッシュボード） | `reference/case-accounting.md` | — |
 | 順番に案内する | 当日の進行 | `kit/.claude/skills/guide/` |
 
@@ -79,7 +82,7 @@ Codex中心に、インストール → サインイン → リポジトリ → 
 
 ### S5. 配布スキルページ
 
-`jev`（型つき判断）、`lp`（参照から自社環境で作る）、`eli5`、`guide`（順番に案内）の4本を、何に使うかと最初の一言で説明する。
+キットのスキル16本を、いつ使うかと呼び方で説明する（2026-09-23 JEVを外し、grill-with-docs・poteto-mode・reflect・eli5・dashboard-repo・dashboard-auth を追加）。
 
 - 検証: 各スキルの発火条件が`SKILL.md`のdescriptionと矛盾しない。
 
@@ -123,22 +126,24 @@ Codex中心に、インストール → サインイン → リポジトリ → 
 
 ## 当日のスライス（参加者がやること）
 
- | # | やること | 使うもの | 終わりの状態 |
+正本は `kit/docs/guide-steps.md`（Step 0〜10）。時間割は `site/schedule.html`。
+
+| Step | やること | 使うスキル | 終わりの状態 |
 |---|---|---|---|
-| D1 | なぜやるのかを腹落ちさせる | `why.html` | 自分の言葉で1文言える |
-| D2 | 環境を整える | `PREP.md` / `setup.sh` | `codex`が起動し、リポジトリを開ける |
-| D3 | 画面をArtifactsで作る | Codex / Claude | 自社ダッシュボードの画面が1枚ある |
-| D4 | スキーマとER図を作る | 同上 | テーブル・カラム・関連の漏れを潰した |
-| D5 | ロードマップを書かせる | 同上 | スライス一覧が`docs/roadmap.md`にある |
-| D6 | キーとアカウントを棚卸しする | `dashboard-keys` | 必要なキーの表がある |
-| D7 | リポジトリとSecretを作る | GitHub / Vercel / Supabase | コードがローカルにある |
-| D8 | `docs`と`CLAUDE.md`を整える | `dashboard-docs` | AIが作業前に読む状態 |
-| D9 | スライス実装ループ | `dashboard-slice` | 1スライスがPR→マージされる |
-| D10 | デプロイ | `dashboard-deploy` | 自社URLで画面が開く |
-| D11 | 発表と次の1手 | `guide` | 2日目にやる1スライスが決まっている |
+| 0 | 環境を確かめる | `guide` | `setup.sh`が通る |
+| 1 | 題材を決めて、READMEを書く | `grill-with-docs` | README冒頭に困りごとの1文、CONTEXT.mdに業務の言葉 |
+| 2 | 画面を作る | `dashboard-screen` | `docs/prototype.html`を開いて操作できる |
+| 3 | スキーマとER図 | `dashboard-schema` | 「この情報はどこに入るか」に全部答えられる |
+| 4 | ロードマップ | `dashboard-roadmap` | S1（ログインして一覧）が今日中に終わる大きさ |
+| 5 | キー棚卸し | `dashboard-keys` | 置き場所の表があり、値はどこにも無い |
+| 6 | 土台（DB・アプリ・リポジトリ） | `dashboard-repo` | 手元で画面が開き、GitHubにリポジトリがある |
+| 7 | docs と AGENTS.md / CLAUDE.md | `dashboard-docs` | AIが作業前に読む状態 |
+| 8 | ログインと一覧（S1） | `dashboard-auth` → `dashboard-slice` | ログインすると一覧が見え、PRがマージ済み |
+| 9 | 本番へ | `dashboard-deploy` | 本番URLでログインして一覧が動く |
+| 10 | 次の一手と振り返り | `guide` → `reflect` | 明日やることが1行で書かれている |
 
 ## 未決・保留
 
 - **why（腹落ち）の深掘り（S2）**: 2026-09-22 本人指示により、**後日あらためて対話して決める**。それまでは現行版を暫定とする
-- 当日の時間割の実測（S11のリハーサルで合わせる）
-- スクリーンショットのうち手動が要るもの（`docs/screenshots.md`の「手動」列。JEVは#26が手動）
+- 当日の時間割の実測（S11。2026-09-23 本人指示で時間の現実性は優先度を下げた。Codexで`guide`のStep 0判定までは実走確認済み）
+- スクリーンショットのうちログインが要る6枚（`docs/screenshots.md`の「未」）

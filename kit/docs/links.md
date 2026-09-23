@@ -16,9 +16,8 @@
 
 | 用途 | リンク | 何をするか |
 |---|---|---|
-| JEV（APIキー） | https://typesafe.ai → Sign In | サインインしてAPIキーを発行 |
-| JEVの仕様 | https://docs.typesafe.ai/ | 呼び方と制限 |
-| Supabase | https://supabase.com/dashboard | プロジェクト作成 |
+| Supabase | https://database.new | プロジェクト作成（Step 6） |
+| with-supabaseテンプレート | https://github.com/vercel/next.js/tree/canary/examples/with-supabase | ログイン付きアプリの土台（Step 6） |
 | Vercel | https://vercel.com/new | GitHub連携でImport |
 | GitHub | https://github.com/signup | アカウント作成 |
 
@@ -27,5 +26,5 @@
 | 用途 | リンク |
 |---|---|
 | キット本体 | https://github.com/sento-group-inc/Aigassyuku07 |
-| 当日の流れ | https://github.com/sento-group-inc/Aigassyuku07/blob/main/site/day1.html |
-| JEVの手順 | https://github.com/sento-group-inc/Aigassyuku07/blob/main/site/jev.html |
+| 講義サイト | https://aigassyuku07.vercel.app |
+| 当日のスケジュール | https://aigassyuku07.vercel.app/schedule |

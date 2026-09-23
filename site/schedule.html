@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>合宿スケジュール — AI合宿</title>
+<link rel="stylesheet" href="assets/style.css">
+<script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict", flowchart: { htmlLabels: true, curve: "basis" } });
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">AI合宿</a>
+    <nav class="navlinks">
+      <a href="prep.html">準備</a>
+      <a href="schedule.html" aria-current="page">日程</a>
+      <a href="why.html">なぜ</a>
+      <a href="setup.html">環境</a>
+      <a href="readme-driven.html">書いてから作る</a>
+      <a href="build.html">作る</a>
+      <a href="pstack.html">進め方</a>
+      <a href="skills.html">道具</a>
+      <a href="repos.html">リポジトリ</a>
+      <a href="day2.html">翌日以降</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<h1>合宿スケジュール</h1>
+<p class="lede">初日で自社のURLまで行きます。2日目は各社が自分のペースで個別学習に入ります。</p>
+
+<div class="facts">
+  <div class="fact"><div class="k">初日</div><div class="v">10月6日(火) 9:30〜18:00</div></div>
+  <div class="fact"><div class="k">2日目</div><div class="v">10月7日(水) 個別学習</div></div>
+  <div class="fact"><div class="k">参加</div><div class="v">10社</div></div>
+</div>
+
+<section class="map"><div class="map-label">2日間の全体図</div><pre class="mermaid">
+flowchart LR
+  subgraph D1["初日 10/6"]
+    direction TB
+    A["午前<br/>なぜ・環境・題材・画面<br/>Step 0〜2"] --> B["午後<br/>設計と土台<br/>Step 3〜7"]
+    B --> C["夕方<br/>ログイン・本番・発表<br/>Step 8〜10"]
+  end
+  subgraph D2["2日目 10/7"]
+    direction TB
+    E["今日の1スライスを決める"] --> F["実装→本番"]
+  end
+  D1 --> D2
+</pre></section>
+
+<div class="analogy"><div class="k">たとえるなら</div><p><b>登山の行程表</b>です。どこで休憩し、どこまで登っていれば順調かが書いてあります。遅れても、次のチェックポイントで立て直せます。</p></div>
+
+<h2>初日（10月6日）の時間割</h2>
+<table>
+  <tr><th>時刻</th><th>内容</th><th>Step</th><th>参照</th></tr>
+  <tr><td>09:30</td><td>オープニング。なぜやるのかを腹落ちさせる</td><td>—</td><td><a href="why.html">why</a></td></tr>
+  <tr><td>10:00</td><td>環境の確認（詰まりを潰す）</td><td>0</td><td><a href="setup.html">setup</a></td></tr>
+  <tr><td>10:30</td><td>題材を決めてREADMEを書く（グリル）</td><td>1</td><td><a href="build.html#step1">build 1</a></td></tr>
+  <tr><td>11:15</td><td>画面を作る</td><td>2</td><td><a href="build.html#step2">build 2</a></td></tr>
+  <tr><td>12:00</td><td>昼食</td><td>—</td><td>—</td></tr>
+  <tr><td>13:00</td><td>スキーマとER図、ロードマップ</td><td>3〜4</td><td><a href="build.html#step3">build 3〜4</a></td></tr>
+  <tr><td>14:15</td><td>キーの棚卸し、土台を作る（DB・アプリ・リポジトリ）</td><td>5〜6</td><td><a href="build.html#step5">build 5〜6</a></td></tr>
+  <tr><td>15:15</td><td>docsを整え、ログインと一覧を作る</td><td>7〜8</td><td><a href="build.html#step7">build 7〜8</a></td></tr>
+  <tr><td>16:45</td><td>本番へ出して動作確認</td><td>9</td><td><a href="build.html#step9">build 9</a></td></tr>
+  <tr><td>17:15</td><td>発表（1社5分）と次の一手・振り返り</td><td>10</td><td><a href="build.html#step10">build 10</a></td></tr>
+</table>
+
+<h2>チェックポイント</h2>
+<p>次の3つを過ぎたら講師に声をかけてください。一度止めて確認する方が、後で速くなります。</p>
+<table>
+  <tr><th>時刻</th><th>できていてほしいもの</th><th>できていなければ</th></tr>
+  <tr><td>12:00</td><td>画面の試作が1枚ある</td><td>題材を小さくする</td></tr>
+  <tr><td>15:00</td><td>スキーマとロードマップがある</td><td>最優先で戻る。無いと実装が迷走する</td></tr>
+  <tr><td>17:00</td><td>本番URLがある</td><td>無くても大丈夫。原因を記録して、次の一手にする</td></tr>
+</table>
+
+<h2>発表フォーマット（1社5分）</h2>
+<table>
+  <tr><th>項目</th><th>話すこと</th></tr>
+  <tr><td>作ったもの</td><td>何の業務を、どう見えるようにしたか（画面を見せる）</td></tr>
+  <tr><td>できたこと</td><td>本番URL、動いている操作</td></tr>
+  <tr><td>詰まったこと</td><td>どこで止まったか（<b>ここが一番価値があります</b>）</td></tr>
+  <tr><td>次にやること</td><td>明日の1スライス</td></tr>
+</table>
+
+<h2>2日目（10月7日）</h2>
+<p>各社が自分のペースで進めます。会場は開放し、詰まったところを個別に拾います。</p>
+<table>
+  <tr><th>時刻</th><th>やること</th></tr>
+  <tr><td>09:30</td><td>ガイドに「次は何をすればいい？」と聞き、<b>今日の1スライス</b>を決める</td></tr>
+  <tr><td>10:00〜</td><td>スライスを実装 → PR → マージ → 本番（<a href="day2.html">翌日以降の進め方</a>）</td></tr>
+  <tr><td>終わり</td><td><code>reflect</code>で学びを残し、明日の1スライスを決める</td></tr>
+</table>
+
+<h2>うまくいかないときの合図</h2>
+<table>
+  <tr><th>症状</th><th>やること</th></tr>
+  <tr><td>同じエラーで10分止まっている</td><td>エラー文をそのまま講師に見せる（自分で直そうとしない）</td></tr>
+  <tr><td>何を作るか決まらない</td><td>いま使っているスプレッドシートの列名をそのまま持ってくる</td></tr>
+  <tr><td>時間が足りない</td><td>スコープを半分に割る。半分でも「動く」を作る</td></tr>
+</table>
+
+<h2>覚えること（3つ）</h2><ol class="remember"><li>初日のゴールは<b>本番URLでログインして一覧が見える</b>こと</li><li><b>12時・15時・17時</b>のチェックポイントで講師に声をかける</li><li>発表で一番価値があるのは<b>詰まった場所</b></li></ol>
+
+<div class="pager">
+  <a href="prep.html">← 事前準備</a>
+  <a href="why.html">次: なぜやるのか →</a>
+</div>
+
+</main>
+
+<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
+</body>
+</html>

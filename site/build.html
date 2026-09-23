@@ -3,8 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>作る — 8ステップ — AI合宿</title>
+<title>作る（10ステップ） — AI合宿</title>
 <link rel="stylesheet" href="assets/style.css">
+<script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict", flowchart: { htmlLabels: true, curve: "basis" } });
+</script>
 </head>
 <body>
 
@@ -12,13 +16,15 @@
   <div class="topbar-inner">
     <a class="brand" href="index.html">AI合宿</a>
     <nav class="navlinks">
+      <a href="prep.html">準備</a>
+      <a href="schedule.html">日程</a>
       <a href="why.html">なぜ</a>
       <a href="setup.html">環境</a>
-      <a href="jev.html">JEV</a>
+      <a href="readme-driven.html">書いてから作る</a>
       <a href="build.html" aria-current="page">作る</a>
       <a href="pstack.html">進め方</a>
       <a href="skills.html">道具</a>
-      <a href="day1.html">当日</a>
+      <a href="repos.html">リポジトリ</a>
       <a href="day2.html">翌日以降</a>
     </nav>
   </div>
@@ -26,124 +32,142 @@
 
 <main>
 
-<h1>ダッシュボードを作る — 8ステップ</h1>
-<p class="lede">実際にある会社のダッシュボードを作ったときに回った順序です。この順番に意味があります。</p>
+<h1>作る — 10ステップ</h1>
+<p class="lede">実際にある会社のダッシュボードを作ったときに回った順序です。<b>この順番に意味があります。</b>Step 0（環境の確認）は<a href="setup.html">環境のページ</a>で済ませています。</p>
 
-<div class="goal">
-  <strong>このページを終えると</strong>、自社の画面が本番URLで開きます。
-</div>
+<div class="goal"><strong>このページを終えると</strong>、自社の画面が本番URLで開き、ログインして一覧が見えます。</div>
+
+<section class="map"><div class="map-label">このページの地図</div><pre class="mermaid">
+flowchart TB
+  subgraph K["kitフォルダで（言葉と設計）"]
+    direction LR
+    S1["1 題材とREADME"] --> S2["2 画面"] --> S3["3 スキーマ"] --> S4["4 ロードマップ"] --> S5["5 キー棚卸し"]
+  end
+  subgraph A["自分のアプリで（形にする）"]
+    direction LR
+    S6["6 土台"] --> S7["7 docs"] --> S8["8 ログインと一覧"] --> S9["9 本番"] --> S10["10 次の一手"]
+  end
+  K --> A
+</pre></section>
+
+<div class="analogy"><div class="k">たとえるなら</div><p><b>家づくり</b>です。前半（1〜5）は打ち合わせと図面、後半（6〜10）は基礎を打って1部屋ずつ建て、鍵を渡すところまで。図面が固まる前に柱を立てると、全部やり直しになります。</p></div>
 
 <h2>順序の考え方</h2>
-<p>ポイントは<b>「コードを書く前に決め切る」</b>ことと、<b>「手前で価値が出る順に出す」</b>ことです。順番を飛ばすと、あとで全部やり直しになります。</p>
+<p>ポイントは「<b>コードを書く前に決め切る</b>」ことと、「<b>手前で価値が出る順に出す</b>」ことです。迷ったら、いつでもガイドに「次は何をすればいい？」と聞けば、今どこかを判定してくれます。</p>
 
 <ol class="steps">
-  <li>
-    <h3>題材を決める</h3>
-    <p>業務の困りごとを1つ選びます。「誰が、何に困っていて、何が見えると嬉しいか」の1文を作ります。</p>
-    <div class="note"><p><b>コツ:</b> 大きい課題を選ばないこと。「案件の進捗が全員に見えない」くらいの粒度が最適です。</p></div>
+<li id="step1">
+    <h3>Step 1. 題材を決めて、READMEを書く</h3>
+    <p class="flow">何を作るかを、業務の困りごとから決めます。AIが質問し、答えをファイルに残します。</p>
+    <div class="call"><span>Codex: <b>$grill-with-docs</b></span><span>Claude: <b>/grill-with-docs</b></span><span>文章でも: 「grill-with-docsで〜して」</span></div>
+    <dl class="meta-row"><dt>あなたがやること</dt><dd>事前準備で書いた困りごとメモと帳票の項目名を貼り、AIの番号付きの質問に「1はA、2は推奨でOK」のように答える</dd><dt>終わりの状態</dt><dd><code>README.md</code> の冒頭に「〈誰〉が〈何〉に困っている。〈何〉が見えると嬉しい。」があり、<code>CONTEXT.md</code> に業務の言葉が3つ以上ある</dd></dl>
+    <figure><img src="assets/images/build/01-readme.png" alt="grill-with-docsで書いたREADMEとCONTEXT.mdの見本" loading="lazy"><figcaption>見本（架空の会社）: READMEの冒頭とCONTEXT.md</figcaption></figure><div class="note"><p><b>コツ:</b> 大きい課題を選ばないこと。「案件の進捗が全員に見えない」くらいの粒度が最適です。</p></div>
   </li>
-
-  <li>
-    <h3>画面をArtifactsで作る</h3>
-    <p>コードはまだ書きません。見た目と操作を先に固めます。<b>Artifacts（Claude）またはHTMLファイル（Codex）</b>で、開いて触れる画面を作ります。</p>
-    <figure>
-      <div class="shot">ここに画像: Artifactsで画面ができた状態（台帳#11）</div>
-      <figcaption>この時点ではダミーのデータでよい</figcaption>
-    </figure>
-    <div class="note"><p><b>Claudeを使う人の場合:</b> Artifactsがそのまま使えます。<b>Codexの場合:</b> <code>docs/prototype.html</code>としてHTMLを作り、ブラウザで開きます。</p></div>
+<li id="step2">
+    <h3>Step 2. 画面を作る</h3>
+    <p class="flow">コードはまだ書きません。見た目と操作を先に固めます。段ボールで家具の置き場所を試すようなものです。</p>
+    <div class="call"><span>Codex: <b>$dashboard-screen</b></span><span>Claude: <b>/dashboard-screen</b></span><span>文章でも: 「dashboard-screenで〜して」</span></div>
+    <dl class="meta-row"><dt>あなたがやること</dt><dd>AIが作った画面をブラウザで開いて触り、「ここは要らない」「これが先に見たい」と言う</dd><dt>終わりの状態</dt><dd><code>docs/prototype.html</code> があり、ブラウザで開いて操作できる。「明日の朝いちばんに何を見るか」に答えられる</dd></dl>
+    <figure><img src="assets/images/build/02-prototype.png" alt="画面の試作の見本" loading="lazy"><figcaption>見本（架空の会社）: 案件の一覧画面。<a href="samples/prototype.html">実物を開く</a></figcaption></figure>
   </li>
-
-  <li>
-    <h3>スキーマとER図を作る</h3>
-    <p>画面に出ている情報を全部書き出し、テーブルにまとめ、ER図にして<b>漏れと繋がり</b>を確認します。</p>
-    <p>使うスキル: <code>dashboard-schema</code></p>
-    <figure>
-      <div class="shot">ここに画像: ER図ができた状態（台帳#12）</div>
-      <figcaption>「この情報はどこに入るか」に全部答えられるまで確認する</figcaption>
-    </figure>
-    <div class="note warn"><p><b>ここが一番大事です。</b>スキーマが固まると、あとの作業が一気に速くなります。逆にここが曖昧だと、実装してから作り直しになります。</p></div>
+<li id="step3">
+    <h3>Step 3. スキーマとER図を作る</h3>
+    <p class="flow">画面に出ている情報を全部書き出し、どの棚（テーブル）のどの段（項目）に置くかを決めます。</p>
+    <div class="call"><span>Codex: <b>$dashboard-schema</b></span><span>Claude: <b>/dashboard-schema</b></span><span>文章でも: 「dashboard-schemaで〜して」</span></div>
+    <dl class="meta-row"><dt>あなたがやること</dt><dd>AIが出した表とER図を見て、「この情報はどこに入る？」と1つずつ聞く。足りない項目を言う</dd><dt>終わりの状態</dt><dd><code>docs/schema.md</code> にテーブル一覧とER図があり、画面の全項目の置き場所に答えられる</dd></dl>
+    <figure><img src="assets/images/build/03-er.png" alt="ER図の見本" loading="lazy"><figcaption>見本（架空の会社）: 顧客・案件・担当者のER図。<a href="samples/schema.html">実物を開く</a></figcaption></figure><div class="note"><p><b>ここが一番大事です。</b>スキーマが固まると、あとの作業が一気に速くなります。曖昧なまま進むと、実装してから作り直しになります。</p></div>
   </li>
-
-  <li>
-    <h3>ロードマップを書く</h3>
-    <p>スキーマが固まった瞬間に、実装を<b>確認できる単位（スライス）</b>に切ります。手前で価値が出る順に並べます。</p>
-    <p>使うスキル: <code>dashboard-roadmap</code></p>
-    <figure>
-      <div class="shot">ここに画像: roadmap.mdのスライス一覧（台帳#13）</div>
-    </figure>
+<li id="step4">
+    <h3>Step 4. ロードマップを書く</h3>
+    <p class="flow">スキーマが固まった瞬間に、確認できる単位（スライス）に切ります。コース料理の順番を決めるようなものです。</p>
+    <div class="call"><span>Codex: <b>$dashboard-roadmap</b></span><span>Claude: <b>/dashboard-roadmap</b></span><span>文章でも: 「dashboard-roadmapで〜して」</span></div>
+    <dl class="meta-row"><dt>あなたがやること</dt><dd>並び順を見て、「先に見たいもの」が上に来ているか確かめる</dd><dt>終わりの状態</dt><dd><code>docs/roadmap.md</code> に番号付きのスライスがあり、<b>S1は「ログインして一覧が見える」</b>になっている</dd></dl>
+    <figure><img src="assets/images/build/04-roadmap.png" alt="ロードマップの見本" loading="lazy"><figcaption>見本（架空の会社）: スライスの一覧。<a href="samples/roadmap.html">実物を開く</a></figcaption></figure>
   </li>
-
-  <li>
-    <h3>キーとアカウントを棚卸しする</h3>
-    <p>外部と繋がる箇所を洗い出し、必要なキーと<b>置き場所</b>を決めます。<b>値はファイルに書きません。</b></p>
-    <p>使うスキル: <code>dashboard-keys</code></p>
-    <figure>
-      <div class="shot">ここに画像: keys.mdの表（台帳#14）</div>
-    </figure>
+<li id="step5">
+    <h3>Step 5. キーとアカウントを棚卸しする</h3>
+    <p class="flow">外とつながる箇所を洗い出し、必要な鍵（キー）と、その置き場所を決めます。鍵そのものは表に貼りません。</p>
+    <div class="call"><span>Codex: <b>$dashboard-keys</b></span><span>Claude: <b>/dashboard-keys</b></span><span>文章でも: 「dashboard-keysで〜して」</span></div>
+    <dl class="meta-row"><dt>あなたがやること</dt><dd>表を見て、使うサービスに漏れがないか確かめる</dd><dt>終わりの状態</dt><dd><code>docs/keys.md</code> に表があり、値はどこにも書かれていない。最低限はSupabaseの2つ（Project URL と Publishable key）</dd></dl>
+    <figure><img src="assets/images/build/05-keys.png" alt="キー棚卸し表の見本" loading="lazy"><figcaption>見本（架空の会社）: 値は書かず、置き場所だけを書く</figcaption></figure>
   </li>
-
-  <li>
-    <h3>リポジトリとSecretを作る</h3>
-    <p>GitHubにリポジトリを作り、データベースとホスティングをつなぎ、キーをSecretに登録します。</p>
-    <figure>
-      <div class="shot">ここに画像: GitHubでリポジトリを作る画面（台帳#7）</div>
-    </figure>
-    <figure>
-      <div class="shot">ここに画像: VercelでImportする画面（台帳#10）</div>
-    </figure>
-    <div class="note warn"><p><b>キーが写る画面は撮らないでください。</b>撮る必要があるときは、値の部分を隠してから撮ります。</p></div>
+<li id="step6">
+    <h3>Step 6. 土台を作る（DB・アプリ・リポジトリ）</h3>
+    <p class="flow">倉庫（Supabase）を借り、ログイン画面つきの店舗の箱（with-supabaseテンプレート）を建て、鍵を決まった場所にしまいます。</p>
+    <div class="call"><span>Codex: <b>$dashboard-repo</b></span><span>Claude: <b>/dashboard-repo</b></span><span>文章でも: 「dashboard-repoで〜して」</span></div>
+    <dl class="meta-row"><dt>あなたがやること</dt><dd><ol>
+<li><a href="https://database.new">database.new</a> でSupabaseのプロジェクトを作る（Region は Tokyo。パスワードはパスワード管理ツールへ）</li>
+<li>ターミナルでアプリの箱を作り、キットの中身をコピーする<pre><code>cd ~/Documents
+npx create-next-app@latest --example with-supabase my-dashboard
+cd my-dashboard
+rsync -a --exclude .gitignore --exclude setup.sh --exclude .env.example ../Aigassyuku07/kit/ ./
+cp .env.example .env.local</code></pre></li>
+<li>Supabaseの画面上部の <code>Connect</code> を押し、Project URL と Publishable key を <code>.env.local</code> に貼る</li>
+<li><code>npm run dev</code> → <a href="http://localhost:3000">localhost:3000</a> を開く</li>
+<li><code>gh repo create my-dashboard --private --source=. --push</code> でGitHubへ</li>
+</ol></dd><dt>終わりの状態</dt><dd><a href="http://localhost:3000">localhost:3000</a> で画面が開き、GitHubにリポジトリがある。<code>.env.local</code> はGitHubに上がっていない</dd></dl>
+    <figure><img src="assets/images/build/06-template.png" alt="with-supabaseテンプレートの画面" loading="lazy"><figcaption>with-supabaseテンプレートのトップ画面（公式デモ）。ここからログイン画面につながっている</figcaption></figure><figure><div class="shot">ここに画像: SupabaseのConnect画面（キーは隠す）</div><figcaption>SupabaseのConnect画面。値は写さない</figcaption></figure><div class="note"><p>ここから先は、新しくできた <code>my-dashboard</code> フォルダをCodex（またはClaude）で開き直して進めます。キットのスキルとdocsはコピー済みなので、そのまま <code>guide</code> に聞けます。</p></div>
   </li>
-
-  <li>
-    <h3>docsとAGENTS.md / CLAUDE.mdを整える</h3>
-    <p>スキーマの<b>背景</b>、UIガイドライン、インフラ、ロードマップを埋めます。ここを整えるほど、次の作業が速くなります。</p>
-    <p>使うスキル: <code>dashboard-docs</code></p>
-    <figure>
-      <div class="shot">ここに画像: 「作業前に読む」の一覧（台帳#13）</div>
-    </figure>
+<li id="step7">
+    <h3>Step 7. docsとAGENTS.md / CLAUDE.mdを整える</h3>
+    <p class="flow">スキーマの背景、画面の原則、インフラ、ロードマップを埋めます。新人向けの引き継ぎノートを作るようなものです。</p>
+    <div class="call"><span>Codex: <b>$dashboard-docs</b></span><span>Claude: <b>/dashboard-docs</b></span><span>文章でも: 「dashboard-docsで〜して」</span></div>
+    <dl class="meta-row"><dt>あなたがやること</dt><dd>AIに「docsを読んで、空欄を埋める質問をして」と頼み、答える</dd><dt>終わりの状態</dt><dd><code>AGENTS.md</code> の「作業前に読む」から全部たどれる。空欄が残っていない（「未確定」は可）</dd></dl>
+    
   </li>
-
-  <li>
-    <h3>スライスを実装する</h3>
-    <p>1スライス = 1PRで回します。実装 → 実際に動かす → PR → レビュー → マージ。これを繰り返すだけで前に進みます。</p>
-    <p>使うスキル: <code>dashboard-slice</code></p>
-    <figure>
-      <div class="shot">ここに画像: PRの作成画面（台帳#15）</div>
-    </figure>
-    <figure>
-      <div class="shot">ここに画像: レビュー指摘と修正の往復（台帳#16）</div>
-    </figure>
+<li id="step8">
+    <h3>Step 8. ログインと一覧を作る（S1）</h3>
+    <p class="flow">社員証で開くドアを付け、ドアの内側に一覧を置きます。ドアそのものはテンプレートに付いています。</p>
+    <div class="call"><span>Codex: <b>$dashboard-auth</b></span><span>Claude: <b>/dashboard-auth</b></span><span>文章でも: 「dashboard-authで〜して」</span></div>
+    <dl class="meta-row"><dt>あなたがやること</dt><dd><ol>
+<li>Supabase → <code>Authentication</code> → <code>Sign In / Providers</code> → <code>Allow new users to sign up</code> をオフ（知らない人が登録できないように）</li>
+<li><code>Authentication</code> → <code>Users</code> → <code>Add user</code> → <code>Create new user</code>。<code>Auto Confirm User</code> にチェックして自分のアカウントを作る</li>
+<li>AIにテーブルとダミーデータのSQLを書いてもらい、説明を読んでから <code>SQL Editor</code> で <code>Run</code></li>
+<li>AIに一覧画面を作ってもらい、ログアウト状態で開く → ログイン画面に飛ぶことを確かめる</li>
+<li><code>dashboard-slice</code> でPR → マージ</li>
+</ol></dd><dt>終わりの状態</dt><dd>ログインしないと一覧が見えず、ログインするとダミーデータの一覧が見える。PRがマージされている</dd></dl>
+    <figure><img src="assets/images/build/08-login.png" alt="ログイン画面" loading="lazy"><figcaption>テンプレートに付いているログイン画面（公式デモ）</figcaption></figure><figure><div class="shot">ここに画像: SupabaseでユーザーをAdd userする画面</div><figcaption>Supabaseで社員のアカウントを作る</figcaption></figure><figure><div class="shot">ここに画像: GitHubのPR画面</div><figcaption>1スライス＝1PR。マージしたら次へ</figcaption></figure><div class="note warn"><p><b>RLS（行ごとの鍵）は必ず付けます。</b>付けないと、公開キーを知っている人なら誰でもデータを読めてしまいます。<code>dashboard-auth</code> はRLS付きのSQLを書きます。</p></div>
+  </li>
+<li id="step9">
+    <h3>Step 9. 本番へ出す</h3>
+    <p class="flow">お店のシャッターを開けます。倉庫の棚（データベース）を先に整え、それから店（アプリ）を開けます。</p>
+    <div class="call"><span>Codex: <b>$dashboard-deploy</b></span><span>Claude: <b>/dashboard-deploy</b></span><span>文章でも: 「dashboard-deployで〜して」</span></div>
+    <dl class="meta-row"><dt>あなたがやること</dt><dd><ol>
+<li><a href="https://vercel.com/new">vercel.com/new</a> → <code>my-dashboard</code> の <code>Import</code></li>
+<li><code>Environment Variables</code> に <code>.env.local</code> と同じ2つを入れて <code>Deploy</code></li>
+<li>出たURLを、Supabase → <code>Authentication</code> → <code>URL Configuration</code> の <code>Site URL</code> と <code>Redirect URLs</code> に入れる</li>
+<li>本番URLを開いてログインし、一覧が動くことを確かめる</li>
+</ol></dd><dt>終わりの状態</dt><dd><b>本番URLを開き、ログインして一覧が動く。</b>URLが <code>docs/infra.md</code> に書かれている</dd></dl>
+    <figure><div class="shot">ここに画像: VercelでImportする画面</div><figcaption>VercelでGitHubのリポジトリをImport</figcaption></figure><figure><div class="shot">ここに画像: Vercelのデプロイ完了画面</div><figcaption>Readyになったら本番URLを開く</figcaption></figure><div class="note warn"><p>キーが写る画面は撮らないでください。撮る必要があるときは、値の部分を隠してから撮ります。</p></div>
+  </li>
+<li id="step10">
+    <h3>Step 10. 次の一手を決めて、振り返る</h3>
+    <p class="flow">明日の自分へのメモを残します。料理のあとにレシピへ書き込むのと同じです。</p>
+    <div class="call"><span>Codex: <b>$reflect</b></span><span>Claude: <b>/reflect</b></span><span>文章でも: 「reflectで〜して」</span></div>
+    <dl class="meta-row"><dt>あなたがやること</dt><dd>ガイドに次のスライスを1つ選んでもらい、<code>reflect</code> が出した学びの案から残すものを選ぶ</dd><dt>終わりの状態</dt><dd>「明日はこれをやる」が1行で書かれ、学びが1つ以上ファイルに残っている</dd></dl>
+    
   </li>
 </ol>
 
-<h2>最後のステップ: デプロイ</h2>
-<p>本番へ出して、自分のURLで開きます。<b>ここまで来て初めて「できた」と言えます。</b></p>
-<p>使うスキル: <code>dashboard-deploy</code></p>
-<figure>
-  <div class="shot">ここに画像: デプロイ完了（Ready）の画面（台帳#17）</div>
-</figure>
-<figure>
-  <div class="shot">ここに画像: 完成した自社ダッシュボードの本番画面（台帳#18）</div>
-  <figcaption>これが今日の成果物</figcaption>
-</figure>
-
 <h2>時間が押したとき</h2>
-<p>次の順で優先します。<b>残りのスライスが書かれていること</b>が、明日以降の自走に一番効きます。</p>
+<p>次の順で優先します。残りのスライスが書かれていることが、明日以降の自走に一番効きます。</p>
 <table>
   <tr><th>優先</th><th>やること</th><th>理由</th></tr>
-  <tr><td>1</td><td>デプロイ（本番URL）</td><td>「できた」の実感が次につながる</td></tr>
-  <tr><td>2</td><td>ロードマップ</td><td>明日自分で進められる</td></tr>
-  <tr><td>3</td><td>スキーマ</td><td>後からでも直せる</td></tr>
+  <tr><td>1</td><td>本番URL（Step 9）</td><td>「できた」の実感が次につながる</td></tr>
+  <tr><td>2</td><td>ロードマップ（Step 4）</td><td>明日自分で進められる</td></tr>
+  <tr><td>3</td><td>スキーマ（Step 3）</td><td>後からでも直せる</td></tr>
   <tr><td>4</td><td>画面の作り込み</td><td>一番後回しでよい</td></tr>
 </table>
 
+<h2>覚えること（3つ）</h2><ol class="remember"><li><b>コードを書く前に決め切る</b>（Step 1〜5はkitフォルダで言葉と設計）</li><li>最初のスライスは<b>ログインして一覧が見える</b>に固定</li><li>迷ったら<b>ガイドに「次は？」</b>。順番を暗記しなくていい</li></ol>
+
 <div class="pager">
-  <a href="readme-driven.html">← README駆動開発</a>
+  <a href="readme-driven.html">← 書いてから作る（README駆動）</a>
   <a href="pstack.html">次: 進め方（pstack） →</a>
 </div>
 
 </main>
 
-<footer>AI合宿 — 会社用ダッシュボード構築キット</footer>
+<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
 </body>
 </html>
