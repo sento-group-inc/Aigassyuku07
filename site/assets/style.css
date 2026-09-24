@@ -354,3 +354,4 @@ td code, td a { overflow-wrap: anywhere; }
 figure img { max-width: 980px; }
 .grid figure img { max-width: 100%; }
 .pager2 { max-width: 980px; }
+figure img[src*="skills/"], figure img[src*="04-first-prompt"], figure img[src*="01a-grill"] { max-width: 760px; }

@@ -455,10 +455,8 @@ flowchart LR
 <h2>呼び方</h2>
 <p>Codex（またはClaude）の入力欄に、スキル名を入れて頼みます。どの書き方でも動きます。</p>
 {call("guide")}
-<div class="grid">
-  {fig("assets/images/skills/01-skill-picker.png", "Codexの入力欄で /grill と打ち、スキルの候補が出ている画面", "① 入力欄で <code>/</code> に続けて名前の一部を打つと、候補が出る")}
+{fig("assets/images/skills/01-skill-picker.png", "Codexの入力欄で /grill と打ち、スキルの候補が出ている画面", "① 入力欄で <code>/</code> に続けて名前の一部を打つと、候補が出る")}
   {fig("assets/images/skills/02-skill-chip.png", "候補から選んだスキルが入力欄にチップとして入った画面", "② 選ぶと入力欄にチップとして入る。続けて頼みたいことを書いて送る")}
-</div>
 <p>スキルの中身は <code>kit/.claude/skills/〈名前〉/SKILL.md</code> にあります（Codexは同じものを <code>kit/.agents/skills/</code> から読みます）。普通の文章なので、開いて読めば何をするか分かります。</p>
 
 <h2>一覧（16本）</h2>
