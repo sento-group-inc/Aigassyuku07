@@ -107,7 +107,7 @@ TRIAL.md の「締めの手順」を実行してください。
    ```
 
    作ったIssueの番号を、記録ファイルの該当の気づきに書き足す。
-3. 記録ファイルだけをPRにする。**`git add` は記録ファイルだけ。** `kit/` の練習での変更はコミットしない（`git status` で確認してから）。
+3. 記録ファイルだけをPRにする。コマンドは `~/Documents/Aigassyuku07` で実行する（`my-dashboard` ではない）。**`git add` は記録ファイルだけ。** `kit/` の練習での変更はコミットしない（`git status` で確認してから）。
 
    ```bash
    git switch -c feedback/<GitHubユーザー名>
