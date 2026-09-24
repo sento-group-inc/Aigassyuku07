@@ -18,36 +18,32 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 <nav class="sidebar" aria-label="目次">
 <a class="brand" href="index.html">AI合宿</a>
 <div class="brand-sub">ダッシュボード構築 ・ 10/6〜7</div>
-<div class="side-sec"><div class="side-sec-title"><span class="num">0</span>はじめに</div>
+<div class="side-sec"><div class="side-sec-title">はじめに</div>
 <a class="side-link" href="index.html">このサイトの使い方</a>
 </div>
-<div class="side-sec"><div class="side-sec-title"><span class="num">1</span>合宿の前に</div>
-<div class="side-sec-note">10月6日までに、家や会社で</div>
+<div class="side-sec"><div class="side-sec-title">合宿の前に</div>
 <a class="side-link" href="prep.html">事前準備</a>
 </div>
-<div class="side-sec"><div class="side-sec-title"><span class="num">2</span>合宿中、手元に置く</div>
-<div class="side-sec-note">講義の合間にいつでも開く</div>
+<div class="side-sec"><div class="side-sec-title">合宿中、手元に置く</div>
 <a class="side-link" href="schedule.html">日程と時間割</a>
 <a class="side-link" href="skills.html" aria-current="page">道具（スキル一覧）</a>
 <a class="side-link" href="repos.html">リポジトリ一覧</a>
 </div>
-<div class="side-sec"><div class="side-sec-title"><span class="num">3</span>1日目の講義</div>
-<div class="side-sec-note">上から順に進む</div>
+<div class="side-sec"><div class="side-sec-title">1日目の講義</div>
 <a class="side-link" href="why.html">1. なぜやるのか</a>
 <a class="side-link" href="setup.html">2. 環境を整える</a>
 <a class="side-link" href="readme-driven.html">3. 書いてから作る</a>
 <a class="side-link" href="build.html">4. 作る（10ステップ）</a>
 <a class="side-link" href="pstack.html">5. 迷ったときの進め方</a>
 </div>
-<div class="side-sec"><div class="side-sec-title"><span class="num">4</span>2日目から</div>
-<div class="side-sec-note">自分で進める</div>
+<div class="side-sec"><div class="side-sec-title">2日目から</div>
 <a class="side-link" href="day2.html">翌日以降の進め方</a>
 </div>
 </nav>
 
 <div class="content">
 <main>
-<div class="crumb">2. <b>合宿中、手元に置く</b></div>
+<div class="crumb"><b>合宿中、手元に置く</b></div>
 
 <h1>道具 — キットに入っているスキル</h1>
 <p class="lede"><b>結論:</b> 覚えるのは <code>guide</code> だけ。ほかの15本は、ガイドが「次はこれ」と教えてくれます。</p>
@@ -64,8 +60,11 @@ flowchart LR
 
 <h2>呼び方</h2>
 <p>Codex（またはClaude）の入力欄に、スキル名を入れて頼みます。どの書き方でも動きます。</p>
-<div class="call"><span>Codex: <b>$guide</b></span><span>Claude: <b>/guide</b></span><span>文章でも: 「guideで〜して」</span></div>
-<figure><div class="shot todo">撮影待ち: Codexの入力欄で $ と打ち、スキルの候補が出ている画面</div><figcaption>入力欄で <code>$</code>（Claudeは <code>/</code>）と打つと、使えるスキルの候補が出る</figcaption></figure>
+<div class="call"><span>入力欄で <b>/guide</b> と打って候補から選ぶ</span><span>Codexは <b>$guide</b> でも可</span><span>文章でも: 「guideで〜して」</span></div>
+<div class="grid">
+  <figure><img src="assets/images/skills/01-skill-picker.png" alt="Codexの入力欄で /grill と打ち、スキルの候補が出ている画面" loading="lazy"><figcaption>① 入力欄で <code>/</code> に続けて名前の一部を打つと、候補が出る</figcaption></figure>
+  <figure><img src="assets/images/skills/02-skill-chip.png" alt="候補から選んだスキルが入力欄にチップとして入った画面" loading="lazy"><figcaption>② 選ぶと入力欄にチップとして入る。続けて頼みたいことを書いて送る</figcaption></figure>
+</div>
 <p>スキルの中身は <code>kit/.claude/skills/〈名前〉/SKILL.md</code> にあります（Codexは同じものを <code>kit/.agents/skills/</code> から読みます）。普通の文章なので、開いて読めば何をするか分かります。</p>
 
 <h2>一覧（16本）</h2>

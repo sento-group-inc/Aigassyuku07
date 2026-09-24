@@ -8,7 +8,7 @@ missing=0
 
 referenced="$(
   {
-    grep -ohE 'Codex: <b>\$[a-z0-9-]+' "$root"/site/*.html | sed 's/.*\$//'
+    grep -ohE '<b>\$[a-z0-9-]+' "$root"/site/*.html | sed 's/.*\$//'
     grep -ohE 'skills/[a-z0-9-]+/SKILL\.md' "$root"/site/*.html | sed 's#skills/##;s#/SKILL.md##'
     grep -ohE '<code>(guide|eli5|reflect|poteto-mode|grill-with-docs|[a-z]+-guide|dashboard-[a-z]+)</code>' "$root"/site/*.html | sed 's/<[^>]*>//g'
     grep -ohE '^\| `[a-z0-9-]+` \|' "$root"/kit/AGENTS.md "$root"/kit/CLAUDE.md | sed 's/^| `//;s/` |$//'

@@ -90,16 +90,14 @@ def remember(items):
 
 
 def call(name):
-    return f'<div class="call"><span>Codex: <b>${name}</b></span><span>Claude: <b>/{name}</b></span><span>文章でも: 「{name}で〜して」</span></div>'
+    return f'<div class="call"><span>入力欄で <b>/{name}</b> と打って候補から選ぶ</span><span>Codexは <b>${name}</b> でも可</span><span>文章でも: 「{name}で〜して」</span></div>'
 
 
 def sidebar(key):
     out = ['<a class="brand" href="index.html">AI合宿</a>',
            '<div class="brand-sub">ダッシュボード構築 ・ 10/6〜7</div>']
     for i, (name, note, items) in enumerate(SECTIONS):
-        out.append(f'<div class="side-sec"><div class="side-sec-title"><span class="num">{i}</span>{name}</div>')
-        if note:
-            out.append(f'<div class="side-sec-note">{note}</div>')
+        out.append(f'<div class="side-sec"><div class="side-sec-title">{name}</div>')
         for k, t in items:
             cur = ' aria-current="page"' if k == key else ""
             out.append(f'<a class="side-link" href="{k}.html"{cur}>{t}</a>')
@@ -142,7 +140,7 @@ def page(key, body):
 
 <div class="content">
 <main>
-<div class="crumb">{sec_i}. <b>{sec_name}</b></div>
+<div class="crumb"><b>{sec_name}</b></div>
 
 {body.strip()}
 
@@ -204,18 +202,18 @@ page("index", f"""
 
 {mapblock('''
 flowchart LR
-  A["0 はじめに<br/>このページ"] --> B["1 合宿の前に<br/>事前準備"]
-  B --> C["2 合宿中、手元に置く<br/>日程・スキル・リポジトリ"]
-  C --> D["3 1日目の講義<br/>なぜ→環境→書く→作る→進め方"]
-  D --> E["4 2日目から<br/>自分で進める"]
+  A["はじめに<br/>このページ"] --> B["合宿の前に<br/>事前準備"]
+  B --> C["合宿中、手元に置く<br/>日程・スキル・リポジトリ"]
+  C --> D["1日目の講義<br/>なぜ→環境→書く→作る→進め方"]
+  D --> E["2日目から<br/>自分で進める"]
 ''', "目次の全体図")}
 
 <table>
   <tr><th>目次のセクション</th><th>いつ読むか</th><th>中身</th></tr>
-  <tr><td>1. 合宿の前に</td><td>10月6日までに</td><td><a href="prep.html">事前準備</a>。困りごとのメモ、Codexのインストール、アカウント作成</td></tr>
-  <tr><td>2. 合宿中、手元に置く</td><td>当日の朝と、迷ったとき</td><td><a href="schedule.html">日程と時間割</a>、<a href="skills.html">道具（スキル一覧）</a>、<a href="repos.html">リポジトリ一覧</a></td></tr>
-  <tr><td>3. 1日目の講義</td><td>10月6日、講義に合わせて</td><td>なぜやるのか → 環境を整える → 書いてから作る → 作る（10ステップ） → 迷ったときの進め方</td></tr>
-  <tr><td>4. 2日目から</td><td>10月7日と、その後</td><td><a href="day2.html">翌日以降の進め方</a></td></tr>
+  <tr><td>合宿の前に</td><td>10月6日までに</td><td><a href="prep.html">事前準備</a>。困りごとのメモ、Codexのインストール、アカウント作成</td></tr>
+  <tr><td>合宿中、手元に置く</td><td>当日の朝と、迷ったとき</td><td><a href="schedule.html">日程と時間割</a>、<a href="skills.html">道具（スキル一覧）</a>、<a href="repos.html">リポジトリ一覧</a></td></tr>
+  <tr><td>1日目の講義</td><td>10月6日、講義に合わせて</td><td>なぜやるのか → 環境を整える → 書いてから作る → 作る（10ステップ） → 迷ったときの進め方</td></tr>
+  <tr><td>2日目から</td><td>10月7日と、その後</td><td><a href="day2.html">翌日以降の進め方</a></td></tr>
 </table>
 
 {analogy("自分の会社に<b>台所をひとつ作る</b>2日間です。材料（データ）の置き場と、火の入れ方（手順）を決めれば、料理（画面）はAIが手伝って作ってくれます。1日目は1品作れたら成功です。")}
@@ -457,7 +455,10 @@ flowchart LR
 <h2>呼び方</h2>
 <p>Codex（またはClaude）の入力欄に、スキル名を入れて頼みます。どの書き方でも動きます。</p>
 {call("guide")}
-{todo_fig("assets/images/skills/01-skill-picker.png", "Codexの入力欄で $ と打ち、スキルの候補が出ている画面", "入力欄で <code>$</code>（Claudeは <code>/</code>）と打つと、使えるスキルの候補が出る")}
+<div class="grid">
+  {fig("assets/images/skills/01-skill-picker.png", "Codexの入力欄で /grill と打ち、スキルの候補が出ている画面", "① 入力欄で <code>/</code> に続けて名前の一部を打つと、候補が出る")}
+  {fig("assets/images/skills/02-skill-chip.png", "候補から選んだスキルが入力欄にチップとして入った画面", "② 選ぶと入力欄にチップとして入る。続けて頼みたいことを書いて送る")}
+</div>
 <p>スキルの中身は <code>kit/.claude/skills/〈名前〉/SKILL.md</code> にあります（Codexは同じものを <code>kit/.agents/skills/</code> から読みます）。普通の文章なので、開いて読めば何をするか分かります。</p>
 
 <h2>一覧（16本）</h2>
@@ -563,16 +564,15 @@ flowchart LR
   <li>
     <h3>キットをエージェントで開く</h3>
     <p>Codexを起動し、<code>書類</code> → <code>Aigassyuku07</code> → <code>kit</code> フォルダを作業フォルダとして開きます。<b>開くのは <code>kit</code> です</b>（親の <code>Aigassyuku07</code> ではありません）。</p>
-    {todo_fig("assets/images/setup/03-codex-open.png", "Codexで kit フォルダを開いた直後の画面", "作業フォルダ名が「kit」になっていればOK")}
+    {fig("assets/images/setup/03-codex-open.png", "Codexでkitフォルダを選んでいる画面", "Codexの入力欄の「+」からフォルダを選び、<code>Aigassyuku07</code> の中の <code>kit</code> を選んで「開く」")}
     <div class="note claude"><p><b>Claudeを使う人:</b> Claude Codeで同じフォルダを開きます。<code>CLAUDE.md</code>が読まれ、<code>.claude/skills/</code>のスキルが使えます。</p></div>
   </li>
   <li>
     <h3>最初の一言を送る</h3>
     <p>下のプロンプトをコピーして、入力欄に貼って送ります。</p>
     {prompt(FIRST_PROMPT)}
-    {todo_fig("assets/images/setup/04-first-prompt.png", "入力欄に最初のプロンプトを貼った、送信する直前の画面", "入力欄に貼ったら、送信ボタン（または return）で送る")}
+    {fig("assets/images/setup/04-first-prompt.png", "入力欄に最初のプロンプトを貼った、送信する直前の画面", "入力欄に貼ったら、右下の送信ボタン（または return）で送る")}
     <p>AIが <code>setup.sh</code> を自分で実行して環境を確かめ、「現在地・次の一手・使うスキル・終わりの状態」を返してくれば成功です。</p>
-    {todo_fig("assets/images/setup/05-guide-reply.png", "ガイドが「現在地・次の一手」を返した画面", "返ってくる形はいつも同じ。「次の一手」に書かれたことを1つだけやる")}
     <div class="note"><p><b>実際の応答例（Codexでリハーサルした結果）</b></p><pre><code>{html.escape(read_src("guide-reply.txt").strip())}</code></pre></div>
   </li>
 </ol>
@@ -635,9 +635,8 @@ flowchart LR
 <h2>使い方</h2>
 <p>事前準備で書いた困りごとメモを貼って、次を送ります。</p>
 {prompt(GRILL_PROMPT)}
-{todo_fig("assets/images/build/01a-grill-prompt.png", "grill-with-docs のプロンプトに困りごとメモを貼った、送信する直前の画面", "メモと項目名は、事前準備で書いたものをそのまま貼る")}
-<p>AIが「決めどころ」を番号付きで一度に出します。<b>「1はA、2は推奨でOK」</b>のように番号で答えれば進みます。</p>
-{todo_fig("assets/images/build/01b-grill-questions.png", "AIが番号付きの決めどころと推奨を返した画面", "全部に答えなくてよい。迷ったら「推奨でOK」")}
+{fig("assets/images/build/01a-grill-prompt.png", "grill-with-docsのプロンプトを入力欄に入れた、送信する直前の画面", "<code>/grill</code> と打って候補から選ぶと、スキル名がチップになる。続けて困りごとメモと項目名を貼って送る")}
+<p>AIが「決めどころ」を番号付きで一度に出します。<b>「1はA、2は推奨でOK」</b>のように番号で答えれば進みます。全部に答えなくて大丈夫です。</p>
 
 <h2>書く順番</h2>
 <ol class="steps">
@@ -762,8 +761,6 @@ flowchart TB
 Supabaseでのサインアップ停止とユーザー作成は済ませました。
 SQLは supabase/migrations/0001_init.sql に書き、何が作られるかを説明してから私に渡してください。""") +
  fig("assets/images/build/08-login.png", "ログイン画面", "テンプレートに付いているログイン画面（公式デモ）") +
- fig("assets/images/build/09-supabase-users.png", "SupabaseでユーザーをAdd userする画面", "Supabaseで社員のアカウントを作る") +
- fig("assets/images/build/10-pr.png", "GitHubのPR画面", "1スライス＝1PR。マージしたら次へ") +
  '<div class="note warn"><p><b>RLS（行ごとの鍵）は必ず付けます。</b>付けないと、公開キーを知っている人なら誰でもデータを読めてしまいます。<code>dashboard-auth</code> はRLS付きのSQLを書きます。</p></div>')}
 {step(9, "本番へ出す", "お店のシャッターを開けます。倉庫の棚（データベース）を先に整え、それから店（アプリ）を開けます。", "dashboard-deploy",
  """<ol>

@@ -337,3 +337,20 @@ td code, td a { overflow-wrap: anywhere; }
 @media (max-width: 900px) {
   main table { display: block; overflow-x: auto; }
 }
+
+.sidebar { background: #fff; padding: 22px 14px 40px; }
+.sidebar .brand { font-size: 18px; margin: 0 10px 2px; }
+.sidebar .brand-sub { margin: 0 10px 14px; }
+.side-sec { margin: 0; padding: 14px 0 10px; border-top: 1px solid var(--line); }
+.side-sec:first-of-type { border-top: 0; padding-top: 4px; }
+.side-sec-title { display: block; font-size: 13px; font-weight: 700; color: var(--ink); letter-spacing: 0; margin: 0 10px 6px; }
+.side-link { padding: 6px 10px; margin: 1px 0; font-size: 14px; color: #3c3c43; border-radius: 6px; border-left: 2px solid transparent; }
+.side-link:hover { background: var(--soft); color: var(--ink); }
+.side-link[aria-current="page"] { background: var(--accent-soft); color: var(--accent); font-weight: 700; border-left-color: var(--accent); border-radius: 0 6px 6px 0; }
+.side-sub { margin: 4px 0 8px 12px; border-left: 1px solid var(--line); }
+.side-sub a { font-size: 13px; padding: 4px 12px; }
+.content main { max-width: none; padding: 40px 56px 96px; }
+.content footer { padding: 20px 56px; }
+figure img { max-width: 980px; }
+.grid figure img { max-width: 100%; }
+.pager2 { max-width: 980px; }

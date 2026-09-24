@@ -16,12 +16,11 @@
 |---|---|---|---|---|
 | `setup/01-setup-sh.png` | `./setup.sh` の実出力 | 自動 | prep / setup | 取得済み（2026-09-23） |
 | `setup/02-check-services.png` | `./setup.sh --check-services` の実出力 | 自動 | setup | 取得済み |
-| `setup/03-codex-open.png` | Codexで `kit` フォルダを開いた直後 | 本人撮影 | setup | 未 |
-| `setup/04-first-prompt.png` | 入力欄に最初のプロンプトを貼った送信直前 | 本人撮影 | setup | 未 |
-| `setup/05-guide-reply.png` | guide が現在地・次の一手を返した画面 | 本人撮影 | setup | 未 |
-| `build/01a-grill-prompt.png` | grill-with-docs のプロンプトにメモを貼った送信直前 | 本人撮影 | readme-driven | 未 |
-| `build/01b-grill-questions.png` | 番号付きの決めどころと推奨が返った画面 | 本人撮影 | readme-driven | 未 |
-| `skills/01-skill-picker.png` | 入力欄で `$` と打ちスキル候補が出た画面 | 本人撮影 | skills | 未 |
+| `setup/03-codex-open.png` | Codexで `kit` フォルダを開いた直後 | 本人撮影 | setup | 取得済み（本人撮影。ユーザー名と社内フォルダ名をぼかし） |
+| `setup/04-first-prompt.png` | 入力欄に最初のプロンプトを貼った送信直前 | 本人撮影 | setup | 取得済み（本人撮影） |
+| `build/01a-grill-prompt.png` | grill-with-docs のプロンプトにメモを貼った送信直前 | 本人撮影 | readme-driven | 取得済み（本人撮影） |
+| `skills/02-skill-chip.png` | 選んだスキルが入力欄にチップとして入った画面 | 本人撮影 | skills | 取得済み |
+| `skills/01-skill-picker.png` | 入力欄で `$` と打ちスキル候補が出た画面 | 本人撮影 | skills | 取得済み（本人撮影） |
 | `prep/03-vercel-signup.png` | Vercel サインアップ | 自動 | prep | 取得済み |
 | `prep/04-supabase-signin.png` | Supabase サインイン | 自動 | prep | 取得済み |
 | `build/01-readme.png` | 見本: README と CONTEXT.md | 自動（`site/samples/readme.html`） | build Step 1 | 取得済み |
@@ -32,12 +31,10 @@
 | `build/06-template.png` | with-supabase テンプレート（公式デモ） | 自動 | build Step 6 | 取得済み |
 | `build/07-supabase-new-project.png` | Supabase の Create a new project（組織名を伏せ、作成は押さない） | 半自動 | build Step 6 | 取得済み（2026-09-24） |
 | `build/08-login.png` | テンプレートのログイン画面（公式デモ） | 自動 | build Step 8 | 取得済み |
-| `build/09-supabase-users.png` | Supabase の Add user | 半自動（デモ用プロジェクトが必要） | build Step 8 | 未 |
-| `build/10-pr.png` | GitHub の PR 画面 | 半自動（デモ用リポジトリにPRが必要） | build Step 8 | 未 |
 | `build/11-vercel-import.png` | Vercel の Import（検索でキットのリポジトリだけ表示） | 半自動 | build Step 9 | 取得済み（2026-09-24） |
 | `build/12-vercel-ready.png` | Vercel のデプロイ完了（講義サイト自身。ユーザー名を伏せた） | 半自動 | build Step 9 | 取得済み（2026-09-24） |
 
-撮らないと決めたもの: openai.com/codex と github.com/signup（どちらもbot検知で止まる）。本文のリンクで代替する。
+撮らないと決めたもの: openai.com/codex と github.com/signup（bot検知で止まる）、ガイドとグリルの返答画面（応答例のテキストで代替）、SupabaseのAdd userとGitHubのPR画面（デモ環境を作らない方針。2026-09-24本人判断）。
 
 ## 置き場と命名
 
