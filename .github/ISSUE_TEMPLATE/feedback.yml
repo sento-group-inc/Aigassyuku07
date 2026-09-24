@@ -1,0 +1,52 @@
+name: 講義サイト・キットの気づき
+description: 参加者として触って、詰まった所・迷った所・分かりにくかった所を1件ずつ出す
+title: "[ページ名 / Step n] "
+labels: ["feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        このリポジトリはpublicです。顧客名・社内情報・個人情報・キーの値は書かないでください。
+  - type: input
+    id: page
+    attributes:
+      label: どのページ・Stepか
+      placeholder: 例）作る（10ステップ） / Step 6
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: 重さ
+      options:
+        - 高（進めなくなった）
+        - 中（迷ったが進めた）
+        - 低（表現・見た目）
+    validations:
+      required: true
+  - type: textarea
+    id: tried
+    attributes:
+      label: やろうとしたこと
+    validations:
+      required: true
+  - type: textarea
+    id: happened
+    attributes:
+      label: 起きたこと
+      description: エラー文はそのまま貼る（キーの値は伏せる）
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期待していたこと
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 直し案（あれば）
+  - type: input
+    id: env
+    attributes:
+      label: 使ったAIとPC
+      placeholder: 例）Codex / Mac（Apple Silicon）
