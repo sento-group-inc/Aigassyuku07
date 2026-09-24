@@ -6,10 +6,10 @@
 
 ```mermaid
 flowchart LR
-  A[0 宿題: 困りごとメモ] --> B[1 道具を入れる]
-  B --> C[2 Codexを入れる]
-  C --> D[3 キットをclone]
-  D --> E[4 アカウントを作る]
+  A[0 宿題: 困りごとメモ] --> B[1 Codexを入れる]
+  B --> C[2 Homebrew ここだけターミナル]
+  C --> D[3 残りはAIに頼む]
+  D --> E[4 アカウント]
   E --> F[5 最終チェック]
 ```
 
@@ -39,56 +39,57 @@ flowchart LR
 
 **個人情報や実データは持ち込まないでください。** 画面はダミーデータで作ります。
 
-## 1. 道具を入れる（Mac、20分）
+## 1. Codexを入れてサインインする（10分）
 
-ターミナル（`アプリケーション` → `ユーティリティ` → `ターミナル`）を開いて、1行ずつ貼ります。
+https://openai.com/codex/ からCodexアプリを入れ、会社のChatGPTアカウントでサインインします。Claudeを使う人は https://claude.ai/download も入れてください。入れたら、Codexで**書類（Documents）フォルダ**を作業フォルダとして開いておきます。
+
+## 2. Homebrewを入れる（Mac・10分。ここだけターミナル）
+
+パスワード入力が要るので、ここだけはターミナル（`アプリケーション` → `ユーティリティ` → `ターミナル`）に貼ります。最後に出る「Next steps」の2行も実行します。Windowsの人は不要です。
 
 ```bash
-# Homebrew（道具を入れる道具）。表示された「Next steps」の2行も実行する
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# Node.js・git・GitHub CLI
-brew install node git gh
 ```
 
-Windowsの人は https://nodejs.org/ja/download ・ https://git-scm.com/downloads ・ https://cli.github.com/ から入れてください。
+## 3. 残りの道具とキットは、AIに頼む（10分）
 
-## 2. Codexを入れてサインインする（10分）
+Codexに次を貼ります。
 
-https://openai.com/codex/ からCodexアプリを入れ、会社のChatGPTアカウントでサインインします。Claudeを使う人は https://claude.ai/download も入れてください。
-
-## 3. キットをcloneする（2分）
-
-```bash
-cd ~/Documents
-git clone https://github.com/sento-group-inc/Aigassyuku07.git
-cd Aigassyuku07/kit
-./setup.sh
+```text
+AI合宿の事前準備をしています。次を順番にやってください。コマンドはあなたが実行してください。
+1. Node.js（20以上）、git、GitHub CLI（gh）が入っているか確認し、無ければ入れる（MacはHomebrew、Windowsはwinget）
+2. このフォルダに https://github.com/sento-group-inc/Aigassyuku07 をcloneする
+3. Aigassyuku07/kit フォルダで ./setup.sh を実行し、結果を初心者にも分かる言葉で説明する
+NG が出たら、直し方を1つずつ教えてください。
 ```
-
-`setup.sh`は**何もインストールしません**。足りないものと入手先URLを表示するだけです。
 
 ## 4. アカウントを作る（15分）
 
 | サービス | 何に使うか | やること |
 |---|---|---|
-| GitHub | コードの置き場 | https://github.com/signup で作成 → ターミナルで `gh auth login` |
+| GitHub | コードの置き場 | https://github.com/signup で作成 |
 | Vercel | 本番URLで公開する | https://vercel.com/signup で **Continue with GitHub** |
 | Supabase | データベースとログイン | https://supabase.com/dashboard/sign-in で **Continue with GitHub** |
 
 **クレジットカードは不要です。** 無料枠の範囲で作ります。会社で使うので、個人ではなく会社のメールで作るのがおすすめです。
 
-## 5. 最終チェック
+最後に、手元のPCからGitHubを使えるようにします（ブラウザでの確認があるので、ここもターミナル）。`GitHub.com` → `HTTPS` → `Login with a web browser` の順に答えます。
 
 ```bash
-cd ~/Documents/Aigassyuku07/kit
-./setup.sh                    # 最後が「要対応: 0」
-./setup.sh --check-services   # NG が無い
+gh auth login
+```
+
+## 5. 最終チェック
+
+Codexに次を貼ります。
+
+```text
+Aigassyuku07/kit フォルダで ./setup.sh と ./setup.sh --check-services を実行して、
+全部OKかどうかを教えてください。NG があれば直し方も教えてください。
 ```
 
 - [ ] 困りごとメモと帳票の項目名がある
-- [ ] `./setup.sh` の最後が `要対応: 0`
-- [ ] `./setup.sh --check-services` に `NG` が無い
+- [ ] AIの答えが「要対応: 0」で、GitHubが「サインイン済み」
 - [ ] Codexを開いてチャットできる
 - [ ] Vercel と Supabase にGitHubでサインインできる
 
@@ -96,9 +97,8 @@ cd ~/Documents/Aigassyuku07/kit
 
 | 症状 | 対処 |
 |---|---|
-| `command not found: brew` | Homebrewのインストール最後に出た「Next steps」の2行を実行し、ターミナルを開き直す |
-| `command not found: node` | `brew install node` のあと、ターミナルを開き直す |
-| `gh`で認証を求められる | `gh auth login` → GitHub.com → HTTPS → ブラウザでログイン |
+| Homebrewのあとに `brew` が見つからない | 「Next steps」の2行を実行し忘れている。ターミナルを開き直して、その2行を貼る |
+| AIが「権限がない」と言う | Codexの画面に出る「許可」ボタンを押す |
 | 会社のPCで管理者権限がない | 情報システム担当に「Homebrew・Node.js・git・GitHub CLI・Codexを入れたい」と事前に依頼してください。間に合わなければ事前に講師へ連絡を |
 
 詰まったら、次をAIに貼ってください。

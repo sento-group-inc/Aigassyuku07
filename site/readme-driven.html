@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>書いてから作る（README駆動） — AI合宿</title>
+<title>3. 書いてから作る — AI合宿</title>
 <link rel="stylesheet" href="assets/style.css">
 <script type="module">
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
@@ -12,25 +12,42 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 </head>
 <body>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="index.html">AI合宿</a>
-    <nav class="navlinks">
-      <a href="prep.html">準備</a>
-      <a href="schedule.html">日程</a>
-      <a href="why.html">なぜ</a>
-      <a href="setup.html">環境</a>
-      <a href="readme-driven.html" aria-current="page">書いてから作る</a>
-      <a href="build.html">作る</a>
-      <a href="pstack.html">進め方</a>
-      <a href="skills.html">道具</a>
-      <a href="repos.html">リポジトリ</a>
-      <a href="day2.html">翌日以降</a>
-    </nav>
-  </div>
-</header>
+<div class="mobilebar"><a class="brand" href="index.html">AI合宿</a><button class="nav-toggle" type="button">目次</button></div>
 
+<div class="layout">
+<nav class="sidebar" aria-label="目次">
+<a class="brand" href="index.html">AI合宿</a>
+<div class="brand-sub">ダッシュボード構築 ・ 10/6〜7</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">0</span>はじめに</div>
+<a class="side-link" href="index.html">このサイトの使い方</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">1</span>合宿の前に</div>
+<div class="side-sec-note">10月6日までに、家や会社で</div>
+<a class="side-link" href="prep.html">事前準備</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">2</span>合宿中、手元に置く</div>
+<div class="side-sec-note">講義の合間にいつでも開く</div>
+<a class="side-link" href="schedule.html">日程と時間割</a>
+<a class="side-link" href="skills.html">道具（スキル一覧）</a>
+<a class="side-link" href="repos.html">リポジトリ一覧</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">3</span>1日目の講義</div>
+<div class="side-sec-note">上から順に進む</div>
+<a class="side-link" href="why.html">1. なぜやるのか</a>
+<a class="side-link" href="setup.html">2. 環境を整える</a>
+<a class="side-link" href="readme-driven.html" aria-current="page">3. 書いてから作る</a>
+<a class="side-link" href="build.html">4. 作る（10ステップ）</a>
+<a class="side-link" href="pstack.html">5. 迷ったときの進め方</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">4</span>2日目から</div>
+<div class="side-sec-note">自分で進める</div>
+<a class="side-link" href="day2.html">翌日以降の進め方</a>
+</div>
+</nav>
+
+<div class="content">
 <main>
+<div class="crumb">3. <b>1日目の講義</b></div>
 
 <h1>書いてから作る（README駆動）</h1>
 <p class="lede"><b>結論:</b> コードより先に、言葉を決めます。先に書いた文章に合わせてAIに作らせると、作り直しが減ります。</p>
@@ -59,7 +76,16 @@ flowchart LR
   <tr><td>答え</td><td>会話に残るだけ</td><td>README / CONTEXT.md / ADR に書かれる</td></tr>
   <tr><td>次の日</td><td>また説明し直す</td><td>AIがファイルを読んで続きから</td></tr>
 </table>
-<div class="call"><span>Codex: <b>$grill-with-docs</b></span><span>Claude: <b>/grill-with-docs</b></span><span>文章でも: 「grill-with-docsで〜して」</span></div>
+
+<h2>使い方</h2>
+<p>事前準備で書いた困りごとメモを貼って、次を送ります。</p>
+<div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>grill-with-docs で、私の困りごとを詰めてください。
+困りごとのメモ: （ここに貼る）
+帳票の項目名: （ここに貼る）
+決まったことは README.md と CONTEXT.md に書いてください。</code></pre></div>
+<figure><div class="shot todo">撮影待ち: grill-with-docs のプロンプトに困りごとメモを貼った、送信する直前の画面</div><figcaption>メモと項目名は、事前準備で書いたものをそのまま貼る</figcaption></figure>
+<p>AIが「決めどころ」を番号付きで一度に出します。<b>「1はA、2は推奨でOK」</b>のように番号で答えれば進みます。</p>
+<figure><div class="shot todo">撮影待ち: AIが番号付きの決めどころと推奨を返した画面</div><figcaption>全部に答えなくてよい。迷ったら「推奨でOK」</figcaption></figure>
 
 <h2>書く順番</h2>
 <ol class="steps">
@@ -82,26 +108,33 @@ flowchart LR
   <tr><td><code>docs/ui-guidelines.md</code></td><td>画面の原則。指摘されたことを足していく</td><td>Step 7〜</td></tr>
   <tr><td><code>AGENTS.md</code> / <code>CLAUDE.md</code></td><td>「作業前に読む」の一覧と、守る決まり</td><td>Step 7</td></tr>
 </table>
+<p>書いたものの見本: <a href="samples/readme.html">README と CONTEXT.md</a> ／ <a href="samples/schema.html">スキーマ</a> ／ <a href="samples/roadmap.html">ロードマップ</a></p>
 
-<h2>効き方の違い</h2>
-<table>
-  <tr><th></th><th>文章が無いとき</th><th>文章があるとき</th></tr>
-  <tr><td>毎回の説明</td><td>必要</td><td>不要</td></tr>
-  <tr><td>AIの判断</td><td>セッションごとに変わる</td><td>同じ前提で揃う</td></tr>
-  <tr><td>作り直し</td><td>起きやすい</td><td>起きにくい</td></tr>
-  <tr><td>引き継ぎ</td><td>できない</td><td>そのまま渡せる</td></tr>
-</table>
 <div class="note"><p><b>完璧に書こうとしないこと。</b>決まっていない箇所は「未確定」と書いておけば十分です。空欄より「未確定」の方が価値があります。</p></div>
 
 <h2>覚えること（3つ）</h2><ol class="remember"><li><b>作る前に書く</b>。READMEの1文がすべての判断基準</li><li>グリルの答えは<b>ファイルに残す</b>（grill-with-docs）</li><li>決まらない所は<b>「未確定」</b>と書いて先へ進む</li></ol>
 
-<div class="pager">
-  <a href="setup.html">← 環境を整える</a>
-  <a href="build.html">次: 作る（10ステップ） →</a>
+<div class="pager2">
+  <a class="prev" href="setup.html"><span class="lbl">← 前へ</span><span class="ttl">2. 環境を整える</span></a>
+  <a class="next" href="build.html"><span class="lbl">次に読む（1日目の講義）</span><span class="ttl">4. 作る（10ステップ） →</span></a>
+</div>
+</main>
+<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
+</div>
 </div>
 
-</main>
-
-<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
+<script>
+document.querySelectorAll(".copy-btn").forEach(function (b) {
+  b.addEventListener("click", function () {
+    var text = b.closest(".prompt").querySelector("pre").innerText;
+    navigator.clipboard.writeText(text).then(function () {
+      b.textContent = "コピーしました"; b.classList.add("done");
+      setTimeout(function () { b.textContent = "コピー"; b.classList.remove("done"); }, 1600);
+    });
+  });
+});
+var t = document.querySelector(".nav-toggle");
+if (t) t.addEventListener("click", function () { document.body.classList.toggle("nav-open"); });
+</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>合宿スケジュール — AI合宿</title>
+<title>日程と時間割 — AI合宿</title>
 <link rel="stylesheet" href="assets/style.css">
 <script type="module">
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
@@ -12,38 +12,55 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 </head>
 <body>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="index.html">AI合宿</a>
-    <nav class="navlinks">
-      <a href="prep.html">準備</a>
-      <a href="schedule.html" aria-current="page">日程</a>
-      <a href="why.html">なぜ</a>
-      <a href="setup.html">環境</a>
-      <a href="readme-driven.html">書いてから作る</a>
-      <a href="build.html">作る</a>
-      <a href="pstack.html">進め方</a>
-      <a href="skills.html">道具</a>
-      <a href="repos.html">リポジトリ</a>
-      <a href="day2.html">翌日以降</a>
-    </nav>
-  </div>
-</header>
+<div class="mobilebar"><a class="brand" href="index.html">AI合宿</a><button class="nav-toggle" type="button">目次</button></div>
 
+<div class="layout">
+<nav class="sidebar" aria-label="目次">
+<a class="brand" href="index.html">AI合宿</a>
+<div class="brand-sub">ダッシュボード構築 ・ 10/6〜7</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">0</span>はじめに</div>
+<a class="side-link" href="index.html">このサイトの使い方</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">1</span>合宿の前に</div>
+<div class="side-sec-note">10月6日までに、家や会社で</div>
+<a class="side-link" href="prep.html">事前準備</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">2</span>合宿中、手元に置く</div>
+<div class="side-sec-note">講義の合間にいつでも開く</div>
+<a class="side-link" href="schedule.html" aria-current="page">日程と時間割</a>
+<a class="side-link" href="skills.html">道具（スキル一覧）</a>
+<a class="side-link" href="repos.html">リポジトリ一覧</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">3</span>1日目の講義</div>
+<div class="side-sec-note">上から順に進む</div>
+<a class="side-link" href="why.html">1. なぜやるのか</a>
+<a class="side-link" href="setup.html">2. 環境を整える</a>
+<a class="side-link" href="readme-driven.html">3. 書いてから作る</a>
+<a class="side-link" href="build.html">4. 作る（10ステップ）</a>
+<a class="side-link" href="pstack.html">5. 迷ったときの進め方</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">4</span>2日目から</div>
+<div class="side-sec-note">自分で進める</div>
+<a class="side-link" href="day2.html">翌日以降の進め方</a>
+</div>
+</nav>
+
+<div class="content">
 <main>
+<div class="crumb">2. <b>合宿中、手元に置く</b></div>
 
-<h1>合宿スケジュール</h1>
-<p class="lede">初日で自社のURLまで行きます。2日目は各社が自分のペースで個別学習に入ります。</p>
+<h1>日程と時間割</h1>
+<p class="lede">1日目で自社のURLまで行きます。2日目は各社が自分のペースで個別学習に入ります。</p>
 
 <div class="facts">
-  <div class="fact"><div class="k">初日</div><div class="v">10月6日(火) 9:30〜18:00</div></div>
+  <div class="fact"><div class="k">1日目</div><div class="v">10月6日(火) 9:30〜18:00</div></div>
   <div class="fact"><div class="k">2日目</div><div class="v">10月7日(水) 個別学習</div></div>
   <div class="fact"><div class="k">参加</div><div class="v">10社</div></div>
 </div>
 
 <section class="map"><div class="map-label">2日間の全体図</div><pre class="mermaid">
 flowchart LR
-  subgraph D1["初日 10/6"]
+  subgraph D1["1日目 10/6"]
     direction TB
     A["午前<br/>なぜ・環境・題材・画面<br/>Step 0〜2"] --> B["午後<br/>設計と土台<br/>Step 3〜7"]
     B --> C["夕方<br/>ログイン・本番・発表<br/>Step 8〜10"]
@@ -57,19 +74,19 @@ flowchart LR
 
 <div class="analogy"><div class="k">たとえるなら</div><p><b>登山の行程表</b>です。どこで休憩し、どこまで登っていれば順調かが書いてあります。遅れても、次のチェックポイントで立て直せます。</p></div>
 
-<h2>初日（10月6日）の時間割</h2>
+<h2>1日目（10月6日）の時間割</h2>
 <table>
-  <tr><th>時刻</th><th>内容</th><th>Step</th><th>参照</th></tr>
-  <tr><td>09:30</td><td>オープニング。なぜやるのかを腹落ちさせる</td><td>—</td><td><a href="why.html">why</a></td></tr>
-  <tr><td>10:00</td><td>環境の確認（詰まりを潰す）</td><td>0</td><td><a href="setup.html">setup</a></td></tr>
-  <tr><td>10:30</td><td>題材を決めてREADMEを書く（グリル）</td><td>1</td><td><a href="build.html#step1">build 1</a></td></tr>
-  <tr><td>11:15</td><td>画面を作る</td><td>2</td><td><a href="build.html#step2">build 2</a></td></tr>
-  <tr><td>12:00</td><td>昼食</td><td>—</td><td>—</td></tr>
-  <tr><td>13:00</td><td>スキーマとER図、ロードマップ</td><td>3〜4</td><td><a href="build.html#step3">build 3〜4</a></td></tr>
-  <tr><td>14:15</td><td>キーの棚卸し、土台を作る（DB・アプリ・リポジトリ）</td><td>5〜6</td><td><a href="build.html#step5">build 5〜6</a></td></tr>
-  <tr><td>15:15</td><td>docsを整え、ログインと一覧を作る</td><td>7〜8</td><td><a href="build.html#step7">build 7〜8</a></td></tr>
-  <tr><td>16:45</td><td>本番へ出して動作確認</td><td>9</td><td><a href="build.html#step9">build 9</a></td></tr>
-  <tr><td>17:15</td><td>発表（1社5分）と次の一手・振り返り</td><td>10</td><td><a href="build.html#step10">build 10</a></td></tr>
+  <tr><th>時刻</th><th>内容</th><th>講義ページ</th></tr>
+  <tr><td>09:30</td><td>オープニング。なぜやるのかを腹落ちさせる</td><td><a href="why.html">1. なぜやるのか</a></td></tr>
+  <tr><td>10:00</td><td>環境の確認（詰まりを潰す）・Step 0</td><td><a href="setup.html">2. 環境を整える</a></td></tr>
+  <tr><td>10:30</td><td>書いてから作る。題材を決めてREADMEを書く・Step 1</td><td><a href="readme-driven.html">3. 書いてから作る</a> → <a href="build.html#step1">4. Step 1</a></td></tr>
+  <tr><td>11:15</td><td>画面を作る・Step 2</td><td><a href="build.html#step2">4. Step 2</a></td></tr>
+  <tr><td>12:00</td><td>昼食</td><td>—</td></tr>
+  <tr><td>13:00</td><td>スキーマとER図、ロードマップ・Step 3〜4</td><td><a href="build.html#step3">4. Step 3〜4</a></td></tr>
+  <tr><td>14:15</td><td>キーの棚卸し、土台を作る・Step 5〜6</td><td><a href="build.html#step5">4. Step 5〜6</a></td></tr>
+  <tr><td>15:15</td><td>docsを整え、ログインと一覧を作る・Step 7〜8</td><td><a href="build.html#step7">4. Step 7〜8</a></td></tr>
+  <tr><td>16:45</td><td>本番へ出して動作確認・Step 9</td><td><a href="build.html#step9">4. Step 9</a></td></tr>
+  <tr><td>17:15</td><td>発表（1社5分）と次の一手・振り返り・Step 10</td><td><a href="build.html#step10">4. Step 10</a></td></tr>
 </table>
 
 <h2>チェックポイント</h2>
@@ -91,11 +108,11 @@ flowchart LR
 </table>
 
 <h2>2日目（10月7日）</h2>
-<p>各社が自分のペースで進めます。会場は開放し、詰まったところを個別に拾います。</p>
+<p>各社が自分のペースで進めます。会場は開放し、詰まったところを個別に拾います。進め方は<a href="day2.html">翌日以降の進め方</a>にあります。</p>
 <table>
   <tr><th>時刻</th><th>やること</th></tr>
   <tr><td>09:30</td><td>ガイドに「次は何をすればいい？」と聞き、<b>今日の1スライス</b>を決める</td></tr>
-  <tr><td>10:00〜</td><td>スライスを実装 → PR → マージ → 本番（<a href="day2.html">翌日以降の進め方</a>）</td></tr>
+  <tr><td>10:00〜</td><td>スライスを実装 → PR → マージ → 本番</td></tr>
   <tr><td>終わり</td><td><code>reflect</code>で学びを残し、明日の1スライスを決める</td></tr>
 </table>
 
@@ -107,15 +124,29 @@ flowchart LR
   <tr><td>時間が足りない</td><td>スコープを半分に割る。半分でも「動く」を作る</td></tr>
 </table>
 
-<h2>覚えること（3つ）</h2><ol class="remember"><li>初日のゴールは<b>本番URLでログインして一覧が見える</b>こと</li><li><b>12時・15時・17時</b>のチェックポイントで講師に声をかける</li><li>発表で一番価値があるのは<b>詰まった場所</b></li></ol>
+<h2>覚えること（3つ）</h2><ol class="remember"><li>1日目のゴールは<b>本番URLでログインして一覧が見える</b>こと</li><li><b>12時・15時・17時</b>のチェックポイントで講師に声をかける</li><li>発表で一番価値があるのは<b>詰まった場所</b></li></ol>
 
-<div class="pager">
-  <a href="prep.html">← 事前準備</a>
-  <a href="why.html">次: なぜやるのか →</a>
+<div class="pager2">
+  <a class="prev" href="prep.html"><span class="lbl">← 前へ</span><span class="ttl">事前準備</span></a>
+  <a class="next" href="skills.html"><span class="lbl">次に読む（合宿中、手元に置く）</span><span class="ttl">道具（スキル一覧） →</span></a>
+</div>
+</main>
+<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
+</div>
 </div>
 
-</main>
-
-<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
+<script>
+document.querySelectorAll(".copy-btn").forEach(function (b) {
+  b.addEventListener("click", function () {
+    var text = b.closest(".prompt").querySelector("pre").innerText;
+    navigator.clipboard.writeText(text).then(function () {
+      b.textContent = "コピーしました"; b.classList.add("done");
+      setTimeout(function () { b.textContent = "コピー"; b.classList.remove("done"); }, 1600);
+    });
+  });
+});
+var t = document.querySelector(".nav-toggle");
+if (t) t.addEventListener("click", function () { document.body.classList.toggle("nav-open"); });
+</script>
 </body>
 </html>

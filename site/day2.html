@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>翌日以降 — AI合宿</title>
+<title>翌日以降の進め方 — AI合宿</title>
 <link rel="stylesheet" href="assets/style.css">
 <script type="module">
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
@@ -12,25 +12,42 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 </head>
 <body>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="index.html">AI合宿</a>
-    <nav class="navlinks">
-      <a href="prep.html">準備</a>
-      <a href="schedule.html">日程</a>
-      <a href="why.html">なぜ</a>
-      <a href="setup.html">環境</a>
-      <a href="readme-driven.html">書いてから作る</a>
-      <a href="build.html">作る</a>
-      <a href="pstack.html">進め方</a>
-      <a href="skills.html">道具</a>
-      <a href="repos.html">リポジトリ</a>
-      <a href="day2.html" aria-current="page">翌日以降</a>
-    </nav>
-  </div>
-</header>
+<div class="mobilebar"><a class="brand" href="index.html">AI合宿</a><button class="nav-toggle" type="button">目次</button></div>
 
+<div class="layout">
+<nav class="sidebar" aria-label="目次">
+<a class="brand" href="index.html">AI合宿</a>
+<div class="brand-sub">ダッシュボード構築 ・ 10/6〜7</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">0</span>はじめに</div>
+<a class="side-link" href="index.html">このサイトの使い方</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">1</span>合宿の前に</div>
+<div class="side-sec-note">10月6日までに、家や会社で</div>
+<a class="side-link" href="prep.html">事前準備</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">2</span>合宿中、手元に置く</div>
+<div class="side-sec-note">講義の合間にいつでも開く</div>
+<a class="side-link" href="schedule.html">日程と時間割</a>
+<a class="side-link" href="skills.html">道具（スキル一覧）</a>
+<a class="side-link" href="repos.html">リポジトリ一覧</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">3</span>1日目の講義</div>
+<div class="side-sec-note">上から順に進む</div>
+<a class="side-link" href="why.html">1. なぜやるのか</a>
+<a class="side-link" href="setup.html">2. 環境を整える</a>
+<a class="side-link" href="readme-driven.html">3. 書いてから作る</a>
+<a class="side-link" href="build.html">4. 作る（10ステップ）</a>
+<a class="side-link" href="pstack.html">5. 迷ったときの進め方</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">4</span>2日目から</div>
+<div class="side-sec-note">自分で進める</div>
+<a class="side-link" href="day2.html" aria-current="page">翌日以降の進め方</a>
+</div>
+</nav>
+
+<div class="content">
 <main>
+<div class="crumb">4. <b>2日目から</b></div>
 
 <h1>翌日以降の進め方</h1>
 <p class="lede">ここからの主役はあなたです。AIは手を動かしますが、決めるのはあなたです。</p>
@@ -50,10 +67,9 @@ flowchart LR
 
 <h2>毎日の始め方</h2>
 <ol class="steps">
-  <li><h3>今日やるスライスを1つ選ぶ</h3><p><code>docs/roadmap.md</code>の未完了から1つ。<b>複数選ばない。</b></p></li>
-  <li><h3>ガイドに確認する</h3><pre><code>次は何をすればいい？</code></pre></li>
-  <li><h3>1つ終わったら記録する</h3><p>PRを出してマージし、本番に出して、roadmapの状態を更新します（<code>dashboard-slice</code> → <code>dashboard-deploy</code>）。</p></li>
-  <li><h3>一日の終わりに振り返る</h3><pre><code>今日の結果をまとめて、明日の1スライスを決めて。そのあと reflect で学びを残す案を出して</code></pre></li>
+  <li><h3>今日やるスライスを1つ選ぶ</h3><div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>docs/roadmap.md の未完了から、今日やるスライスを1つだけ選んで。理由も1行で。</code></pre></div></li>
+  <li><h3>作る</h3><div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>dashboard-slice で、そのスライスを実装して。動かして確かめてから、PRを作ってマージして。DBの変更があれば dashboard-deploy の順で本番に出して。</code></pre></div></li>
+  <li><h3>一日の終わりに振り返る</h3><div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>今日の結果をまとめて、明日の1スライスを決めて。そのあと reflect で学びを残す案を出して。</code></pre></div></li>
 </ol>
 
 <h2>自分で進める部分と、頼る部分</h2>
@@ -75,11 +91,11 @@ flowchart LR
 </table>
 
 <h2>人に聞くときの型</h2>
-<pre><code>【何をしたいか】案件の進捗を、全員が見えるようにしたい
+<div class="prompt"><div class="prompt-head"><span>人やAIに聞くときの型（中身を書き換えて使う）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>【何をしたいか】案件の進捗を、全員が見えるようにしたい
 【いまどこまで】一覧画面は本番で動いている。編集がまだ
 【どこで止まったか】誰が編集できるかの決め方で止まっている
 【自分で試したこと】担当者全員に編集権限を付ける案を試したが、間違って消されるのが怖い
-【決めたいこと】編集と閲覧の分け方</code></pre>
+【決めたいこと】編集と閲覧の分け方</code></pre></div>
 <p>この5行があれば、答えはすぐ返ってきます。<b>詰まった場所が具体的なほど、助けが正確になります。</b></p>
 
 <h2>続けるコツ</h2>
@@ -94,13 +110,27 @@ flowchart LR
 
 <h2>覚えること（3つ）</h2><ol class="remember"><li><b>1日1スライス</b>。複数選ばない</li><li>終わったら <b>PR→マージ→本番→reflect</b></li><li>人に聞くときは<b>5行の型</b>で</li></ol>
 
-<div class="pager">
-  <a href="repos.html">← リポジトリ一覧</a>
-  <span></span>
+<div class="pager2">
+  <a class="prev" href="pstack.html"><span class="lbl">← 前へ</span><span class="ttl">5. 迷ったときの進め方</span></a>
+  <a class="next" href="index.html"><span class="lbl">おつかれさまでした</span><span class="ttl">最初のページへ戻る →</span></a>
+</div>
+</main>
+<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
+</div>
 </div>
 
-</main>
-
-<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
+<script>
+document.querySelectorAll(".copy-btn").forEach(function (b) {
+  b.addEventListener("click", function () {
+    var text = b.closest(".prompt").querySelector("pre").innerText;
+    navigator.clipboard.writeText(text).then(function () {
+      b.textContent = "コピーしました"; b.classList.add("done");
+      setTimeout(function () { b.textContent = "コピー"; b.classList.remove("done"); }, 1600);
+    });
+  });
+});
+var t = document.querySelector(".nav-toggle");
+if (t) t.addEventListener("click", function () { document.body.classList.toggle("nav-open"); });
+</script>
 </body>
 </html>

@@ -5,7 +5,9 @@
 参加者は当日、この順で読む。迷ったら`index.html`の「最初に見る順番」に戻る。
 
 ```
-index → prep → schedule → why → setup → readme-driven → build（10ステップ） → pstack → skills → repos → day2
+左サイドバーを上から下へ辿れば2日間が過ごせる順（正本は `scripts/build-site.py` の `SECTIONS`）。
+
+0 はじめに（index）→ 1 合宿の前に（prep）→ 2 合宿中、手元に置く（schedule / skills / repos）→ 3 1日目の講義（why → setup → readme-driven → build → pstack）→ 4 2日目から（day2）
 ```
 
 ## ページ一覧
@@ -25,6 +27,10 @@ index → prep → schedule → why → setup → readme-driven → build（10�
 | `day2.html` | 自走 | 2日目以降の進め方と、詰まったときの聞き方 |
 
 ## 共通の作り
+
+- ページは `python3 scripts/build-site.py` で生成する。HTMLを直接編集しない。
+- 左サイドバー（スマホでは「目次」ボタン）と、本文末尾の大きな「次に読む」ボタンで進む。
+- ターミナル操作は原則コピーボタン付きのプロンプト（`prompt()`）に置き換え、パスワード入力や対話が要る所だけ `term()` で残す。
 
 - 1ページ1テーマ。冒頭に「このページの地図」（Mermaid、10ノード以内）と、たとえ1つ。末尾に「覚えること（3つ）」。eli5の型。
 - 手順は番号付きで、**どこを押すか**の画像を添える（`docs/screenshots.md`）。

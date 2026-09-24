@@ -12,25 +12,42 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 </head>
 <body>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="index.html">AI合宿</a>
-    <nav class="navlinks">
-      <a href="prep.html">準備</a>
-      <a href="schedule.html">日程</a>
-      <a href="why.html">なぜ</a>
-      <a href="setup.html">環境</a>
-      <a href="readme-driven.html">書いてから作る</a>
-      <a href="build.html">作る</a>
-      <a href="pstack.html">進め方</a>
-      <a href="skills.html">道具</a>
-      <a href="repos.html" aria-current="page">リポジトリ</a>
-      <a href="day2.html">翌日以降</a>
-    </nav>
-  </div>
-</header>
+<div class="mobilebar"><a class="brand" href="index.html">AI合宿</a><button class="nav-toggle" type="button">目次</button></div>
 
+<div class="layout">
+<nav class="sidebar" aria-label="目次">
+<a class="brand" href="index.html">AI合宿</a>
+<div class="brand-sub">ダッシュボード構築 ・ 10/6〜7</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">0</span>はじめに</div>
+<a class="side-link" href="index.html">このサイトの使い方</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">1</span>合宿の前に</div>
+<div class="side-sec-note">10月6日までに、家や会社で</div>
+<a class="side-link" href="prep.html">事前準備</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">2</span>合宿中、手元に置く</div>
+<div class="side-sec-note">講義の合間にいつでも開く</div>
+<a class="side-link" href="schedule.html">日程と時間割</a>
+<a class="side-link" href="skills.html">道具（スキル一覧）</a>
+<a class="side-link" href="repos.html" aria-current="page">リポジトリ一覧</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">3</span>1日目の講義</div>
+<div class="side-sec-note">上から順に進む</div>
+<a class="side-link" href="why.html">1. なぜやるのか</a>
+<a class="side-link" href="setup.html">2. 環境を整える</a>
+<a class="side-link" href="readme-driven.html">3. 書いてから作る</a>
+<a class="side-link" href="build.html">4. 作る（10ステップ）</a>
+<a class="side-link" href="pstack.html">5. 迷ったときの進め方</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">4</span>2日目から</div>
+<div class="side-sec-note">自分で進める</div>
+<a class="side-link" href="day2.html">翌日以降の進め方</a>
+</div>
+</nav>
+
+<div class="content">
 <main>
+<div class="crumb">2. <b>合宿中、手元に置く</b></div>
 
 <h1>リポジトリ一覧</h1>
 <p class="lede">今回の合宿で使うリポジトリとサービス、手順の出典をまとめました。<b>当日使うのは「当日使う」の表だけ</b>で十分です。</p>
@@ -50,10 +67,10 @@ flowchart LR
 <table>
   <tr><th>リポジトリ / サービス</th><th>何に使うか</th><th>いつ</th></tr>
   <tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07">sento-group-inc/Aigassyuku07</a></td><td>この合宿のキット（スキル16本・docs雛形・setup.sh）と講義サイト</td><td>事前準備〜</td></tr>
-  <tr><td><a href="https://github.com/vercel/next.js/tree/canary/examples/with-supabase">vercel/next.js — with-supabase</a></td><td>ログイン画面つきのアプリの土台。<code>npx create-next-app --example with-supabase</code> で作る</td><td>Step 6</td></tr>
+  <tr><td><a href="https://github.com/vercel/next.js/tree/canary/examples/with-supabase">vercel/next.js — with-supabase</a></td><td>ログイン画面つきのアプリの土台。Step 6でAIが作る</td><td>Step 6</td></tr>
   <tr><td><a href="https://supabase.com/dashboard">Supabase</a>（<a href="https://github.com/supabase/supabase">supabase/supabase</a>）</td><td>データベースとログイン（社員アカウント）</td><td>Step 6・8</td></tr>
   <tr><td><a href="https://vercel.com/new">Vercel</a>（<a href="https://github.com/vercel/vercel">vercel/vercel</a>）</td><td>GitHubにつなぐだけで本番URLを作る</td><td>Step 9</td></tr>
-  <tr><td><a href="https://github.com/">GitHub</a> / <a href="https://github.com/cli/cli">cli/cli</a></td><td>コードの置き場と、ターミナルからの操作（<code>gh</code>）</td><td>Step 6・8</td></tr>
+  <tr><td><a href="https://github.com/">GitHub</a> / <a href="https://github.com/cli/cli">cli/cli</a></td><td>コードの置き場と、PCからの操作（<code>gh</code>）</td><td>Step 6・8</td></tr>
   <tr><td><a href="https://openai.com/codex/">Codex</a>（<a href="https://github.com/openai/codex">openai/codex</a>）</td><td>合宿のメインのAIエージェント</td><td>全Step</td></tr>
   <tr><td><a href="https://claude.ai/download">Claude Code</a></td><td>Claudeを使う人のエージェント。同じキットで動く</td><td>全Step</td></tr>
 </table>
@@ -73,19 +90,32 @@ flowchart LR
   <tr><td><a href="https://github.com/cursor/plugins/tree/main/pstack">pstack本体</a></td><td>複数案の競争（arena / swarm）、詳細設計（architect）など、合宿で入れなかった道具</td></tr>
 </table>
 
-<h2>追記のしかた</h2>
-<p>合宿中に見つけた便利なリポジトリは、Codexに次のように頼むと、この一覧に足す文面を作ってくれます。</p>
-<pre><code>このリポジトリが私たちのダッシュボード作りに使えるか、何に使えるかを3行で教えて。URL: （ここに貼る）</code></pre>
+<h2>便利そうなリポジトリを見つけたら</h2>
+<div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>このリポジトリが私たちのダッシュボード作りに使えるか、何に使えるかを3行で教えて。URL: （ここに貼る）</code></pre></div>
 
 <h2>覚えること（3つ）</h2><ol class="remember"><li>当日使うのは <b>キット・with-supabase・Supabase・Vercel・GitHub</b></li><li>スキルの一部は <b>pstack と mattpocock/skills（MIT）</b>の日本語版</li><li>便利そうなものは<b>AIに「使えるか」を先に聞く</b></li></ol>
 
-<div class="pager">
-  <a href="skills.html">← 道具（スキル）</a>
-  <a href="day2.html">次: 翌日以降 →</a>
+<div class="pager2">
+  <a class="prev" href="skills.html"><span class="lbl">← 前へ</span><span class="ttl">道具（スキル一覧）</span></a>
+  <a class="next" href="why.html"><span class="lbl">次に読む（1日目の講義）</span><span class="ttl">1. なぜやるのか →</span></a>
+</div>
+</main>
+<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
+</div>
 </div>
 
-</main>
-
-<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
+<script>
+document.querySelectorAll(".copy-btn").forEach(function (b) {
+  b.addEventListener("click", function () {
+    var text = b.closest(".prompt").querySelector("pre").innerText;
+    navigator.clipboard.writeText(text).then(function () {
+      b.textContent = "コピーしました"; b.classList.add("done");
+      setTimeout(function () { b.textContent = "コピー"; b.classList.remove("done"); }, 1600);
+    });
+  });
+});
+var t = document.querySelector(".nav-toggle");
+if (t) t.addEventListener("click", function () { document.body.classList.toggle("nav-open"); });
+</script>
 </body>
 </html>

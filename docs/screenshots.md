@@ -16,7 +16,12 @@
 |---|---|---|---|---|
 | `setup/01-setup-sh.png` | `./setup.sh` の実出力 | 自動 | prep / setup | 取得済み（2026-09-23） |
 | `setup/02-check-services.png` | `./setup.sh --check-services` の実出力 | 自動 | setup | 取得済み |
-| `setup/03-codex-open.png` | Codexで `kit` フォルダを開いた画面 | 半自動（デスクトップアプリ） | setup | 未 |
+| `setup/03-codex-open.png` | Codexで `kit` フォルダを開いた直後 | 本人撮影 | setup | 未 |
+| `setup/04-first-prompt.png` | 入力欄に最初のプロンプトを貼った送信直前 | 本人撮影 | setup | 未 |
+| `setup/05-guide-reply.png` | guide が現在地・次の一手を返した画面 | 本人撮影 | setup | 未 |
+| `build/01a-grill-prompt.png` | grill-with-docs のプロンプトにメモを貼った送信直前 | 本人撮影 | readme-driven | 未 |
+| `build/01b-grill-questions.png` | 番号付きの決めどころと推奨が返った画面 | 本人撮影 | readme-driven | 未 |
+| `skills/01-skill-picker.png` | 入力欄で `$` と打ちスキル候補が出た画面 | 本人撮影 | skills | 未 |
 | `prep/03-vercel-signup.png` | Vercel サインアップ | 自動 | prep | 取得済み |
 | `prep/04-supabase-signin.png` | Supabase サインイン | 自動 | prep | 取得済み |
 | `build/01-readme.png` | 見本: README と CONTEXT.md | 自動（`site/samples/readme.html`） | build Step 1 | 取得済み |
@@ -40,4 +45,4 @@
 site/assets/images/<ページ名>/<連番>-<内容>.png
 ```
 
-画像を置いたら、該当ページの `<div class="shot">ここに画像: …</div>` を `<img src="…" alt="…">` に置き換え、`./scripts/check-links.sh` を通す。
+ページは `scripts/build-site.py` から生成する。画像をこの名前で置いて `python3 scripts/build-site.py` を実行すると、「撮影待ち」「ここに画像」の枠が自動で画像に置き換わる。最後に `./scripts/check-links.sh` を通す。

@@ -1,0 +1,15 @@
+現在地: Step 0の途中です。ツール確認は完了（要対応0）ですが、GitHub未サインインのためStep 0は未完了です。Step 1以降も未着手です。
+
+次の一手: GitHubへサインインする。
+
+使うスキル: `guide`
+
+あなたがやること:
+
+1. このフォルダのターミナルで `gh auth login` を実行
+2. `GitHub.com` → `HTTPS` → `Login with a web browser` を選択
+3. 表示されたURLをブラウザで開き、コードを入力して「Authorize GitHub CLI」を押す
+4. 終わったら `./setup.sh --check-services` を実行
+
+終わりの状態: `GitHub: ... でサインイン済み` と表示され、`NG` が1つもない。
+

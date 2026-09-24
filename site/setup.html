@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>環境を整える — AI合宿</title>
+<title>2. 環境を整える — AI合宿</title>
 <link rel="stylesheet" href="assets/style.css">
 <script type="module">
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
@@ -12,69 +12,82 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 </head>
 <body>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="index.html">AI合宿</a>
-    <nav class="navlinks">
-      <a href="prep.html">準備</a>
-      <a href="schedule.html">日程</a>
-      <a href="why.html">なぜ</a>
-      <a href="setup.html" aria-current="page">環境</a>
-      <a href="readme-driven.html">書いてから作る</a>
-      <a href="build.html">作る</a>
-      <a href="pstack.html">進め方</a>
-      <a href="skills.html">道具</a>
-      <a href="repos.html">リポジトリ</a>
-      <a href="day2.html">翌日以降</a>
-    </nav>
-  </div>
-</header>
+<div class="mobilebar"><a class="brand" href="index.html">AI合宿</a><button class="nav-toggle" type="button">目次</button></div>
 
+<div class="layout">
+<nav class="sidebar" aria-label="目次">
+<a class="brand" href="index.html">AI合宿</a>
+<div class="brand-sub">ダッシュボード構築 ・ 10/6〜7</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">0</span>はじめに</div>
+<a class="side-link" href="index.html">このサイトの使い方</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">1</span>合宿の前に</div>
+<div class="side-sec-note">10月6日までに、家や会社で</div>
+<a class="side-link" href="prep.html">事前準備</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">2</span>合宿中、手元に置く</div>
+<div class="side-sec-note">講義の合間にいつでも開く</div>
+<a class="side-link" href="schedule.html">日程と時間割</a>
+<a class="side-link" href="skills.html">道具（スキル一覧）</a>
+<a class="side-link" href="repos.html">リポジトリ一覧</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">3</span>1日目の講義</div>
+<div class="side-sec-note">上から順に進む</div>
+<a class="side-link" href="why.html">1. なぜやるのか</a>
+<a class="side-link" href="setup.html" aria-current="page">2. 環境を整える</a>
+<a class="side-link" href="readme-driven.html">3. 書いてから作る</a>
+<a class="side-link" href="build.html">4. 作る（10ステップ）</a>
+<a class="side-link" href="pstack.html">5. 迷ったときの進め方</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">4</span>2日目から</div>
+<div class="side-sec-note">自分で進める</div>
+<a class="side-link" href="day2.html">翌日以降の進め方</a>
+</div>
+</nav>
+
+<div class="content">
 <main>
+<div class="crumb">3. <b>1日目の講義</b></div>
 
 <h1>環境を整える</h1>
-<p class="lede">当日の朝にやることです。インストールは<a href="prep.html">事前準備</a>で済んでいる前提で、ここではキットを開いてガイドに最初の一言を送るところまで進めます。画面はCodex基準で説明します。</p>
+<p class="lede">当日の朝にやることです。インストールは<a href="prep.html">事前準備</a>で済んでいる前提で、キットを開いてガイドに最初の一言を送るところまで進めます。画面はCodex基準で説明します。</p>
 
-<div class="goal"><strong>このページを終えると</strong>、エージェントがキットを読み、「次にやること」を1つ返してくれる状態になります。</div>
+<div class="goal"><strong>このページを終えると</strong>、エージェントがキットを読み、環境を自分で確かめたうえで「次にやること」を1つ返してくれる状態になります。</div>
 
 <section class="map"><div class="map-label">このページの地図</div><pre class="mermaid">
 flowchart LR
-  A["1 足りない物を確認<br/>setup.sh"] --> B["2 サービスを確認<br/>--check-services"]
-  B --> C["3 キットを開く<br/>Codex / Claude"]
-  C --> D["4 最初の一言<br/>PROMPT.md"]
-  D --> E["ガイドが<br/>次の一手を返す"]
+  A["1 キットを開く<br/>Codex / Claude"] --> B["2 最初の一言<br/>コピーして貼る"]
+  B --> C["AIが環境を確認<br/>setup.sh"]
+  C --> D["ガイドが<br/>次の一手を返す"]
 </pre></section>
 
-<div class="analogy"><div class="k">たとえるなら</div><p><b>料理教室の調理台の準備</b>です。包丁とまな板（道具）が揃っているか確かめ、レシピ（キット）を開き、先生（ガイド）に「何から始めますか？」と聞きます。</p></div>
+<div class="analogy"><div class="k">たとえるなら</div><p><b>料理教室の調理台</b>に立つところです。レシピ（キット）を開き、先生（ガイド）に「何から始めますか？」と聞けば、道具が揃っているかも先生が確かめてくれます。</p></div>
 
 <h2>当日の手順</h2>
 <ol class="steps">
   <li>
-    <h3>足りないものを確認する</h3>
-    <pre><code>cd ~/Documents/Aigassyuku07/kit
-./setup.sh</code></pre>
-    <p><b>何もインストールしません。</b>足りないものと入手先URLを表示するだけです。<code>NG</code>が出たらURLから入れて、もう一度実行します。</p>
-    <figure><img src="assets/images/setup/01-setup-sh.png" alt="setup.shの実行結果" loading="lazy"><figcaption>最後の行が「要対応: 0」なら次へ</figcaption></figure>
-  </li>
-  <li>
-    <h3>外部サービスの準備状況を見る</h3>
-    <pre><code>./setup.sh --check-services</code></pre>
-    <p>GitHubにサインイン済みかを確かめます。<code>NG</code>が出たら <code>gh auth login</code> を実行します。SupabaseとVercelは当日ブラウザで使うので、CLIは入っていなくて構いません。</p>
-    <figure><img src="assets/images/setup/02-check-services.png" alt="setup.sh --check-servicesの実行結果" loading="lazy"><figcaption>GitHubがOKなら次へ</figcaption></figure>
-  </li>
-  <li>
     <h3>キットをエージェントで開く</h3>
-    <p>Codexを起動し、<code>Aigassyuku07/kit</code> フォルダを作業フォルダとして開きます。ここが今日の午前の作業場所です。</p>
-    <figure><div class="shot">ここに画像: Codexでkitフォルダを開いた画面</div><figcaption>Codexでフォルダを開く</figcaption></figure>
-    <div class="note claude"><p><b>Claudeを使う人:</b> Claude Codeで同じフォルダを開きます。<code>CLAUDE.md</code>が読まれ、<code>.claude/skills/</code>のスキルが使えます。Codexは同じスキルを<code>.agents/skills/</code>から読みます。</p></div>
+    <p>Codexを起動し、<code>書類</code> → <code>Aigassyuku07</code> → <code>kit</code> フォルダを作業フォルダとして開きます。<b>開くのは <code>kit</code> です</b>（親の <code>Aigassyuku07</code> ではありません）。</p>
+    <figure><div class="shot todo">撮影待ち: Codexで kit フォルダを開いた直後の画面</div><figcaption>作業フォルダ名が「kit」になっていればOK</figcaption></figure>
+    <div class="note claude"><p><b>Claudeを使う人:</b> Claude Codeで同じフォルダを開きます。<code>CLAUDE.md</code>が読まれ、<code>.claude/skills/</code>のスキルが使えます。</p></div>
   </li>
   <li>
     <h3>最初の一言を送る</h3>
-    <p>リポジトリ直下の<a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/PROMPT.md">PROMPT.md</a>の「最初に貼るもの」をコピーして送ります。</p>
-    <pre><code>このフォルダで作業します。guide スキルを使って、docs/guide-steps.md を読み、
+    <p>下のプロンプトをコピーして、入力欄に貼って送ります。</p>
+    <div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>このフォルダで作業します。guide スキルを使って、docs/guide-steps.md を読み、
 いまの状態（どのステップまで終わっているか）を判定してから、
-次にやることを1つだけ指示してください。（以下、PROMPT.md のとおり）</code></pre>
-    <p>エージェントが「現在地・次の一手・使うスキル・終わりの状態」を返してくれば成功です。</p>
+次にやることを1つだけ指示してください。
+
+指示するときは、必ず次を含めてください。
+- 使うスキル名（例: grill-with-docs, dashboard-screen）
+- 私がやること（手で操作する箇所があれば「どこを押すか」）
+- 終わりの状態（何ができていれば次に進んでよいか）
+
+コマンドの実行が必要なときは、私に頼まずにあなたが実行してください。
+私は会社の業務ダッシュボードを作りたいです。困りごとのメモは手元にあります。</code></pre></div>
+    <figure><div class="shot todo">撮影待ち: 入力欄に最初のプロンプトを貼った、送信する直前の画面</div><figcaption>入力欄に貼ったら、送信ボタン（または return）で送る</figcaption></figure>
+    <p>AIが <code>setup.sh</code> を自分で実行して環境を確かめ、「現在地・次の一手・使うスキル・終わりの状態」を返してくれば成功です。</p>
+    <figure><div class="shot todo">撮影待ち: ガイドが「現在地・次の一手」を返した画面</div><figcaption>返ってくる形はいつも同じ。「次の一手」に書かれたことを1つだけやる</figcaption></figure>
     <div class="note"><p><b>実際の応答例（Codexでリハーサルした結果）</b></p><pre><code>現在地: Step 0の途中です。ツール確認は完了（要対応0）ですが、GitHub未サインインのためStep 0は未完了です。Step 1以降も未着手です。
 
 次の一手: GitHubへサインインする。
@@ -92,30 +105,51 @@ flowchart LR
   </li>
 </ol>
 
+<h2>AIが裏でやっている確認</h2>
+<p>ガイドは最初に <code>setup.sh</code> を実行して、道具が揃っているかを確かめます。自分で確かめたいときは、次を貼ってください。</p>
+<div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>./setup.sh と ./setup.sh --check-services を実行して、結果を初心者にも分かる言葉で教えてください。NG があれば直し方も。</code></pre></div>
+<div class="grid">
+  <figure><img src="assets/images/setup/01-setup-sh.png" alt="setup.shの実行結果" loading="lazy"><figcaption>道具の確認。最後が「要対応: 0」ならOK</figcaption></figure>
+  <figure><img src="assets/images/setup/02-check-services.png" alt="setup.sh --check-servicesの実行結果" loading="lazy"><figcaption>GitHubにサインイン済みかの確認</figcaption></figure>
+</div>
+
 <h2>スキルの呼び方</h2>
 <p>キットには16本のスキル（AIへの手順書）が入っています。呼び方は3通りあり、どれでも動きます。</p>
 <div class="call"><span>Codex: <b>$guide</b></span><span>Claude: <b>/guide</b></span><span>文章でも: 「guideで〜して」</span></div>
-<p>一覧は<a href="skills.html">道具のページ</a>にあります。<b>覚えるのは <code>guide</code> だけ</b>で大丈夫です。次に使うスキルは、ガイドが教えてくれます。</p>
+<p><b>覚えるのは <code>guide</code> だけ</b>で大丈夫です。次に使うスキルは、ガイドが教えてくれます。一覧は<a href="skills.html">道具（スキル一覧）</a>にあります。</p>
 
 <h2>うまくいかないとき</h2>
 <table>
   <tr><th>症状</th><th>対処</th></tr>
-  <tr><td><code>command not found: node</code></td><td><code>brew install node</code> のあと、ターミナルを閉じて開き直す</td></tr>
-  <tr><td><code>gh</code>で認証を求められる</td><td><code>gh auth login</code> → <code>GitHub.com</code> → <code>HTTPS</code> → ブラウザでログイン</td></tr>
-  <tr><td><code>kit/ の中で実行してください</code>と出る</td><td><code>cd ~/Documents/Aigassyuku07/kit</code> してからもう一度</td></tr>
-  <tr><td>エージェントがスキルを知らないと言う</td><td>開いているフォルダが<code>kit</code>か確認する。親の<code>Aigassyuku07</code>を開いていると読めない</td></tr>
+  <tr><td>エージェントがスキルを知らないと言う</td><td>開いているフォルダが <code>kit</code> か確認する。親の <code>Aigassyuku07</code> を開いていると読めない</td></tr>
+  <tr><td>「コマンドを実行してよいか」と聞かれる</td><td>内容を読んで「許可」を押す。分からなければ講師を呼ぶ</td></tr>
+  <tr><td>GitHubが「未サインイン」と言われる</td><td>ターミナルで <code>gh auth login</code> を実行する（<a href="prep.html">事前準備の4</a>）</td></tr>
   <tr><td>会社のPCで入れられない</td><td>隣の人と2人1組で1台を使い、自社の題材で進める。帰社後のインストール依頼は<a href="prep.html">事前準備</a>の依頼文を使う</td></tr>
 </table>
 
-<h2>覚えること（3つ）</h2><ol class="remember"><li>開くのは <b><code>kit</code> フォルダ</b>（親フォルダではない）</li><li>最初の一言は <b>PROMPT.md をそのまま貼る</b></li><li>覚えるスキルは <b><code>guide</code> だけ</b></li></ol>
+<h2>覚えること（3つ）</h2><ol class="remember"><li>開くのは <b><code>kit</code> フォルダ</b>（親フォルダではない）</li><li>最初の一言は <b>コピーして貼るだけ</b>。環境の確認もAIがやる</li><li>覚えるスキルは <b><code>guide</code> だけ</b></li></ol>
 
-<div class="pager">
-  <a href="why.html">← なぜやるのか</a>
-  <a href="readme-driven.html">次: 書いてから作る（README駆動） →</a>
+<div class="pager2">
+  <a class="prev" href="why.html"><span class="lbl">← 前へ</span><span class="ttl">1. なぜやるのか</span></a>
+  <a class="next" href="readme-driven.html"><span class="lbl">次に読む（1日目の講義）</span><span class="ttl">3. 書いてから作る →</span></a>
+</div>
+</main>
+<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
+</div>
 </div>
 
-</main>
-
-<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
+<script>
+document.querySelectorAll(".copy-btn").forEach(function (b) {
+  b.addEventListener("click", function () {
+    var text = b.closest(".prompt").querySelector("pre").innerText;
+    navigator.clipboard.writeText(text).then(function () {
+      b.textContent = "コピーしました"; b.classList.add("done");
+      setTimeout(function () { b.textContent = "コピー"; b.classList.remove("done"); }, 1600);
+    });
+  });
+});
+var t = document.querySelector(".nav-toggle");
+if (t) t.addEventListener("click", function () { document.body.classList.toggle("nav-open"); });
+</script>
 </body>
 </html>

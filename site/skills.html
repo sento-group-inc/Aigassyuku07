@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>道具（スキル） — AI合宿</title>
+<title>道具（スキル一覧） — AI合宿</title>
 <link rel="stylesheet" href="assets/style.css">
 <script type="module">
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
@@ -12,30 +12,45 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 </head>
 <body>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="index.html">AI合宿</a>
-    <nav class="navlinks">
-      <a href="prep.html">準備</a>
-      <a href="schedule.html">日程</a>
-      <a href="why.html">なぜ</a>
-      <a href="setup.html">環境</a>
-      <a href="readme-driven.html">書いてから作る</a>
-      <a href="build.html">作る</a>
-      <a href="pstack.html">進め方</a>
-      <a href="skills.html" aria-current="page">道具</a>
-      <a href="repos.html">リポジトリ</a>
-      <a href="day2.html">翌日以降</a>
-    </nav>
-  </div>
-</header>
+<div class="mobilebar"><a class="brand" href="index.html">AI合宿</a><button class="nav-toggle" type="button">目次</button></div>
 
+<div class="layout">
+<nav class="sidebar" aria-label="目次">
+<a class="brand" href="index.html">AI合宿</a>
+<div class="brand-sub">ダッシュボード構築 ・ 10/6〜7</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">0</span>はじめに</div>
+<a class="side-link" href="index.html">このサイトの使い方</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">1</span>合宿の前に</div>
+<div class="side-sec-note">10月6日までに、家や会社で</div>
+<a class="side-link" href="prep.html">事前準備</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">2</span>合宿中、手元に置く</div>
+<div class="side-sec-note">講義の合間にいつでも開く</div>
+<a class="side-link" href="schedule.html">日程と時間割</a>
+<a class="side-link" href="skills.html" aria-current="page">道具（スキル一覧）</a>
+<a class="side-link" href="repos.html">リポジトリ一覧</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">3</span>1日目の講義</div>
+<div class="side-sec-note">上から順に進む</div>
+<a class="side-link" href="why.html">1. なぜやるのか</a>
+<a class="side-link" href="setup.html">2. 環境を整える</a>
+<a class="side-link" href="readme-driven.html">3. 書いてから作る</a>
+<a class="side-link" href="build.html">4. 作る（10ステップ）</a>
+<a class="side-link" href="pstack.html">5. 迷ったときの進め方</a>
+</div>
+<div class="side-sec"><div class="side-sec-title"><span class="num">4</span>2日目から</div>
+<div class="side-sec-note">自分で進める</div>
+<a class="side-link" href="day2.html">翌日以降の進め方</a>
+</div>
+</nav>
+
+<div class="content">
 <main>
+<div class="crumb">2. <b>合宿中、手元に置く</b></div>
 
 <h1>道具 — キットに入っているスキル</h1>
 <p class="lede"><b>結論:</b> 覚えるのは <code>guide</code> だけ。ほかの15本は、ガイドが「次はこれ」と教えてくれます。</p>
-
-<div class="goal"><strong>このページを読むと</strong>、どの場面でどのスキルが使われるかと、呼び方が分かります。</div>
 
 <section class="map"><div class="map-label">このページの地図</div><pre class="mermaid">
 flowchart LR
@@ -48,7 +63,9 @@ flowchart LR
 <div class="analogy"><div class="k">たとえるなら</div><p>スキルは<b>料理のレシピカード</b>です。AIはカードを読んでから手を動かすので、毎回同じ手順で作れます。カードは16枚ありますが、全部を覚えるのは先生（ガイド）の仕事です。</p></div>
 
 <h2>呼び方</h2>
+<p>Codex（またはClaude）の入力欄に、スキル名を入れて頼みます。どの書き方でも動きます。</p>
 <div class="call"><span>Codex: <b>$guide</b></span><span>Claude: <b>/guide</b></span><span>文章でも: 「guideで〜して」</span></div>
+<figure><div class="shot todo">撮影待ち: Codexの入力欄で $ と打ち、スキルの候補が出ている画面</div><figcaption>入力欄で <code>$</code>（Claudeは <code>/</code>）と打つと、使えるスキルの候補が出る</figcaption></figure>
 <p>スキルの中身は <code>kit/.claude/skills/〈名前〉/SKILL.md</code> にあります（Codexは同じものを <code>kit/.agents/skills/</code> から読みます）。普通の文章なので、開いて読めば何をするか分かります。</p>
 
 <h2>一覧（16本）</h2>
@@ -73,13 +90,27 @@ flowchart LR
 
 <h2>覚えること（3つ）</h2><ol class="remember"><li>覚えるのは <b><code>guide</code> だけ</b></li><li>呼び方は <b>Codex <code>$名前</code> / Claude <code>/名前</code> / 文章</b> のどれでも</li><li>中身は <b>SKILL.md を開けば読める</b>普通の文章</li></ol>
 
-<div class="pager">
-  <a href="pstack.html">← 進め方（pstack）</a>
-  <a href="repos.html">次: リポジトリ一覧 →</a>
+<div class="pager2">
+  <a class="prev" href="schedule.html"><span class="lbl">← 前へ</span><span class="ttl">日程と時間割</span></a>
+  <a class="next" href="repos.html"><span class="lbl">次に読む（合宿中、手元に置く）</span><span class="ttl">リポジトリ一覧 →</span></a>
+</div>
+</main>
+<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
+</div>
 </div>
 
-</main>
-
-<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
+<script>
+document.querySelectorAll(".copy-btn").forEach(function (b) {
+  b.addEventListener("click", function () {
+    var text = b.closest(".prompt").querySelector("pre").innerText;
+    navigator.clipboard.writeText(text).then(function () {
+      b.textContent = "コピーしました"; b.classList.add("done");
+      setTimeout(function () { b.textContent = "コピー"; b.classList.remove("done"); }, 1600);
+    });
+  });
+});
+var t = document.querySelector(".nav-toggle");
+if (t) t.addEventListener("click", function () { document.body.classList.toggle("nav-open"); });
+</script>
 </body>
 </html>
