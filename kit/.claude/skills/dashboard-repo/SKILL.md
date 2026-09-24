@@ -17,15 +17,16 @@ description: Step 6で、データベース（Supabase）とアプリの土台�
 2. `New project` で次を入れる
    - Name: `my-dashboard`（自由）
    - Database Password: `Generate a password` を押し、**パスワード管理ツールに保存**（ファイルやチャットに書かない）
-   - Region: `Northeast Asia (Tokyo)`
+   - Region: `Asia-Pacific`（地域の一覧が出る場合は `Northeast Asia (Tokyo)`）
+   - Security: `Enable automatic RLS` があれば**チェックを入れる**（新しいテーブルに行ごとの鍵が自動で付く）
 3. `Create new project` を押し、数分待つ
 
 ### 2. アプリの箱を作る（ターミナル）
 
-キットのフォルダ（`Aigassyuku07`）と**同じ階層**で実行する。
+キットをcloneしたフォルダ（`~/Documents`）で実行する。`my-dashboard` は `Aigassyuku07` の**隣**にできる。
 
 ```bash
-cd ..   # Aigassyuku07 の外に出る
+cd ~/Documents
 npx create-next-app@latest --example with-supabase my-dashboard
 cd my-dashboard
 ```

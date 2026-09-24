@@ -7,7 +7,7 @@
 | 区分 | 手段 |
 |---|---|
 | 自動 | `agent-browser`（公開ページ・見本・ローカルHTML）。`setup.sh`は実出力を端末風HTMLに表示して撮影し、アカウント名を伏せる |
-| 半自動 | 本人が `agent-browser --headed` でログイン → エージェントが画面を開いて撮る（送信・作成ボタンは押さない） |
+| 半自動 | 本人が `agent-browser --headed` でログイン → エージェントが画面を開いて撮る（送信・作成ボタンは押さない）。一覧に顧客のプロジェクト名が出る画面は検索で絞るか開かない。アカウント名・組織名は撮影前に伏せる |
 | 撮らない | bot検知（CAPTCHA）で止まるページ。CAPTCHAは突破しない |
 
 ## 台帳
@@ -25,12 +25,12 @@
 | `build/04-roadmap.png` | 見本: ロードマップ | 自動（`site/samples/roadmap.html`） | build Step 4 | 取得済み |
 | `build/05-keys.png` | 見本: キー棚卸し表 | 自動（`site/samples/roadmap.html#keys`） | build Step 5 | 取得済み |
 | `build/06-template.png` | with-supabase テンプレート（公式デモ） | 自動 | build Step 6 | 取得済み |
-| `build/07-supabase-connect.png` | Supabase の Connect（値は隠す） | 半自動 | build Step 6 | 未 |
+| `build/07-supabase-new-project.png` | Supabase の Create a new project（組織名を伏せ、作成は押さない） | 半自動 | build Step 6 | 取得済み（2026-09-24） |
 | `build/08-login.png` | テンプレートのログイン画面（公式デモ） | 自動 | build Step 8 | 取得済み |
-| `build/09-supabase-users.png` | Supabase の Add user | 半自動 | build Step 8 | 未 |
-| `build/10-pr.png` | GitHub の PR 画面 | 半自動（github.com はbot検知） | build Step 8 | 未 |
-| `build/11-vercel-import.png` | Vercel の Import | 半自動 | build Step 9 | 未 |
-| `build/12-vercel-ready.png` | Vercel のデプロイ完了（Ready） | 半自動 | build Step 9 | 未 |
+| `build/09-supabase-users.png` | Supabase の Add user | 半自動（デモ用プロジェクトが必要） | build Step 8 | 未 |
+| `build/10-pr.png` | GitHub の PR 画面 | 半自動（デモ用リポジトリにPRが必要） | build Step 8 | 未 |
+| `build/11-vercel-import.png` | Vercel の Import（検索でキットのリポジトリだけ表示） | 半自動 | build Step 9 | 取得済み（2026-09-24） |
+| `build/12-vercel-ready.png` | Vercel のデプロイ完了（講義サイト自身。ユーザー名を伏せた） | 半自動 | build Step 9 | 取得済み（2026-09-24） |
 
 撮らないと決めたもの: openai.com/codex と github.com/signup（どちらもbot検知で止まる）。本文のリンクで代替する。
 

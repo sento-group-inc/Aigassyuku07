@@ -96,7 +96,7 @@ flowchart TB
     <p class="flow">倉庫（Supabase）を借り、ログイン画面つきの店舗の箱（with-supabaseテンプレート）を建て、鍵を決まった場所にしまいます。</p>
     <div class="call"><span>Codex: <b>$dashboard-repo</b></span><span>Claude: <b>/dashboard-repo</b></span><span>文章でも: 「dashboard-repoで〜して」</span></div>
     <dl class="meta-row"><dt>あなたがやること</dt><dd><ol>
-<li><a href="https://database.new">database.new</a> でSupabaseのプロジェクトを作る（Region は Tokyo。パスワードはパスワード管理ツールへ）</li>
+<li><a href="https://database.new">database.new</a> でSupabaseのプロジェクトを作る（Project name は <code>my-dashboard</code>、Region は <code>Asia-Pacific</code>、<code>Enable automatic RLS</code> にチェック。パスワードは <code>Generate a password</code> で作ってパスワード管理ツールへ）</li>
 <li>ターミナルでアプリの箱を作り、キットの中身をコピーする<pre><code>cd ~/Documents
 npx create-next-app@latest --example with-supabase my-dashboard
 cd my-dashboard
@@ -106,7 +106,7 @@ cp .env.example .env.local</code></pre></li>
 <li><code>npm run dev</code> → <a href="http://localhost:3000">localhost:3000</a> を開く</li>
 <li><code>gh repo create my-dashboard --private --source=. --push</code> でGitHubへ</li>
 </ol></dd><dt>終わりの状態</dt><dd><a href="http://localhost:3000">localhost:3000</a> で画面が開き、GitHubにリポジトリがある。<code>.env.local</code> はGitHubに上がっていない</dd></dl>
-    <figure><img src="assets/images/build/06-template.png" alt="with-supabaseテンプレートの画面" loading="lazy"><figcaption>with-supabaseテンプレートのトップ画面（公式デモ）。ここからログイン画面につながっている</figcaption></figure><figure><div class="shot">ここに画像: SupabaseのConnect画面（キーは隠す）</div><figcaption>SupabaseのConnect画面。値は写さない</figcaption></figure><div class="note"><p>ここから先は、新しくできた <code>my-dashboard</code> フォルダをCodex（またはClaude）で開き直して進めます。キットのスキルとdocsはコピー済みなので、そのまま <code>guide</code> に聞けます。</p></div>
+    <figure><img src="assets/images/build/06-template.png" alt="with-supabaseテンプレートの画面" loading="lazy"><figcaption>with-supabaseテンプレートのトップ画面（公式デモ）。ここからログイン画面につながっている</figcaption></figure><figure><img src="assets/images/build/07-supabase-new-project.png" alt="Supabaseで新しいプロジェクトを作る画面" loading="lazy"><figcaption>Supabaseの「Create a new project」。組織名は伏せてある。入力したら下の「Create new project」を押す</figcaption></figure><div class="note"><p>ここから先は、新しくできた <code>my-dashboard</code> フォルダをCodex（またはClaude）で開き直して進めます。キットのスキルとdocsはコピー済みなので、そのまま <code>guide</code> に聞けます。</p></div>
   </li>
 <li id="step7">
     <h3>Step 7. docsとAGENTS.md / CLAUDE.mdを整える</h3>
@@ -138,7 +138,7 @@ cp .env.example .env.local</code></pre></li>
 <li>出たURLを、Supabase → <code>Authentication</code> → <code>URL Configuration</code> の <code>Site URL</code> と <code>Redirect URLs</code> に入れる</li>
 <li>本番URLを開いてログインし、一覧が動くことを確かめる</li>
 </ol></dd><dt>終わりの状態</dt><dd><b>本番URLを開き、ログインして一覧が動く。</b>URLが <code>docs/infra.md</code> に書かれている</dd></dl>
-    <figure><div class="shot">ここに画像: VercelでImportする画面</div><figcaption>VercelでGitHubのリポジトリをImport</figcaption></figure><figure><div class="shot">ここに画像: Vercelのデプロイ完了画面</div><figcaption>Readyになったら本番URLを開く</figcaption></figure><div class="note warn"><p>キーが写る画面は撮らないでください。撮る必要があるときは、値の部分を隠してから撮ります。</p></div>
+    <figure><img src="assets/images/build/11-vercel-import.png" alt="VercelでGitHubのリポジトリをImportする画面" loading="lazy"><figcaption>「Import Git Repository」の検索欄にリポジトリ名を入れ、「Import」を押す</figcaption></figure><figure><img src="assets/images/build/12-vercel-ready.png" alt="Vercelのデプロイ完了画面" loading="lazy"><figcaption>StatusがReadyになったら、Domainsの本番URLを開く（この講義サイト自身のデプロイ画面。ユーザー名は伏せてある）</figcaption></figure><div class="note warn"><p>キーが写る画面は撮らないでください。撮る必要があるときは、値の部分を隠してから撮ります。</p></div>
   </li>
 <li id="step10">
     <h3>Step 10. 次の一手を決めて、振り返る</h3>
