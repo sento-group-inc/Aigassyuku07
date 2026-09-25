@@ -1,6 +1,6 @@
 ---
 name: dashboard-keys
-description: 外部連携に必要なキーとアカウントを棚卸しし、置き場所を決めるときに使う（実際に作るのはStep 6のdashboard-repo）。
+description: 外部連携に必要なキーとアカウントを棚卸しし、置き場所を決めるときに使う（実際に作るのはStep 5のdashboard-repo）。
 ---
 
 # dashboard-keys — キーの棚卸し
@@ -14,7 +14,7 @@ description: 外部連携に必要なキーとアカウントを棚卸しし、�
 3. 必要なキーと、その**取得場所**を書く
 4. **置き場所**を決める（ローカルの`.env.local`／ホスティングの環境変数）
 5. `docs/keys.md`へ表として書く。**値は書かない**
-6. 実際のプロジェクト作成と登録は、Step 6で`dashboard-repo`が行う
+6. 実際のプロジェクト作成と登録は、Step 5で`dashboard-repo`が行う
 
 ## 置き場所の原則
 

@@ -31,9 +31,9 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 </div>
 <div class="side-sec"><div class="side-sec-title">1日目の講義</div>
 <a class="side-link" href="why.html">1. なぜやるのか</a>
-<a class="side-link" href="setup.html">2. 環境を整える</a>
-<a class="side-link" href="readme-driven.html">3. 書いてから作る</a>
-<a class="side-link" href="build.html">4. 作る（10ステップ）</a>
+<a class="side-link" href="setup.html">2. 環境とAIの初期設定</a>
+<a class="side-link" href="flow.html">3. 作り方の4段階</a>
+<a class="side-link" href="build.html">4. 作る（8ステップ）</a>
 <a class="side-link" href="pstack.html">5. 迷ったときの進め方</a>
 </div>
 <div class="side-sec"><div class="side-sec-title">2日目から</div>
@@ -64,7 +64,7 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 flowchart LR
   A["はじめに<br/>このページ"] --> B["合宿の前に<br/>事前準備"]
   B --> C["合宿中、手元に置く<br/>日程・スキル・リポジトリ"]
-  C --> D["1日目の講義<br/>なぜ→環境→書く→作る→進め方"]
+  C --> D["1日目の講義<br/>粗く作る→研究→計画→作り直す"]
   D --> E["2日目から<br/>自分で進める"]
 </pre></section>
 
@@ -72,26 +72,26 @@ flowchart LR
   <tr><th>目次のセクション</th><th>いつ読むか</th><th>中身</th></tr>
   <tr><td>合宿の前に</td><td>10月6日までに</td><td><a href="prep.html">事前準備</a>。困りごとのメモ、Codexのインストール、アカウント作成</td></tr>
   <tr><td>合宿中、手元に置く</td><td>当日の朝と、迷ったとき</td><td><a href="schedule.html">日程と時間割</a>、<a href="skills.html">道具（スキル一覧）</a>、<a href="repos.html">リポジトリ一覧</a></td></tr>
-  <tr><td>1日目の講義</td><td>10月6日、講義に合わせて</td><td>なぜやるのか → 環境を整える → 書いてから作る → 作る（10ステップ） → 迷ったときの進め方</td></tr>
+  <tr><td>1日目の講義</td><td>10月6日、講義に合わせて</td><td>なぜやるのか → 環境とAIの初期設定 → 作り方の4段階 → 作る（8ステップ） → 迷ったときの進め方</td></tr>
   <tr><td>2日目から</td><td>10月7日と、その後</td><td><a href="day2.html">翌日以降の進め方</a></td></tr>
 </table>
 
 <div class="analogy"><div class="k">たとえるなら</div><p>自分の会社に<b>台所をひとつ作る</b>2日間です。材料（データ）の置き場と、火の入れ方（手順）を決めれば、料理（画面）はAIが手伝って作ってくれます。1日目は1品作れたら成功です。</p></div>
 
 <h2>完成するとこうなる（見本を触る）</h2>
-<p>架空の工務店で作った「リフォーム案件ボード」の見本です。1日目のStep 2（画面の試作）で作るものの例で、ボタンを押すと絞り込みが動きます。</p>
+<p>架空の工務店で作った「リフォーム案件ボード」の見本です。1日目のStep 2（段階1 粗く作る）で作るMVPの例で、ボタンを押すと絞り込みが動きます。</p>
 <figure><img src="assets/images/build/02-prototype.png" alt="見本のダッシュボード" loading="lazy"><figcaption><a href="samples/prototype.html">見本を開いて触る</a>（データはすべて架空）</figcaption></figure>
 <div class="grid">
-  <div class="card"><h3><a href="samples/prototype.html">画面の見本</a></h3><p>Step 2で作る、案件の一覧画面。</p></div>
-  <div class="card"><h3><a href="samples/readme.html">README の見本</a></h3><p>Step 1で書く、困りごとと業務の言葉。</p></div>
-  <div class="card"><h3><a href="samples/schema.html">スキーマの見本</a></h3><p>Step 3で作る、テーブルとER図。</p></div>
-  <div class="card"><h3><a href="samples/roadmap.html">ロードマップの見本</a></h3><p>Step 4〜5で書く、作る順番とキーの表。</p></div>
+  <div class="card"><h3><a href="samples/prototype.html">MVPの見本</a></h3><p>Step 2（粗く作る）で作る、触れる試作。</p></div>
+  <div class="card"><h3><a href="samples/readme.html">README の見本</a></h3><p>Step 3（研究）で書く、困りごとと業務の言葉。</p></div>
+  <div class="card"><h3><a href="samples/schema.html">スキーマの見本</a></h3><p>Step 4（計画）で作る、テーブルとER図。</p></div>
+  <div class="card"><h3><a href="samples/roadmap.html">ロードマップの見本</a></h3><p>Step 4（計画）で書く、作る順番とキーの表。</p></div>
 </div>
 
 <h2>持ち帰るもの</h2>
 <div class="grid">
   <div class="card"><h3>本番URL</h3><p>自社の1業務が、ログインして一覧で見える状態。</p></div>
-  <div class="card"><h3>手元の環境</h3><p>エージェントとスキル16本。次の案件でも同じ手順が使えます。</p></div>
+  <div class="card"><h3>手元の環境</h3><p>エージェント、スキル20本、AIの初期設定（モデルの使い分け）。次の案件でも同じ手順が使えます。</p></div>
   <div class="card"><h3>設計ドキュメント</h3><p>README・スキーマ・ロードマップ。AIに毎回説明しなくて済みます。</p></div>
   <div class="card"><h3>残りのスライス</h3><p>明日以降にやることの一覧。ガイドに「次は？」と聞けば進みます。</p></div>
 </div>

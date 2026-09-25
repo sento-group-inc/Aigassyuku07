@@ -31,9 +31,9 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 </div>
 <div class="side-sec"><div class="side-sec-title">1日目の講義</div>
 <a class="side-link" href="why.html">1. なぜやるのか</a>
-<a class="side-link" href="setup.html">2. 環境を整える</a>
-<a class="side-link" href="readme-driven.html">3. 書いてから作る</a>
-<a class="side-link" href="build.html">4. 作る（10ステップ）</a>
+<a class="side-link" href="setup.html">2. 環境とAIの初期設定</a>
+<a class="side-link" href="flow.html">3. 作り方の4段階</a>
+<a class="side-link" href="build.html">4. 作る（8ステップ）</a>
 <a class="side-link" href="pstack.html">5. 迷ったときの進め方</a>
 </div>
 <div class="side-sec"><div class="side-sec-title">2日目から</div>
@@ -46,17 +46,20 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 <div class="crumb"><b>合宿中、手元に置く</b></div>
 
 <h1>道具 — キットに入っているスキル</h1>
-<p class="lede"><b>結論:</b> 覚えるのは <code>guide</code> だけ。ほかの15本は、ガイドが「次はこれ」と教えてくれます。</p>
+<p class="lede"><b>結論:</b> 覚えるのは <code>guide</code> と「ログして」の一言だけ。ほかのスキルは、ガイドが「次はこれ」と教えてくれます。</p>
 
 <section class="map"><div class="map-label">このページの地図</div><pre class="mermaid">
 flowchart LR
-  G["guide<br/>進行役"] --> A["言葉と設計<br/>grill-with-docs<br/>dashboard-screen/schema/roadmap/keys"]
-  G --> B["形にする<br/>dashboard-repo/docs/auth/slice/deploy"]
-  G --> C["進め方<br/>poteto-mode・pstack-guide・reflect"]
-  G --> D["伝える・見た目<br/>eli5・lp-guide"]
+  G["guide<br/>進行役"] --> A["段階1<br/>dashboard-mvp"]
+  G --> B["段階2・3<br/>research・grill・plan"]
+  G --> C["段階4<br/>repo・auth・slice・deploy"]
+  L["dev-log<br/>いつでもログ"] -.-> A
+  L -.-> B
+  L -.-> C
+  M["ai-setup<br/>段階ごとのモデル"] -.-> G
 </pre></section>
 
-<div class="analogy"><div class="k">たとえるなら</div><p>スキルは<b>料理のレシピカード</b>です。AIはカードを読んでから手を動かすので、毎回同じ手順で作れます。カードは16枚ありますが、全部を覚えるのは先生（ガイド）の仕事です。</p></div>
+<div class="analogy"><div class="k">たとえるなら</div><p>スキルは<b>料理のレシピカード</b>です。AIはカードを読んでから手を動かすので、毎回同じ手順で作れます。カードは20枚ありますが、全部を覚えるのは先生（ガイド）の仕事です。</p></div>
 
 <h2>呼び方</h2>
 <p>Codex（またはClaude）の入力欄に、スキル名を入れて頼みます。どの書き方でも動きます。</p>
@@ -65,10 +68,10 @@ flowchart LR
   <figure><img src="assets/images/skills/02-skill-chip.png" alt="候補から選んだスキルが入力欄にチップとして入った画面" loading="lazy"><figcaption>② 選ぶと入力欄にチップとして入る。続けて頼みたいことを書いて送る</figcaption></figure>
 <p>スキルの中身は <code>kit/.claude/skills/〈名前〉/SKILL.md</code> にあります（Codexは同じものを <code>kit/.agents/skills/</code> から読みます）。普通の文章なので、開いて読めば何をするか分かります。</p>
 
-<h2>一覧（16本）</h2>
+<h2>一覧（20本）</h2>
 <table>
   <tr><th>名前</th><th>何をするか</th><th>いつ</th></tr>
-  <tr><th colspan="3">進行役</th></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/guide/SKILL.md"><code>guide</code></a></td><td>「次は何をすればいい？」に、現在地と次の一手を1つだけ返す。<b>迷ったらまずこれ</b></td><td>全Step</td></tr><tr><th colspan="3">言葉と設計（Step 1〜5）</th></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/grill-with-docs/SKILL.md"><code>grill-with-docs</code></a></td><td>質問で題材を詰め、README / CONTEXT.md / ADR に残す</td><td>Step 1</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-screen/SKILL.md"><code>dashboard-screen</code></a></td><td>困りごとを、ブラウザで開ける画面の試作にする</td><td>Step 2</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-schema/SKILL.md"><code>dashboard-schema</code></a></td><td>画面の情報をテーブルとつながりに落とし、ER図で漏れを潰す</td><td>Step 3</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-roadmap/SKILL.md"><code>dashboard-roadmap</code></a></td><td>確認できる単位に切り、手前で価値が出る順に並べる</td><td>Step 4</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-keys/SKILL.md"><code>dashboard-keys</code></a></td><td>必要なキーと置き場所の表を作る（値は書かない）</td><td>Step 5</td></tr><tr><th colspan="3">形にする（Step 6〜9）</th></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-repo/SKILL.md"><code>dashboard-repo</code></a></td><td>Supabase・ログイン付きアプリの土台・GitHubリポジトリを作る</td><td>Step 6</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-docs/SKILL.md"><code>dashboard-docs</code></a></td><td>docs と AGENTS.md / CLAUDE.md を整え、AIの前提をそろえる</td><td>Step 7</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-auth/SKILL.md"><code>dashboard-auth</code></a></td><td>社員だけがログインでき、ログインすると一覧が見える状態を作る</td><td>Step 8</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-slice/SKILL.md"><code>dashboard-slice</code></a></td><td>1スライスを実装 → 動かして確認 → PR → マージ</td><td>Step 8〜</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-deploy/SKILL.md"><code>dashboard-deploy</code></a></td><td>データベースを先、アプリを後の順で本番へ出す</td><td>Step 9</td></tr><tr><th colspan="3">進め方（pstack）</th></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/poteto-mode/SKILL.md"><code>poteto-mode</code></a></td><td>足りないものを1つ見つけ、次の一手を理由つきで案内する</td><td>迷ったとき</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/pstack-guide/SKILL.md"><code>pstack-guide</code></a></td><td>場面から開発の原則を引く（足す前に引く、実物で示す…）</td><td>迷ったとき</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/reflect/SKILL.md"><code>reflect</code></a></td><td>学びを3つまで拾い、docsやスキルへ残す案を出す</td><td>Step 10・毎日</td></tr><tr><th colspan="3">伝える・見た目</th></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/eli5/SKILL.md"><code>eli5</code></a></td><td>前提知識のない人に、たとえ1つと覚える3つで説明する</td><td>社内説明</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/lp-guide/SKILL.md"><code>lp-guide</code></a></td><td>参考サイトを3つ集め、借りる範囲を決めてから画面を作る</td><td>見た目に迷ったとき</td></tr>
+  <tr><th colspan="3">進行役と土台</th></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/guide/SKILL.md"><code>guide</code></a></td><td>「次は何をすればいい？」に、現在地と次の一手を1つだけ返す。<b>迷ったらまずこれ</b></td><td>全Step</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/ai-setup/SKILL.md"><code>ai-setup</code></a></td><td>段階ごとに使うモデル（安い／賢い）を確認・切り替える。PC全体への反映も手伝う</td><td>Step 0・段階の変わり目</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dev-log/SKILL.md"><code>dev-log</code></a></td><td>要望・気づき・決定・詰まりを docs/log.md に1行ずつ残す</td><td>いつでも</td></tr><tr><th colspan="3">段階1 粗く作る（安いモデル）</th></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-mvp/SKILL.md"><code>dashboard-mvp</code></a></td><td>困りごとの1文から、触れる粗い試作（mvp/index.html）を素早く作る</td><td>Step 2</td></tr><tr><th colspan="3">段階2・3 研究と計画（賢いモデル）</th></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-research/SKILL.md"><code>dashboard-research</code></a></td><td>MVPとログを6つの観点で研究し、docs/research.md に残す</td><td>Step 3</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/grill-with-docs/SKILL.md"><code>grill-with-docs</code></a></td><td>ユーザーしか知らないことを番号付きの質問で詰め、README / CONTEXT.md に残す</td><td>Step 3</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-plan/SKILL.md"><code>dashboard-plan</code></a></td><td>作り直すための計画一式を作る（下の4本を順に使う）</td><td>Step 4</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-schema/SKILL.md"><code>dashboard-schema</code></a></td><td>画面の情報をテーブルとつながりに落とし、ER図で漏れを潰す</td><td>Step 4</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-roadmap/SKILL.md"><code>dashboard-roadmap</code></a></td><td>確認できる単位に切り、手前で価値が出る順に並べる</td><td>Step 4</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-keys/SKILL.md"><code>dashboard-keys</code></a></td><td>必要なキーと置き場所の表を作る（値は書かない）</td><td>Step 4</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-docs/SKILL.md"><code>dashboard-docs</code></a></td><td>docs と AGENTS.md / CLAUDE.md を整え、AIの前提をそろえる</td><td>Step 4</td></tr><tr><th colspan="3">段階4 ゼロから作り直す（安いモデル）</th></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-repo/SKILL.md"><code>dashboard-repo</code></a></td><td>Supabase・ログイン付きアプリの土台・GitHubリポジトリを作る</td><td>Step 5</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-auth/SKILL.md"><code>dashboard-auth</code></a></td><td>社員だけがログインでき、ログインすると一覧が見える状態を作る</td><td>Step 6</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-slice/SKILL.md"><code>dashboard-slice</code></a></td><td>1スライスを実装 → 動かして確認 → PR → マージ</td><td>Step 6〜</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/dashboard-deploy/SKILL.md"><code>dashboard-deploy</code></a></td><td>データベースを先、アプリを後の順で本番へ出す</td><td>Step 7</td></tr><tr><th colspan="3">進め方（pstack）</th></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/poteto-mode/SKILL.md"><code>poteto-mode</code></a></td><td>足りないものを1つ見つけ、次の一手を理由つきで案内する</td><td>迷ったとき</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/pstack-guide/SKILL.md"><code>pstack-guide</code></a></td><td>場面から開発の原則を引く（足す前に引く、実物で示す…）</td><td>迷ったとき</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/reflect/SKILL.md"><code>reflect</code></a></td><td>学びを3つまで拾い、docsやスキルへ残す案を出す</td><td>Step 8・毎日</td></tr><tr><th colspan="3">伝える・見た目</th></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/eli5/SKILL.md"><code>eli5</code></a></td><td>前提知識のない人に、たとえ1つと覚える3つで説明する</td><td>社内説明</td></tr><tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07/blob/main/kit/.claude/skills/lp-guide/SKILL.md"><code>lp-guide</code></a></td><td>参考サイトを3つ集め、借りる範囲を決めてから画面を作る</td><td>見た目に迷ったとき</td></tr>
 </table>
 
 <h2>ガイドの返し方</h2>

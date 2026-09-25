@@ -31,9 +31,9 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 </div>
 <div class="side-sec"><div class="side-sec-title">1日目の講義</div>
 <a class="side-link" href="why.html">1. なぜやるのか</a>
-<a class="side-link" href="setup.html">2. 環境を整える</a>
-<a class="side-link" href="readme-driven.html">3. 書いてから作る</a>
-<a class="side-link" href="build.html">4. 作る（10ステップ）</a>
+<a class="side-link" href="setup.html">2. 環境とAIの初期設定</a>
+<a class="side-link" href="flow.html">3. 作り方の4段階</a>
+<a class="side-link" href="build.html">4. 作る（8ステップ）</a>
 <a class="side-link" href="pstack.html">5. 迷ったときの進め方</a>
 </div>
 <div class="side-sec"><div class="side-sec-title">2日目から</div>
@@ -52,11 +52,12 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 
 <section class="map"><div class="map-label">このページの地図</div><pre class="mermaid">
 flowchart LR
-  A["朝<br/>今日の1スライスを選ぶ"] --> B["guideに確認"]
-  B --> C["実装→動かす"]
+  A["朝<br/>ログとロードマップから1スライス"] --> C["安いモデルで実装→動かす"]
   C --> D["PR→マージ→本番"]
   D --> E["夕方<br/>reflectで振り返る"]
   E -. 翌朝 .-> A
+  D -. 要望がたまったら .-> R["賢いモデルで研究・計画し直す"]
+  R -.-> A
 </pre></section>
 
 <div class="analogy"><div class="k">たとえるなら</div><p><b>毎日1皿ずつ増えていく定食屋のメニュー</b>です。1日1皿を確実に出し、出した皿のレシピを書き残す。これを続けると、メニュー（機能）が自然に揃います。</p></div>
@@ -64,7 +65,8 @@ flowchart LR
 <h2>毎日の始め方</h2>
 <ol class="steps">
   <li><h3>今日やるスライスを1つ選ぶ</h3><div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>docs/roadmap.md の未完了から、今日やるスライスを1つだけ選んで。理由も1行で。</code></pre></div></li>
-  <li><h3>作る</h3><div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>dashboard-slice で、そのスライスを実装して。動かして確かめてから、PRを作ってマージして。DBの変更があれば dashboard-deploy の順で本番に出して。</code></pre></div></li>
+  <li><h3>作る（安いモデル）</h3><div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>dashboard-slice で、そのスライスを実装して。動かして確かめてから、PRを作ってマージして。DBの変更があれば dashboard-deploy の順で本番に出して。出た要望はログに書いて。</code></pre></div></li>
+  <li><h3>要望がたまったら、研究し直す（賢いモデル）</h3><p>ログに要望が10件ほどたまったら、または大きな変更の前に、賢いモデルで研究と計画をやり直します。4段階は1回きりではなく、何度でも回せます。</p><div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>dashboard-research で、今のアプリと docs/log.md のたまった要望を研究して、docs/research.md を更新して。そのあと dashboard-plan で docs/roadmap.md に次のスライスを足して。</code></pre></div></li>
   <li><h3>一日の終わりに振り返る</h3><div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>今日の結果をまとめて、明日の1スライスを決めて。そのあと reflect で学びを残す案を出して。</code></pre></div></li>
 </ol>
 

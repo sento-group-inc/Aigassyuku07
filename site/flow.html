@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3. 作り方の4段階 — AI合宿</title>
+<link rel="stylesheet" href="assets/style.css">
+<script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict", flowchart: { htmlLabels: true, curve: "basis" } });
+</script>
+</head>
+<body>
+
+<div class="mobilebar"><a class="brand" href="index.html">AI合宿</a><button class="nav-toggle" type="button">目次</button></div>
+
+<div class="layout">
+<nav class="sidebar" aria-label="目次">
+<a class="brand" href="index.html">AI合宿</a>
+<div class="brand-sub">ダッシュボード構築 ・ 10/6〜7</div>
+<div class="side-sec"><div class="side-sec-title">はじめに</div>
+<a class="side-link" href="index.html">このサイトの使い方</a>
+</div>
+<div class="side-sec"><div class="side-sec-title">合宿の前に</div>
+<a class="side-link" href="prep.html">事前準備</a>
+</div>
+<div class="side-sec"><div class="side-sec-title">合宿中、手元に置く</div>
+<a class="side-link" href="schedule.html">日程と時間割</a>
+<a class="side-link" href="skills.html">道具（スキル一覧）</a>
+<a class="side-link" href="repos.html">リポジトリ一覧</a>
+</div>
+<div class="side-sec"><div class="side-sec-title">1日目の講義</div>
+<a class="side-link" href="why.html">1. なぜやるのか</a>
+<a class="side-link" href="setup.html">2. 環境とAIの初期設定</a>
+<a class="side-link" href="flow.html" aria-current="page">3. 作り方の4段階</a>
+<a class="side-link" href="build.html">4. 作る（8ステップ）</a>
+<a class="side-link" href="pstack.html">5. 迷ったときの進め方</a>
+</div>
+<div class="side-sec"><div class="side-sec-title">2日目から</div>
+<a class="side-link" href="day2.html">翌日以降の進め方</a>
+</div>
+</nav>
+
+<div class="content">
+<main>
+<div class="crumb"><b>1日目の講義</b></div>
+
+<h1>作り方の4段階</h1>
+<p class="lede"><b>結論:</b> 最初から完璧な計画は立てません。<b>粗く作って、賢いAIに研究させ、計画して、ゼロから作り直す</b>。この順番がいちばん速く、いちばん良いものができます。</p>
+
+<div class="goal"><strong>このページを読むと</strong>、今日の作業がなぜこの順番なのか、そして途中で何を守ればよいかが分かります。</div>
+
+<section class="map"><div class="map-label">このページの地図</div><pre class="mermaid">
+flowchart LR
+  A["1 粗く作る<br/>安いモデル<br/>MVPを最速で"] --> B["2 研究する<br/>賢いモデル<br/>品質を上げる方法"]
+  B --> C["3 計画する<br/>賢いモデル<br/>作り直しの図面"]
+  C --> D["4 ゼロから作り直す<br/>安いモデル<br/>図面だけ見て"]
+  L["開発ログ docs/log.md<br/>要望・決定・詰まり"] -.-> A
+  L -.-> B
+  L -.-> C
+  L -.-> D
+</pre></section>
+
+<div class="analogy"><div class="k">たとえるなら</div><p><b>段ボールの模型→一級建築士の診断→図面→本物の建築</b>です。まず段ボールで置いてみて、プロに弱い所を洗い出してもらい、図面に起こしてから、本物は図面どおりに建てます。段ボールの模型は、本物の材料にはしません。</p></div>
+
+<h2>4つの段階</h2>
+<ol class="steps">
+  <li><h3>とにかく粗く実装する</h3><p><b>安いモデル</b>（Codex は Luna / Sol、Claude は Sonnet）で、触れるMVP（最小の試作）を15〜30分で作ります。完成度は気にしません。触って出た「ここが使いにくい」「これも見たい」を全部ログに残すのが目的です。</p></li>
+  <li><h3>研究する</h3><p><b>いちばん賢いモデル</b>（Codex は Astra、Claude は Opus）にMVPとログを見せ、あらゆる品質を上げるための研究をさせます。使う人・画面・データの形・権限と安全・運用・範囲の6つの観点で調べ、あなたにしか分からないことは質問してもらいます。研究によって、洗練された前提（コンテキスト）がファイルにできあがります。</p></li>
+  <li><h3>計画する</h3><p>研究をもとに、ブラッシュアップ計画を作ります。スキーマ（データの形）、ロードマップ（作る順番）、キーの置き場所、画面の原則、AIへの指示。<b>安いモデルが、この計画だけを読んで作り直せる</b>ことが基準です。</p></li>
+  <li><h3>ゼロから作り直す</h3><p><b>安いモデルに戻し</b>、計画だけを見てゼロから作り直します。今度はログイン・データベース・本番URLまで作ります。MVPのコードは使いません。</p></li>
+</ol>
+
+<h2>なぜ、この順番がいいのか</h2>
+<table>
+  <tr><th></th><th>先に完璧な計画を立てる</th><th>粗く作ってから研究・計画する</th></tr>
+  <tr><td>最初の一歩</td><td>何を決めればいいか分からず止まる</td><td>15分で触れるものが出る</td></tr>
+  <tr><td>要望の出方</td><td>頭の中で考えた要望だけ</td><td>触ったから出る、本当の要望</td></tr>
+  <tr><td>計画の質</td><td>想像で書くので外れる</td><td>MVPと声を材料にするので当たる</td></tr>
+  <tr><td>費用</td><td>高いモデルで何度もやり直す</td><td>高いモデルは研究と計画だけ</td></tr>
+</table>
+
+<h2>この流れを支える前提（ここを外すと崩れる）</h2>
+<div class="note warn"><p>4段階はモデルを替えながら進むので、<b>会話の中身は次の段階に引き継がれません</b>。AIの記憶にも頼れません。引き継げるのはファイルだけです。だから次の4つを必ず守ります。</p></div>
+<table>
+  <tr><th>前提</th><th>なぜ</th><th>どうやるか</th></tr>
+  <tr><td><b>ログに書きながら進める</b></td><td>要望や決定は会話に埋もれ、モデルを替えた瞬間に消える</td><td>出たその場で <code>docs/log.md</code> に1行。「ログして」と言えばAIが書く（<code>dev-log</code>）</td></tr>
+  <tr><td><b>モデルを替える前に、ファイルへ書き出す</b></td><td>次のモデルが読めるのはファイルだけ</td><td>段階の変わり目で「ここまでをログに書いて」と頼んでから切り替える</td></tr>
+  <tr><td><b>研究と計画は必ずファイルに残す</b></td><td>会話で終わると、作り直すモデルに伝わらない</td><td><code>docs/research.md</code> と計画の docs。答えは <code>README.md</code> / <code>CONTEXT.md</code> へ</td></tr>
+  <tr><td><b>MVPは捨てる</b></td><td>粗いコードを流用すると、粗さまで引き継ぐ</td><td>作り直しでは <code>mvp/</code> を見た目の参考に見るだけ。コードは計画から新しく書く</td></tr>
+</table>
+
+<h2>開発ログの書き方</h2>
+<p>形式は1行1件。種類は「要望・気づき・決定・詰まり・済」の5つです。</p>
+<pre><code>- 2026-10-06 [要望] 担当者ごとの件数を一覧の上に出したい（営業部長から）
+- 2026-10-06 [決定] 見積金額は万円単位で持つ（円単位が要る業務がないため）
+- 2026-10-06 [詰まり] 並び順が保存されない → MVPなので研究で扱う</code></pre>
+<div class="prompt"><div class="prompt-head"><span>こう言うだけでAIがログに書く（例）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>担当者ごとの件数を一覧の上に出したい。営業部長からの要望。ログして。</code></pre></div>
+
+<h2>「書いてから作る」との関係</h2>
+<p>README（何のためか）やスキーマを先に文章で固めることは、今でも大事です。変わったのは<b>タイミング</b>です。いきなり書くのではなく、MVPを触ったあとの研究で書きます。材料があるので、的外れな文章になりません。質問で詰める <code>grill-with-docs</code> も、研究の中で使います。</p>
+
+<h2>覚えること（3つ）</h2><ol class="remember"><li><b>粗く作る→研究→計画→ゼロから作り直す</b>。高いモデルは研究と計画だけ</li><li>モデルを替えると会話は消える。<b>ログとファイルに書きながら進める</b></li><li><b>MVPは捨てる</b>。作り直しは計画だけを見る</li></ol>
+
+<div class="pager2">
+  <a class="prev" href="setup.html"><span class="lbl">← 前へ</span><span class="ttl">2. 環境とAIの初期設定</span></a>
+  <a class="next" href="build.html"><span class="lbl">次に読む（1日目の講義）</span><span class="ttl">4. 作る（8ステップ） →</span></a>
+</div>
+</main>
+<footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>
+</div>
+</div>
+
+<script>
+document.querySelectorAll(".copy-btn").forEach(function (b) {
+  b.addEventListener("click", function () {
+    var text = b.closest(".prompt").querySelector("pre").innerText;
+    navigator.clipboard.writeText(text).then(function () {
+      b.textContent = "コピーしました"; b.classList.add("done");
+      setTimeout(function () { b.textContent = "コピー"; b.classList.remove("done"); }, 1600);
+    });
+  });
+});
+var t = document.querySelector(".nav-toggle");
+if (t) t.addEventListener("click", function () { document.body.classList.toggle("nav-open"); });
+</script>
+</body>
+</html>

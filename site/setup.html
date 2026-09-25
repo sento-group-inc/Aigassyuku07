@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>2. 環境を整える — AI合宿</title>
+<title>2. 環境とAIの初期設定 — AI合宿</title>
 <link rel="stylesheet" href="assets/style.css">
 <script type="module">
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
@@ -31,9 +31,9 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 </div>
 <div class="side-sec"><div class="side-sec-title">1日目の講義</div>
 <a class="side-link" href="why.html">1. なぜやるのか</a>
-<a class="side-link" href="setup.html" aria-current="page">2. 環境を整える</a>
-<a class="side-link" href="readme-driven.html">3. 書いてから作る</a>
-<a class="side-link" href="build.html">4. 作る（10ステップ）</a>
+<a class="side-link" href="setup.html" aria-current="page">2. 環境とAIの初期設定</a>
+<a class="side-link" href="flow.html">3. 作り方の4段階</a>
+<a class="side-link" href="build.html">4. 作る（8ステップ）</a>
 <a class="side-link" href="pstack.html">5. 迷ったときの進め方</a>
 </div>
 <div class="side-sec"><div class="side-sec-title">2日目から</div>
@@ -45,10 +45,10 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 <main>
 <div class="crumb"><b>1日目の講義</b></div>
 
-<h1>環境を整える</h1>
+<h1>環境とAIの初期設定</h1>
 <p class="lede">当日の朝にやることです。インストールは<a href="prep.html">事前準備</a>で済んでいる前提で、キットを開いてガイドに最初の一言を送るところまで進めます。画面はCodex基準で説明します。</p>
 
-<div class="goal"><strong>このページを終えると</strong>、エージェントがキットを読み、環境を自分で確かめたうえで「次にやること」を1つ返してくれる状態になります。</div>
+<div class="goal"><strong>このページを終えると</strong>、エージェントがキットを読んで「次にやること」を返してくれ、段階ごとにどのモデルを使うかが分かる状態になります。</div>
 
 <section class="map"><div class="map-label">このページの地図</div><pre class="mermaid">
 flowchart LR
@@ -75,7 +75,8 @@ flowchart LR
 次にやることを1つだけ指示してください。
 
 指示するときは、必ず次を含めてください。
-- 使うスキル名（例: grill-with-docs, dashboard-screen）
+- 使うスキル名（例: dashboard-mvp, dashboard-research）
+- 使うモデル（段階が変わるときは切り替え方も）
 - 私がやること（手で操作する箇所があれば「どこを押すか」）
 - 終わりの状態（何ができていれば次に進んでよいか）
 
@@ -100,6 +101,32 @@ flowchart LR
   </li>
 </ol>
 
+<h2>AIの初期設定（モデルの使い分け）</h2>
+<p>このキットでは、<b>仕事の種類でAIのモデルを使い分けます</b>。手を動かす量が多い仕事は安くて速いモデル、全体を見直す仕事はいちばん賢いモデルに任せます。講師が普段使っている設定と同じ考え方です。</p>
+<div class="analogy"><div class="k">たとえるなら</div><p><b>職人と設計士の使い分け</b>です。量の多い作業は腕の速い職人（安いモデル）に、図面の見直しは設計士（賢いモデル）に。全部を設計士に頼むと高くて遅く、全部を職人に任せると直すべき所に気づけません。</p></div>
+<table>
+  <tr><th>仕事</th><th>使うモデル</th><th>Codex（2026年10月時点）</th><th>Claude</th></tr>
+  <tr><td>作る・作り直す（段階1・4）</td><td>安くて速い</td><td>GPT-5.6 Luna / Sol</td><td>Sonnet</td></tr>
+  <tr><td>研究・計画（段階2・3）</td><td>いちばん賢い</td><td>GPT-6 Astra</td><td>Opus</td></tr>
+  <tr><td>手伝い役のAI（サブエージェント）</td><td>本体より一段下</td><td>—</td><td>本体Opusなら Sonnet</td></tr>
+  <tr><td>見直し役のAI（レビュー）</td><td>本体と同じ</td><td>—</td><td>本体と同じ</td></tr>
+</table>
+<p>モデルの名前は数か月で変わります。名前ではなく「安い／賢い」の役割で覚えてください。</p>
+
+<h3>このキットでの前提</h3>
+<ul>
+  <li><b>ChatGPT（Codex）やClaudeの有料プラン（Pro等）を契約している前提</b>です。上の表のモデルが選べます。</li>
+  <li>キットの設定は<b>キットのフォルダの中だけ</b>に効きます。あなたのPC全体の設定（<code>~/.codex</code>、<code>~/.claude</code>）は書き換えません。</li>
+  <li><b>Codex</b>は、段階ごとに入力欄右下のモデル選択で切り替えます（フォルダ単位のモデル設定がCodexには効かないため）。</li>
+  <li><b>Claude Code</b>は、キットの <code>.claude/settings.json</code> で手伝い役のAIを <code>sonnet</code> にしてあります。本体は <code>/model</code> と打って切り替えます。</li>
+</ul>
+<figure><img src="assets/images/setup/04-first-prompt.png" alt="Codexの入力欄右下にモデル選択がある画面" loading="lazy"><figcaption>Codexは入力欄の右下（この画像では「GPT-5.6 Sol 中」）を押して、段階に合うモデルを選ぶ</figcaption></figure>
+
+<h3>PC全体に恒久的に入れたいとき</h3>
+<p>合宿のあとも同じ使い分けを全部の作業で使いたくなったら、次を貼ってください。AIが変更内容を見せ、同意してから書き換えます（元のファイルは残します）。</p>
+<div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>ai-setup で、このモデルの使い分けを私のPC全体の設定に恒久的に入れたいです。
+どのファイルに何を書くかを先に見せてください。私が「OK」と言ってから書き換え、元のファイルは .bak として残してください。</code></pre></div>
+
 <h2>AIが裏でやっている確認</h2>
 <p>ガイドは最初に <code>setup.sh</code> を実行して、道具が揃っているかを確かめます。自分で確かめたいときは、次を貼ってください。</p>
 <div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>./setup.sh と ./setup.sh --check-services を実行して、結果を初心者にも分かる言葉で教えてください。NG があれば直し方も。</code></pre></div>
@@ -122,11 +149,11 @@ flowchart LR
   <tr><td>会社のPCで入れられない</td><td>隣の人と2人1組で1台を使い、自社の題材で進める。帰社後のインストール依頼は<a href="prep.html">事前準備</a>の依頼文を使う</td></tr>
 </table>
 
-<h2>覚えること（3つ）</h2><ol class="remember"><li>開くのは <b><code>kit</code> フォルダ</b>（親フォルダではない）</li><li>最初の一言は <b>コピーして貼るだけ</b>。環境の確認もAIがやる</li><li>覚えるスキルは <b><code>guide</code> だけ</b></li></ol>
+<h2>覚えること（3つ）</h2><ol class="remember"><li>開くのは <b><code>kit</code> フォルダ</b>（親フォルダではない）</li><li>作る・作り直すは<b>安いモデル</b>、研究・計画は<b>いちばん賢いモデル</b></li><li>覚えるのは <b><code>guide</code> と「ログして」</b>だけ</li></ol>
 
 <div class="pager2">
   <a class="prev" href="why.html"><span class="lbl">← 前へ</span><span class="ttl">1. なぜやるのか</span></a>
-  <a class="next" href="readme-driven.html"><span class="lbl">次に読む（1日目の講義）</span><span class="ttl">3. 書いてから作る →</span></a>
+  <a class="next" href="flow.html"><span class="lbl">次に読む（1日目の講義）</span><span class="ttl">3. 作り方の4段階 →</span></a>
 </div>
 </main>
 <footer>AI合宿 — 会社用ダッシュボード構築キット（2026年10月6日・7日）</footer>

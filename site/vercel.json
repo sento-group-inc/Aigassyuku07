@@ -1,7 +1,20 @@
 {
   "cleanUrls": true,
   "redirects": [
-    { "source": "/jev", "destination": "/setup", "permanent": false },
-    { "source": "/day1", "destination": "/schedule", "permanent": false }
+    {
+      "source": "/jev",
+      "destination": "/setup",
+      "permanent": false
+    },
+    {
+      "source": "/day1",
+      "destination": "/schedule",
+      "permanent": false
+    },
+    {
+      "source": "/readme-driven",
+      "destination": "/flow",
+      "permanent": false
+    }
   ]
 }

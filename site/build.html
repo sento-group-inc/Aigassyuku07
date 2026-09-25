@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>4. 作る（10ステップ） — AI合宿</title>
+<title>4. 作る（8ステップ） — AI合宿</title>
 <link rel="stylesheet" href="assets/style.css">
 <script type="module">
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
@@ -31,10 +31,10 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 </div>
 <div class="side-sec"><div class="side-sec-title">1日目の講義</div>
 <a class="side-link" href="why.html">1. なぜやるのか</a>
-<a class="side-link" href="setup.html">2. 環境を整える</a>
-<a class="side-link" href="readme-driven.html">3. 書いてから作る</a>
-<a class="side-link" href="build.html" aria-current="page">4. 作る（10ステップ）</a>
-<div class="side-sub"><a href="#step1">Step 1 題材とREADME</a><a href="#step2">Step 2 画面</a><a href="#step3">Step 3 スキーマ</a><a href="#step4">Step 4 ロードマップ</a><a href="#step5">Step 5 キー棚卸し</a><a href="#step6">Step 6 土台を作る</a><a href="#step7">Step 7 docs</a><a href="#step8">Step 8 ログインと一覧</a><a href="#step9">Step 9 本番へ</a><a href="#step10">Step 10 次の一手</a></div>
+<a class="side-link" href="setup.html">2. 環境とAIの初期設定</a>
+<a class="side-link" href="flow.html">3. 作り方の4段階</a>
+<a class="side-link" href="build.html" aria-current="page">4. 作る（8ステップ）</a>
+<div class="side-sub"><a href="#step1">Step 1 困りごととログ</a><a href="#step2">Step 2 MVP</a><a href="#step3">Step 3 研究</a><a href="#step4">Step 4 計画</a><a href="#step5">Step 5 土台</a><a href="#step6">Step 6 ログインと一覧</a><a href="#step7">Step 7 本番</a><a href="#step8">Step 8 次の一手</a></div>
 <a class="side-link" href="pstack.html">5. 迷ったときの進め方</a>
 </div>
 <div class="side-sec"><div class="side-sec-title">2日目から</div>
@@ -46,144 +46,148 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 <main>
 <div class="crumb"><b>1日目の講義</b></div>
 
-<h1>作る — 10ステップ</h1>
-<p class="lede">実際にある会社のダッシュボードを作ったときに回った順序です。<b>この順番に意味があります。</b>Step 0（環境の確認）は<a href="setup.html">環境を整える</a>で済んでいます。</p>
+<h1>作る — 4段階・8ステップ</h1>
+<p class="lede"><a href="flow.html">作り方の4段階</a>を、当日の手順にしたものです。Step 0（環境とAIの初期設定）は<a href="setup.html">2. 環境とAIの初期設定</a>で済んでいます。</p>
 
 <div class="goal"><strong>このページを終えると</strong>、自社の画面が本番URLで開き、ログインして一覧が見えます。</div>
 
 <section class="map"><div class="map-label">このページの地図</div><pre class="mermaid">
 flowchart TB
-  subgraph K["kitフォルダで（言葉と設計）"]
+  subgraph A["段階1 粗く作る（安いモデル）"]
     direction LR
-    S1["1 題材とREADME"] --> S2["2 画面"] --> S3["3 スキーマ"] --> S4["4 ロードマップ"] --> S5["5 キー棚卸し"]
+    S1["1 困りごととログ"] --> S2["2 MVPを作って触る"]
   end
-  subgraph A["自分のアプリで（形にする）"]
+  subgraph B["段階2・3 研究と計画（賢いモデル）"]
     direction LR
-    S6["6 土台"] --> S7["7 docs"] --> S8["8 ログインと一覧"] --> S9["9 本番"] --> S10["10 次の一手"]
+    S3["3 研究する"] --> S4["4 計画する"]
   end
-  K --> A
+  subgraph C["段階4 ゼロから作り直す（安いモデル）"]
+    direction LR
+    S5["5 土台"] --> S6["6 ログインと一覧"] --> S7["7 本番"]
+  end
+  A --> B --> C --> S8["8 次の一手と振り返り"]
 </pre></section>
 
-<div class="analogy"><div class="k">たとえるなら</div><p><b>家づくり</b>です。前半（1〜5）は打ち合わせと図面、後半（6〜10）は基礎を打って1部屋ずつ建て、鍵を渡すところまで。図面が固まる前に柱を立てると、全部やり直しになります。</p></div>
+<div class="note warn"><p><b>ずっと守ること:</b> 要望・決定・詰まりは、出たその場で「ログして」と言う（<code>docs/log.md</code>）。<b>段階が変わってモデルを替える前には、下のプロンプトでここまでをログに書き出す。</b>会話は次のモデルに引き継がれず、渡るのはファイルだけです。</p></div>
+<div class="prompt"><div class="prompt-head"><span>段階が変わる前に毎回貼る</span><button class="copy-btn" type="button">コピー</button></div><pre><code>ここまでで出た要望・決定・詰まりを docs/log.md に書いて。次のモデルがファイルだけ読んで続きから始められるようにして。</code></pre></div>
 
 <h2>どのStepでも使う一言</h2>
-<p>迷ったら、いつでもこれを貼れば、今どこかを判定して次の一手を返してくれます。各Stepのプロンプトは、ガイドが案内してくれる内容を先回りして載せたものです。</p>
-<div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>次は何をすればいい？ guide で現在地を判定して、次の一手を1つだけ教えて。コマンドはあなたが実行して。</code></pre></div>
+<div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>次は何をすればいい？ guide で現在地を判定して、次の一手を1つだけ教えて。使うモデルも教えて。コマンドはあなたが実行して。</code></pre></div>
 
+<h2>段階1 粗く作る（安いモデル）</h2>
 <ol class="steps">
 <li id="step1">
-    <h3>Step 1. 題材を決めて、READMEを書く</h3>
-    <p class="flow">何を作るかを、業務の困りごとから決めます。AIが質問し、答えをファイルに残します。</p>
-    <div class="call"><span>入力欄で <b>/grill-with-docs</b> と打って候補から選ぶ</span><span>Codexは <b>$grill-with-docs</b> でも可</span><span>文章でも: 「grill-with-docsで〜して」</span></div>
-    <dl class="meta-row"><dt>あなたがやること</dt><dd>事前準備で書いた困りごとメモと帳票の項目名を貼り、AIの番号付きの質問に「1はA、2は推奨でOK」のように答える</dd><dt>終わりの状態</dt><dd><code>README.md</code> の冒頭に「〈誰〉が〈何〉に困っている。〈何〉が見えると嬉しい。」があり、<code>CONTEXT.md</code> に業務の言葉が3つ以上ある</dd></dl>
-    <div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>grill-with-docs で、私の困りごとを詰めてください。
-困りごとのメモ: （ここに貼る）
-帳票の項目名: （ここに貼る）
-決まったことは README.md と CONTEXT.md に書いてください。</code></pre></div><figure><img src="assets/images/build/01-readme.png" alt="grill-with-docsで書いたREADMEとCONTEXT.mdの見本" loading="lazy"><figcaption>見本（架空の会社）: READMEの冒頭とCONTEXT.md。<a href="samples/readme.html">実物を開く</a></figcaption></figure><div class="note"><p><b>コツ:</b> 大きい課題を選ばないこと。「案件の進捗が全員に見えない」くらいの粒度が最適です。</p></div>
+    <h3>Step 1. 困りごとを1文にして、ログを始める</h3>
+    <p class="flow">何を作るかを1文にし、これから出る声を全部ためる入れ物（開発ログ）を作ります。</p>
+    <div class="call"><span>入力欄で <b>/dev-log</b> と打って候補から選ぶ</span><span>Codexは <b>$dev-log</b> でも可</span><span>文章でも: 「dev-logで〜して」</span></div>
+    <dl class="meta-row"><dt>使うモデル</dt><dd>安くて速いモデル（Codex: Luna / Sol、Claude: Sonnet）</dd><dt>あなたがやること</dt><dd>事前準備で書いた困りごとメモと帳票の項目名を貼る</dd><dt>終わりの状態</dt><dd><code>docs/log.md</code> の最初に「〈誰〉が〈何〉に困っている。〈何〉が見えると嬉しい。」と帳票の項目名がある</dd></dl>
+    <div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>dev-log で、次の困りごとと帳票の項目名を docs/log.md の最初に書いて。
+困りごと: （ここに貼る）
+帳票の項目名: （ここに貼る）</code></pre></div>
   </li>
 <li id="step2">
-    <h3>Step 2. 画面を作る</h3>
-    <p class="flow">コードはまだ書きません。見た目と操作を先に固めます。段ボールで家具の置き場所を試すようなものです。</p>
-    <div class="call"><span>入力欄で <b>/dashboard-screen</b> と打って候補から選ぶ</span><span>Codexは <b>$dashboard-screen</b> でも可</span><span>文章でも: 「dashboard-screenで〜して」</span></div>
-    <dl class="meta-row"><dt>あなたがやること</dt><dd>AIが作った画面をブラウザで開いて触り、「ここは要らない」「これが先に見たい」と言う</dd><dt>終わりの状態</dt><dd><code>docs/prototype.html</code> があり、ブラウザで開いて操作できる。「明日の朝いちばんに何を見るか」に答えられる</dd></dl>
-    <div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>dashboard-screen で、README.md の困りごとから画面の試作を docs/prototype.html に作って。ダミーデータで、一覧・詳細・入力の3画面以内。できたらブラウザで開いて。</code></pre></div><figure><img src="assets/images/build/02-prototype.png" alt="画面の試作の見本" loading="lazy"><figcaption>見本（架空の会社）: 案件の一覧画面。<a href="samples/prototype.html">実物を開いて触る</a></figcaption></figure>
+    <h3>Step 2. MVPを作って触る</h3>
+    <p class="flow">段ボールの模型です。15〜30分で触れるものを作り、触って出た声をログにためます。雑でかまいません。あとで捨てます。</p>
+    <div class="call"><span>入力欄で <b>/dashboard-mvp</b> と打って候補から選ぶ</span><span>Codexは <b>$dashboard-mvp</b> でも可</span><span>文章でも: 「dashboard-mvpで〜して」</span></div>
+    <dl class="meta-row"><dt>使うモデル</dt><dd>安くて速いモデル（Codex: Luna / Sol、Claude: Sonnet）</dd><dt>あなたがやること</dt><dd>ブラウザで開いて触り、「ここ使いにくい」「これも見たい」をそのまま言う（AIがログに書く）。2〜3回小さく直してもらう</dd><dt>終わりの状態</dt><dd><code>mvp/index.html</code> を自分で操作でき、<code>docs/log.md</code> に要望・気づきが5つ以上ある</dd></dl>
+    <div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>dashboard-mvp で、docs/log.md の困りごとから mvp/index.html に触れるMVPを作って、ブラウザで開いて。ダミーデータで、15〜30分で。</code></pre></div><figure><img src="assets/images/build/02-prototype.png" alt="MVPの見本" loading="lazy"><figcaption>見本（架空の会社）: 段階1で作るMVPの例。<a href="samples/prototype.html">実物を開いて触る</a></figcaption></figure>
   </li>
+</ol>
+
+<h2>段階2・3 研究と計画（賢いモデル）</h2>
+<div class="note"><p><b>ここでモデルを切り替えます。</b>先に上の「段階が変わる前に毎回貼る」プロンプトを送ってから、入力欄右下（Claudeは <code>/model</code>）でいちばん賢いモデルを選びます。</p></div>
+<ol class="steps">
 <li id="step3">
-    <h3>Step 3. スキーマとER図を作る</h3>
-    <p class="flow">画面に出ている情報を全部書き出し、どの棚（テーブル）のどの段（項目）に置くかを決めます。</p>
-    <div class="call"><span>入力欄で <b>/dashboard-schema</b> と打って候補から選ぶ</span><span>Codexは <b>$dashboard-schema</b> でも可</span><span>文章でも: 「dashboard-schemaで〜して」</span></div>
-    <dl class="meta-row"><dt>あなたがやること</dt><dd>AIが出した表とER図を見て、「この情報はどこに入る？」と1つずつ聞く。足りない項目を言う</dd><dt>終わりの状態</dt><dd><code>docs/schema.md</code> にテーブル一覧とER図があり、画面の全項目の置き場所に答えられる</dd></dl>
-    <div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>dashboard-schema で、docs/prototype.html に出ている情報をテーブルに落として、ER図つきで docs/schema.md に書いて。</code></pre></div><figure><img src="assets/images/build/03-er.png" alt="ER図の見本" loading="lazy"><figcaption>見本（架空の会社）: 顧客・案件・担当者のER図。<a href="samples/schema.html">実物を開く</a></figcaption></figure><div class="note"><p><b>ここが一番大事です。</b>スキーマが固まると、あとの作業が一気に速くなります。曖昧なまま進むと、実装してから作り直しになります。</p></div>
+    <h3>Step 3. 研究する</h3>
+    <p class="flow">段ボールの模型を一級建築士に見てもらいます。素人では気づけない弱い所と、良くする方法を洗い出し、ファイルに残します。</p>
+    <div class="call"><span>入力欄で <b>/dashboard-research</b> と打って候補から選ぶ</span><span>Codexは <b>$dashboard-research</b> でも可</span><span>文章でも: 「dashboard-researchで〜して」</span></div>
+    <dl class="meta-row"><dt>使うモデル</dt><dd>いちばん賢いモデル（Codex: Astra、Claude: Opus）</dd><dt>あなたがやること</dt><dd>AIの番号付きの質問に「1はA、2は推奨でOK」のように答える。あなたにしか分からないこと（業務のルール、誰が使うか）だけが聞かれる</dd><dt>終わりの状態</dt><dd><code>docs/research.md</code> に6つの観点（使う人・画面と操作・データの形・権限と安全・運用・範囲）の結論があり、<code>README.md</code> に困りごとと使う人、<code>CONTEXT.md</code> に業務の言葉が3つ以上ある</dd></dl>
+    <div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>dashboard-research で、mvp/index.html と docs/log.md を研究して、docs/research.md に残して。
+私にしか分からないことは、番号付きの質問にまとめて推奨回答つきで聞いて。</code></pre></div><figure><img src="assets/images/build/01a-grill-prompt.png" alt="質問で詰めるスキルを入力欄に入れた画面" loading="lazy"><figcaption>研究の中で、質問で詰めるスキル（grill-with-docs）も使われる。自分で呼ぶときは <code>/grill</code> と打って候補から選ぶ</figcaption></figure><figure><img src="assets/images/build/01-readme.png" alt="研究で書かれるREADMEとCONTEXT.mdの見本" loading="lazy"><figcaption>見本（架空の会社）: 研究で書かれるREADMEとCONTEXT.md。<a href="samples/readme.html">実物を開く</a></figcaption></figure>
   </li>
 <li id="step4">
-    <h3>Step 4. ロードマップを書く</h3>
-    <p class="flow">スキーマが固まった瞬間に、確認できる単位（スライス）に切ります。コース料理の順番を決めるようなものです。</p>
-    <div class="call"><span>入力欄で <b>/dashboard-roadmap</b> と打って候補から選ぶ</span><span>Codexは <b>$dashboard-roadmap</b> でも可</span><span>文章でも: 「dashboard-roadmapで〜して」</span></div>
-    <dl class="meta-row"><dt>あなたがやること</dt><dd>並び順を見て、「先に見たいもの」が上に来ているか確かめる</dd><dt>終わりの状態</dt><dd><code>docs/roadmap.md</code> に番号付きのスライスがあり、<b>S1は「ログインして一覧が見える」</b>になっている</dd></dl>
-    <div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>dashboard-roadmap で、docs/schema.md をもとに docs/roadmap.md にスライスを書いて。S1は「ログインして一覧が見える」にして。</code></pre></div><figure><img src="assets/images/build/04-roadmap.png" alt="ロードマップの見本" loading="lazy"><figcaption>見本（架空の会社）: スライスの一覧。<a href="samples/roadmap.html">実物を開く</a></figcaption></figure>
+    <h3>Step 4. ブラッシュアップ計画を作る</h3>
+    <p class="flow">建築士の図面一式です。職人（安いモデル）は図面だけを見て作るので、必要なことは全部図面に書きます。</p>
+    <div class="call"><span>入力欄で <b>/dashboard-plan</b> と打って候補から選ぶ</span><span>Codexは <b>$dashboard-plan</b> でも可</span><span>文章でも: 「dashboard-planで〜して」</span></div>
+    <dl class="meta-row"><dt>使うモデル</dt><dd>いちばん賢いモデル（Codex: Astra、Claude: Opus）</dd><dt>あなたがやること</dt><dd>表とER図を見て「この情報はどこに入る？」と聞く。ロードマップの並び順が「先に見たいもの」からになっているか確かめる</dd><dt>終わりの状態</dt><dd><code>docs/schema.md</code>（ER図つき）、<code>docs/roadmap.md</code>（<b>S1は「ログインして一覧が見える」</b>）、<code>docs/keys.md</code>、<code>docs/ui-guidelines.md</code>、<code>AGENTS.md</code> が埋まり、ログの要望が全部どれかのスライスに入っている</dd></dl>
+    <div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>dashboard-plan で、docs/research.md と docs/log.md から、ゼロから作り直すための計画一式を作って。安いモデルが計画だけ読んで作り直せる粒度で。</code></pre></div><figure><img src="assets/images/build/03-er.png" alt="スキーマとER図の見本" loading="lazy"><figcaption>見本: スキーマとER図。<a href="samples/schema.html">実物を開く</a></figcaption></figure><figure><img src="assets/images/build/04-roadmap.png" alt="ロードマップの見本" loading="lazy"><figcaption>見本: ロードマップ（作る順番）。<a href="samples/roadmap.html">実物を開く</a></figcaption></figure><figure><img src="assets/images/build/05-keys.png" alt="キー棚卸し表の見本" loading="lazy"><figcaption>見本: キーの置き場所（値は書かない）</figcaption></figure>
   </li>
+</ol>
+
+<h2>段階4 ゼロから作り直す（安いモデル）</h2>
+<div class="note"><p><b>ここでモデルを安いモデルに戻します。</b>先に「段階が変わる前に毎回貼る」プロンプトを送ってから切り替えます。MVPのコードは使わず、計画の docs だけを見て作ります。</p></div>
+<ol class="steps">
 <li id="step5">
-    <h3>Step 5. キーとアカウントを棚卸しする</h3>
-    <p class="flow">外とつながる箇所を洗い出し、必要な鍵（キー）と、その置き場所を決めます。鍵そのものは表に貼りません。</p>
-    <div class="call"><span>入力欄で <b>/dashboard-keys</b> と打って候補から選ぶ</span><span>Codexは <b>$dashboard-keys</b> でも可</span><span>文章でも: 「dashboard-keysで〜して」</span></div>
-    <dl class="meta-row"><dt>あなたがやること</dt><dd>表を見て、使うサービスに漏れがないか確かめる</dd><dt>終わりの状態</dt><dd><code>docs/keys.md</code> に表があり、値はどこにも書かれていない。最低限はSupabaseの2つ（Project URL と Publishable key）</dd></dl>
-    <div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>dashboard-keys で、docs/roadmap.md に必要な外部サービスとキーの置き場所を docs/keys.md に表にして。値は書かないで。</code></pre></div><figure><img src="assets/images/build/05-keys.png" alt="キー棚卸し表の見本" loading="lazy"><figcaption>見本（架空の会社）: 値は書かず、置き場所だけを書く</figcaption></figure>
-  </li>
-<li id="step6">
-    <h3>Step 6. 土台を作る（DB・アプリ・リポジトリ）</h3>
+    <h3>Step 5. 土台を作る（DB・アプリ・リポジトリ）</h3>
     <p class="flow">倉庫（Supabase）を借り、ログイン画面つきの店舗の箱（with-supabaseテンプレート）を建て、鍵を決まった場所にしまいます。</p>
     <div class="call"><span>入力欄で <b>/dashboard-repo</b> と打って候補から選ぶ</span><span>Codexは <b>$dashboard-repo</b> でも可</span><span>文章でも: 「dashboard-repoで〜して」</span></div>
-    <dl class="meta-row"><dt>あなたがやること</dt><dd><ol>
+    <dl class="meta-row"><dt>使うモデル</dt><dd>安くて速いモデル（Codex: Luna / Sol、Claude: Sonnet）</dd><dt>あなたがやること</dt><dd><ol>
 <li><b>ブラウザで:</b> <a href="https://database.new">database.new</a> でSupabaseのプロジェクトを作る（Project name は <code>my-dashboard</code>、Region は <code>Asia-Pacific</code>、<code>Enable automatic RLS</code> にチェック。パスワードは <code>Generate a password</code> で作ってパスワード管理ツールへ）</li>
-<li><b>AIに頼む:</b> 下のプロンプトを貼る。アプリの箱を作り、キットの中身をコピーし、<code>.env.local</code> を開いてくれる</li>
+<li><b>AIに頼む:</b> 下のプロンプトを貼る。アプリの箱を作り、キットの中身（計画・ログ・スキル）をコピーし、<code>.env.local</code> を開いてくれる</li>
 <li><b>ブラウザで:</b> Supabaseの画面上部の <code>Connect</code> を押し、Project URL と Publishable key を、開いた <code>.env.local</code> に貼って保存する（値はチャットに貼らない）</li>
 <li><b>AIに頼む:</b> 「続けて」と送る。画面が開くか確かめ、GitHubにリポジトリを作ってくれる</li>
 </ol></dd><dt>終わりの状態</dt><dd><a href="http://localhost:3000">localhost:3000</a> で画面が開き、GitHubにリポジトリがある。<code>.env.local</code> はGitHubに上がっていない</dd></dl>
     <figure><img src="assets/images/build/07-supabase-new-project.png" alt="Supabaseで新しいプロジェクトを作る画面" loading="lazy"><figcaption>Supabaseの「Create a new project」。組織名は伏せてある。入力したら下の「Create new project」を押す</figcaption></figure><div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>dashboard-repo の手順2〜6を進めてください。Supabaseのプロジェクトは作りました。
 コマンドはあなたが実行してください。.env.local を作ったら、そのファイルを開いて止まってください。
-キーの値は私がファイルに直接貼ります（チャットには貼りません）。貼ったら「続けて」と言います。</code></pre></div><figure><img src="assets/images/build/06-template.png" alt="with-supabaseテンプレートの画面" loading="lazy"><figcaption>できあがるアプリの最初の画面（テンプレートの公式デモ）。ここからログイン画面につながっている</figcaption></figure><div class="note"><p>ここから先は、新しくできた <code>my-dashboard</code> フォルダをCodex（またはClaude）で開き直して進めます。キットのスキルとdocsはコピー済みなので、そのまま <code>guide</code> に聞けます。</p></div>
+キーの値は私がファイルに直接貼ります（チャットには貼りません）。貼ったら「続けて」と言います。</code></pre></div><figure><img src="assets/images/build/06-template.png" alt="with-supabaseテンプレートの画面" loading="lazy"><figcaption>できあがるアプリの最初の画面（テンプレートの公式デモ）。ここからログイン画面につながっている</figcaption></figure><div class="note"><p>ここから先は、新しくできた <code>my-dashboard</code> フォルダをCodex（またはClaude）で開き直して進めます。計画・ログ・スキルはコピー済みなので、そのまま <code>guide</code> に聞けます。</p></div>
   </li>
-<li id="step7">
-    <h3>Step 7. docsとAGENTS.md / CLAUDE.mdを整える</h3>
-    <p class="flow">スキーマの背景、画面の原則、インフラ、ロードマップを埋めます。新人向けの引き継ぎノートを作るようなものです。</p>
-    <div class="call"><span>入力欄で <b>/dashboard-docs</b> と打って候補から選ぶ</span><span>Codexは <b>$dashboard-docs</b> でも可</span><span>文章でも: 「dashboard-docsで〜して」</span></div>
-    <dl class="meta-row"><dt>あなたがやること</dt><dd>AIの質問に答えて、空欄を埋めてもらう</dd><dt>終わりの状態</dt><dd><code>AGENTS.md</code> の「作業前に読む」から全部たどれる。空欄が残っていない（「未確定」は可）</dd></dl>
-    <div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>dashboard-docs で、docs と AGENTS.md / CLAUDE.md を読んで、空欄を埋めるための質問を番号付きでまとめて出して。</code></pre></div>
-  </li>
-<li id="step8">
-    <h3>Step 8. ログインと一覧を作る（S1）</h3>
+<li id="step6">
+    <h3>Step 6. ログインと一覧を作る（S1）</h3>
     <p class="flow">社員証で開くドアを付け、ドアの内側に一覧を置きます。ドアそのものはテンプレートに付いています。</p>
     <div class="call"><span>入力欄で <b>/dashboard-auth</b> と打って候補から選ぶ</span><span>Codexは <b>$dashboard-auth</b> でも可</span><span>文章でも: 「dashboard-authで〜して」</span></div>
-    <dl class="meta-row"><dt>あなたがやること</dt><dd><ol>
+    <dl class="meta-row"><dt>使うモデル</dt><dd>安くて速いモデル（Codex: Luna / Sol、Claude: Sonnet）</dd><dt>あなたがやること</dt><dd><ol>
 <li><b>ブラウザで:</b> Supabase → <code>Authentication</code> → <code>Sign In / Providers</code> → <code>Allow new users to sign up</code> をオフ（知らない人が登録できないように）</li>
 <li><b>ブラウザで:</b> <code>Authentication</code> → <code>Users</code> → <code>Add user</code> → <code>Create new user</code>。<code>Auto Confirm User</code> にチェックして自分のアカウントを作る</li>
-<li><b>AIに頼む:</b> 下のプロンプトを貼る。テーブルとダミーデータのSQLと、一覧画面を作ってくれる</li>
+<li><b>AIに頼む:</b> 下のプロンプトを貼る。計画のスキーマからSQLと一覧画面を作ってくれる</li>
 <li><b>ブラウザで:</b> AIの説明を読んでから、SQLをSupabaseの <code>SQL Editor</code> に貼って <code>Run</code></li>
 <li><b>AIに頼む:</b> 「確かめて、PRを作ってマージして」と送る</li>
 </ol></dd><dt>終わりの状態</dt><dd>ログインしないと一覧が見えず、ログインするとダミーデータの一覧が見える。PRがマージされている</dd></dl>
-    <div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>dashboard-auth で最初のスライス（ログインして一覧が見える）を作ってください。
-Supabaseでのサインアップ停止とユーザー作成は済ませました。
+    <div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>dashboard-auth で最初のスライス（ログインして一覧が見える）を、docs/schema.md と docs/roadmap.md のとおりに作ってください。
+Supabaseでのサインアップ停止とユーザー作成は済ませました。mvp/ のコードは使わないでください。
 SQLは supabase/migrations/0001_init.sql に書き、何が作られるかを説明してから私に渡してください。</code></pre></div><figure><img src="assets/images/build/08-login.png" alt="ログイン画面" loading="lazy"><figcaption>テンプレートに付いているログイン画面（公式デモ）</figcaption></figure><div class="note warn"><p><b>RLS（行ごとの鍵）は必ず付けます。</b>付けないと、公開キーを知っている人なら誰でもデータを読めてしまいます。<code>dashboard-auth</code> はRLS付きのSQLを書きます。</p></div>
   </li>
-<li id="step9">
-    <h3>Step 9. 本番へ出す</h3>
+<li id="step7">
+    <h3>Step 7. 本番へ出す</h3>
     <p class="flow">お店のシャッターを開けます。倉庫の棚（データベース）を先に整え、それから店（アプリ）を開けます。</p>
     <div class="call"><span>入力欄で <b>/dashboard-deploy</b> と打って候補から選ぶ</span><span>Codexは <b>$dashboard-deploy</b> でも可</span><span>文章でも: 「dashboard-deployで〜して」</span></div>
-    <dl class="meta-row"><dt>あなたがやること</dt><dd><ol>
+    <dl class="meta-row"><dt>使うモデル</dt><dd>安くて速いモデル（Codex: Luna / Sol、Claude: Sonnet）</dd><dt>あなたがやること</dt><dd><ol>
 <li><b>ブラウザで:</b> <a href="https://vercel.com/new">vercel.com/new</a> → <code>my-dashboard</code> の <code>Import</code></li>
 <li><b>ブラウザで:</b> <code>Environment Variables</code> に <code>.env.local</code> と同じ2つを入れて <code>Deploy</code></li>
 <li><b>ブラウザで:</b> 出たURLを、Supabase → <code>Authentication</code> → <code>URL Configuration</code> の <code>Site URL</code> と <code>Redirect URLs</code> に入れる</li>
 <li><b>AIに頼む:</b> 下のプロンプトで確認と記録をしてもらう</li>
 </ol></dd><dt>終わりの状態</dt><dd><b>本番URLを開き、ログインして一覧が動く。</b>URLが <code>docs/infra.md</code> に書かれている</dd></dl>
-    <figure><img src="assets/images/build/11-vercel-import.png" alt="VercelでGitHubのリポジトリをImportする画面" loading="lazy"><figcaption>「Import Git Repository」の検索欄にリポジトリ名を入れ、「Import」を押す</figcaption></figure><figure><img src="assets/images/build/12-vercel-ready.png" alt="Vercelのデプロイ完了画面" loading="lazy"><figcaption>StatusがReadyになったら、Domainsの本番URLを開く（この講義サイト自身のデプロイ画面。ユーザー名は伏せてある）</figcaption></figure><div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>dashboard-deploy の手順で、本番URL（ここに貼る）でログインして一覧が動くか確かめる方法を教えて。動いたら docs/infra.md にURLを書いて。</code></pre></div><div class="note warn"><p>キーが写る画面は撮らないでください。撮る必要があるときは、値の部分を隠してから撮ります。</p></div>
+    <figure><img src="assets/images/build/11-vercel-import.png" alt="VercelでGitHubのリポジトリをImportする画面" loading="lazy"><figcaption>「Import Git Repository」の検索欄にリポジトリ名を入れ、「Import」を押す</figcaption></figure><figure><img src="assets/images/build/12-vercel-ready.png" alt="Vercelのデプロイ完了画面" loading="lazy"><figcaption>StatusがReadyになったら、Domainsの本番URLを開く（この講義サイト自身のデプロイ画面。ユーザー名は伏せてある）</figcaption></figure><div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>dashboard-deploy の手順で、本番URL（ここに貼る）でログインして一覧が動くか確かめる方法を教えて。動いたら docs/infra.md にURLを書いて、ログに［済］で残して。</code></pre></div><div class="note warn"><p>キーが写る画面は撮らないでください。撮る必要があるときは、値の部分を隠してから撮ります。</p></div>
   </li>
-<li id="step10">
-    <h3>Step 10. 次の一手を決めて、振り返る</h3>
+</ol>
+
+<h2>締め</h2>
+<ol class="steps">
+<li id="step8">
+    <h3>Step 8. 次の一手を決めて、振り返る</h3>
     <p class="flow">明日の自分へのメモを残します。料理のあとにレシピへ書き込むのと同じです。</p>
     <div class="call"><span>入力欄で <b>/reflect</b> と打って候補から選ぶ</span><span>Codexは <b>$reflect</b> でも可</span><span>文章でも: 「reflectで〜して」</span></div>
-    <dl class="meta-row"><dt>あなたがやること</dt><dd>ガイドに次のスライスを1つ選んでもらい、<code>reflect</code> が出した学びの案から残すものを選ぶ</dd><dt>終わりの状態</dt><dd>「明日はこれをやる」が1行で書かれ、学びが1つ以上ファイルに残っている</dd></dl>
+    <dl class="meta-row"><dt>あなたがやること</dt><dd>ガイドに、ログの要望と計画を照らして次のスライスを1つ選んでもらう。<code>reflect</code> が出した学びの案から残すものを選ぶ</dd><dt>終わりの状態</dt><dd>「明日はこれをやる」が1行で書かれ、学びが1つ以上ファイルに残っている</dd></dl>
     <div class="prompt"><div class="prompt-head"><span>AIに貼る（Codex / Claude の入力欄へ）</span><button class="copy-btn" type="button">コピー</button></div><pre><code>今日の結果をまとめてください。
 - できたこと（本番URLと、動いている操作）
-- できなかったこと、詰まった場所
+- docs/log.md の要望のうち、満たせたもの・残ったもの
 - 次にやるスライス（docs/roadmap.md に印を付ける）
 そのあと reflect で、今日の学びを残す案を出してください。</code></pre></div>
   </li>
 </ol>
 
 <h2>時間が押したとき</h2>
-<p>次の順で優先します。残りのスライスが書かれていることが、明日以降の自走に一番効きます。</p>
 <table>
   <tr><th>優先</th><th>やること</th><th>理由</th></tr>
-  <tr><td>1</td><td>本番URL（Step 9）</td><td>「できた」の実感が次につながる</td></tr>
-  <tr><td>2</td><td>ロードマップ（Step 4）</td><td>明日自分で進められる</td></tr>
-  <tr><td>3</td><td>スキーマ（Step 3）</td><td>後からでも直せる</td></tr>
-  <tr><td>4</td><td>画面の作り込み</td><td>一番後回しでよい</td></tr>
+  <tr><td>1</td><td>本番URL（Step 7）</td><td>「できた」の実感が次につながる</td></tr>
+  <tr><td>2</td><td>計画（Step 4）</td><td>明日、安いモデルだけで作り直しを進められる</td></tr>
+  <tr><td>3</td><td>研究（Step 3）</td><td>計画の質を決める</td></tr>
+  <tr><td>4</td><td>MVPの作り込み</td><td>捨てるので一番後回しでよい</td></tr>
 </table>
 
-<h2>覚えること（3つ）</h2><ol class="remember"><li><b>コードを書く前に決め切る</b>（Step 1〜5はkitフォルダで言葉と設計）</li><li>最初のスライスは<b>ログインして一覧が見える</b>に固定</li><li>迷ったら<b>ガイドに「次は？」</b>。順番を暗記しなくていい</li></ol>
+<h2>覚えること（3つ）</h2><ol class="remember"><li><b>粗く作る→研究→計画→ゼロから作り直す</b>。段階でモデルを替える</li><li><b>段階が変わる前に、ログへ書き出す</b>。次のモデルに渡るのはファイルだけ</li><li>作り直しは<b>計画だけを見る</b>。MVPのコードは使わない</li></ol>
 
 <div class="pager2">
-  <a class="prev" href="readme-driven.html"><span class="lbl">← 前へ</span><span class="ttl">3. 書いてから作る</span></a>
+  <a class="prev" href="flow.html"><span class="lbl">← 前へ</span><span class="ttl">3. 作り方の4段階</span></a>
   <a class="next" href="pstack.html"><span class="lbl">次に読む（1日目の講義）</span><span class="ttl">5. 迷ったときの進め方 →</span></a>
 </div>
 </main>

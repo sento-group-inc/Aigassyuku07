@@ -31,9 +31,9 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 </div>
 <div class="side-sec"><div class="side-sec-title">1日目の講義</div>
 <a class="side-link" href="why.html">1. なぜやるのか</a>
-<a class="side-link" href="setup.html">2. 環境を整える</a>
-<a class="side-link" href="readme-driven.html">3. 書いてから作る</a>
-<a class="side-link" href="build.html">4. 作る（10ステップ）</a>
+<a class="side-link" href="setup.html">2. 環境とAIの初期設定</a>
+<a class="side-link" href="flow.html">3. 作り方の4段階</a>
+<a class="side-link" href="build.html">4. 作る（8ステップ）</a>
 <a class="side-link" href="pstack.html">5. 迷ったときの進め方</a>
 </div>
 <div class="side-sec"><div class="side-sec-title">2日目から</div>
@@ -58,12 +58,12 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 flowchart LR
   subgraph D1["1日目 10/6"]
     direction TB
-    A["午前<br/>なぜ・環境・題材・画面<br/>Step 0〜2"] --> B["午後<br/>設計と土台<br/>Step 3〜7"]
-    B --> C["夕方<br/>ログイン・本番・発表<br/>Step 8〜10"]
+    A["午前<br/>環境・初期設定<br/>段階1 粗く作る"] --> B["午後前半<br/>段階2 研究<br/>段階3 計画"]
+    B --> C["午後後半<br/>段階4 作り直す<br/>本番・発表"]
   end
   subgraph D2["2日目 10/7"]
     direction TB
-    E["今日の1スライスを決める"] --> F["実装→本番"]
+    E["ログから今日の1スライス"] --> F["安いモデルで実装→本番"]
   end
   D1 --> D2
 </pre></section>
@@ -72,26 +72,26 @@ flowchart LR
 
 <h2>1日目（10月6日）の時間割</h2>
 <table>
-  <tr><th>時刻</th><th>内容</th><th>講義ページ</th></tr>
-  <tr><td>09:30</td><td>オープニング。なぜやるのかを腹落ちさせる</td><td><a href="why.html">1. なぜやるのか</a></td></tr>
-  <tr><td>10:00</td><td>環境の確認（詰まりを潰す）・Step 0</td><td><a href="setup.html">2. 環境を整える</a></td></tr>
-  <tr><td>10:30</td><td>書いてから作る。題材を決めてREADMEを書く・Step 1</td><td><a href="readme-driven.html">3. 書いてから作る</a> → <a href="build.html#step1">4. Step 1</a></td></tr>
-  <tr><td>11:15</td><td>画面を作る・Step 2</td><td><a href="build.html#step2">4. Step 2</a></td></tr>
-  <tr><td>12:00</td><td>昼食</td><td>—</td></tr>
-  <tr><td>13:00</td><td>スキーマとER図、ロードマップ・Step 3〜4</td><td><a href="build.html#step3">4. Step 3〜4</a></td></tr>
-  <tr><td>14:15</td><td>キーの棚卸し、土台を作る・Step 5〜6</td><td><a href="build.html#step5">4. Step 5〜6</a></td></tr>
-  <tr><td>15:15</td><td>docsを整え、ログインと一覧を作る・Step 7〜8</td><td><a href="build.html#step7">4. Step 7〜8</a></td></tr>
-  <tr><td>16:45</td><td>本番へ出して動作確認・Step 9</td><td><a href="build.html#step9">4. Step 9</a></td></tr>
-  <tr><td>17:15</td><td>発表（1社5分）と次の一手・振り返り・Step 10</td><td><a href="build.html#step10">4. Step 10</a></td></tr>
+  <tr><th>時刻</th><th>内容</th><th>モデル</th><th>講義ページ</th></tr>
+  <tr><td>09:30</td><td>オープニング。なぜやるのかを腹落ちさせる</td><td>—</td><td><a href="why.html">1. なぜやるのか</a></td></tr>
+  <tr><td>10:00</td><td>環境とAIの初期設定・Step 0</td><td>—</td><td><a href="setup.html">2. 環境とAIの初期設定</a></td></tr>
+  <tr><td>10:20</td><td>作り方の4段階を知る</td><td>—</td><td><a href="flow.html">3. 作り方の4段階</a></td></tr>
+  <tr><td>10:40</td><td><b>段階1 粗く作る</b>。困りごとをログに書き、MVPを作って触る・Step 1〜2</td><td>安い</td><td><a href="build.html#step1">4. Step 1〜2</a></td></tr>
+  <tr><td>12:00</td><td>昼食</td><td>—</td><td>—</td></tr>
+  <tr><td>13:00</td><td><b>段階2 研究する</b>・Step 3</td><td>賢い</td><td><a href="build.html#step3">4. Step 3</a></td></tr>
+  <tr><td>14:00</td><td><b>段階3 計画する</b>・Step 4</td><td>賢い</td><td><a href="build.html#step4">4. Step 4</a></td></tr>
+  <tr><td>15:00</td><td><b>段階4 ゼロから作り直す</b>。土台、ログインと一覧・Step 5〜6</td><td>安い</td><td><a href="build.html#step5">4. Step 5〜6</a></td></tr>
+  <tr><td>16:45</td><td>本番へ出して動作確認・Step 7</td><td>安い</td><td><a href="build.html#step7">4. Step 7</a></td></tr>
+  <tr><td>17:15</td><td>発表（1社5分）と次の一手・振り返り・Step 8</td><td>—</td><td><a href="build.html#step8">4. Step 8</a></td></tr>
 </table>
 
 <h2>チェックポイント</h2>
 <p>次の3つを過ぎたら講師に声をかけてください。一度止めて確認する方が、後で速くなります。</p>
 <table>
   <tr><th>時刻</th><th>できていてほしいもの</th><th>できていなければ</th></tr>
-  <tr><td>12:00</td><td>画面の試作が1枚ある</td><td>題材を小さくする</td></tr>
-  <tr><td>15:00</td><td>スキーマとロードマップがある</td><td>最優先で戻る。無いと実装が迷走する</td></tr>
-  <tr><td>17:00</td><td>本番URLがある</td><td>無くても大丈夫。原因を記録して、次の一手にする</td></tr>
+  <tr><td>12:00</td><td>触れるMVPがあり、ログに要望が5つ以上ある</td><td>題材を小さくする。スプレッドシートの列名をそのまま画面にする</td></tr>
+  <tr><td>15:00</td><td>研究と計画（スキーマ・ロードマップ）がある</td><td>最優先で戻る。無いと作り直しが迷走する</td></tr>
+  <tr><td>17:00</td><td>本番URLがある</td><td>無くても大丈夫。原因をログに書いて、次の一手にする</td></tr>
 </table>
 
 <h2>発表フォーマット（1社5分）</h2>
@@ -108,7 +108,7 @@ flowchart LR
 <table>
   <tr><th>時刻</th><th>やること</th></tr>
   <tr><td>09:30</td><td>ガイドに「次は何をすればいい？」と聞き、<b>今日の1スライス</b>を決める</td></tr>
-  <tr><td>10:00〜</td><td>スライスを実装 → PR → マージ → 本番</td></tr>
+  <tr><td>10:00〜</td><td>安いモデルでスライスを実装 → PR → マージ → 本番（要望はログへ）</td></tr>
   <tr><td>終わり</td><td><code>reflect</code>で学びを残し、明日の1スライスを決める</td></tr>
 </table>
 

@@ -31,9 +31,9 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 </div>
 <div class="side-sec"><div class="side-sec-title">1日目の講義</div>
 <a class="side-link" href="why.html">1. なぜやるのか</a>
-<a class="side-link" href="setup.html">2. 環境を整える</a>
-<a class="side-link" href="readme-driven.html">3. 書いてから作る</a>
-<a class="side-link" href="build.html">4. 作る（10ステップ）</a>
+<a class="side-link" href="setup.html">2. 環境とAIの初期設定</a>
+<a class="side-link" href="flow.html">3. 作り方の4段階</a>
+<a class="side-link" href="build.html">4. 作る（8ステップ）</a>
 <a class="side-link" href="pstack.html" aria-current="page">5. 迷ったときの進め方</a>
 </div>
 <div class="side-sec"><div class="side-sec-title">2日目から</div>
@@ -52,9 +52,9 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict
 
 <section class="map"><div class="map-label">このページの地図</div><pre class="mermaid">
 flowchart LR
-  A["地図を作る<br/>README・グリル"] --> B["複数案<br/>2〜3案を並べる"]
-  B --> C["設計<br/>データの形"]
-  C --> D["実装<br/>1スライスずつ"]
+  A["粗く作る<br/>試せば分かることは試す"] --> B["研究<br/>2〜3案・観点で調べる"]
+  B --> C["計画<br/>データの形・順番"]
+  C --> D["作り直す<br/>1スライスずつ"]
   D --> E["検証<br/>実物で確かめる"]
   E --> F["振り返り<br/>reflect"]
   F -. 次のスライス .-> D
@@ -64,13 +64,15 @@ flowchart LR
 
 <h2>pstack とは</h2>
 <p>「速く行きたいなら、先に深く行く」という進め方の束です。作者はpoteto（Lauren Tan）で、MITライセンスで公開されています（<a href="repos.html">リポジトリ一覧</a>）。合宿では、その中から参加者に効くものだけを日本語のスキルにして入れています。</p>
-<p>一番大事なメッセージは、<b>質問で深掘りした気になって、すぐ実装に走らない</b>こと。地図（README・CONTEXT.md）→ 複数案 → 設計 → 実装 → 検証、の順に進みます。</p>
+<p>合宿の<a href="flow.html">作り方の4段階</a>は、pstackの考え方をそのまま使っています。<b>試せば分かることは、議論する前に小さく作って試す</b>（粗く作る）。<b>作ったものを材料に、構造を先に深く考える</b>（研究と計画）。<b>計画ができたら、小さく作って実物で確かめる</b>（作り直す）。</p>
 
 <h2>いつ、何を使うか</h2>
 <table>
   <tr><th>タイミング</th><th>使うスキル</th><th>一言</th></tr>
-  <tr><td>着手前</td><td><code>grill-with-docs</code></td><td>答えを口頭で終わらせず、README / CONTEXT.md / ADRへ</td></tr>
-  <tr><td>形を決める</td><td><code>dashboard-screen</code> / <code>dashboard-schema</code></td><td>最初の1案で決めない。2〜3案を並べて比べる</td></tr>
+  <tr><td>着手直後</td><td><code>dashboard-mvp</code></td><td>議論より先に、安いモデルで触れるものを作る</td></tr>
+  <tr><td>形を決める</td><td><code>dashboard-research</code> / <code>grill-with-docs</code></td><td>賢いモデルで観点ごとに研究し、答えはファイルに残す</td></tr>
+  <tr><td>作り直す前</td><td><code>dashboard-plan</code></td><td>計画だけで作り直せる粒度まで書く</td></tr>
+  <tr><td>いつでも</td><td><code>dev-log</code></td><td>要望・決定・詰まりをログに。モデルを替えても消えない</td></tr>
   <tr><td>実装中</td><td><code>dashboard-slice</code></td><td>1スライス＝1PR。動かして確かめてからマージ</td></tr>
   <tr><td>迷ったとき</td><td><code>poteto-mode</code></td><td>足りないものを1つ見つけて、次の一手を理由つきで</td></tr>
   <tr><td>原則を思い出したい</td><td><code>pstack-guide</code></td><td>場面から原則を引く</td></tr>
@@ -122,10 +124,10 @@ flowchart LR
 <h2>合宿では使わないもの（興味があれば）</h2>
 <p>pstack本体には、複数案を並列で競わせる <code>arena</code> / <code>swarm</code>、詳細設計の <code>architect</code>、別のAIによる二重レビューなど、さらに強力な道具があります。仕組みが分かってきたら、<a href="repos.html">リポジトリ一覧</a>の本体を覗いてみてください。</p>
 
-<h2>覚えること（3つ）</h2><ol class="remember"><li><b>質問で深掘りした気になって、すぐ実装しない</b>。地図→複数案→設計→実装→検証</li><li>迷ったら <b><code>poteto-mode</code></b>。足りないものから次の一手が出る</li><li>一区切りしたら <b><code>reflect</code></b> で学びを残す</li></ol>
+<h2>覚えること（3つ）</h2><ol class="remember"><li><b>試せば分かることは試す</b>。粗く作る→研究→計画→作り直す</li><li>迷ったら <b><code>poteto-mode</code></b>。足りないものから次の一手が出る</li><li>一区切りしたら <b><code>reflect</code></b> で学びを残す</li></ol>
 
 <div class="pager2">
-  <a class="prev" href="build.html"><span class="lbl">← 前へ</span><span class="ttl">4. 作る（10ステップ）</span></a>
+  <a class="prev" href="build.html"><span class="lbl">← 前へ</span><span class="ttl">4. 作る（8ステップ）</span></a>
   <a class="next" href="day2.html"><span class="lbl">次に読む（2日目から）</span><span class="ttl">翌日以降の進め方 →</span></a>
 </div>
 </main>

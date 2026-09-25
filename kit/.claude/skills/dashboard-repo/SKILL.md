@@ -1,6 +1,6 @@
 ---
 name: dashboard-repo
-description: Step 6で、データベース（Supabase）とアプリの土台（ログイン画面つき）を作り、GitHubのリポジトリにして、手元で画面が開く状態にするときに使う。
+description: Step 5（段階4 ゼロから作り直す）で、データベース（Supabase）とアプリの土台（ログイン画面つき）を作り、GitHubのリポジトリにして、手元で画面が開く状態にするときに使う。
 ---
 
 # dashboard-repo — 土台を作る（DB・アプリ・リポジトリ）
@@ -33,13 +33,13 @@ cd my-dashboard
 
 ### 3. キットの設計ドキュメントとスキルを持ってくる
 
-Step 1〜5で `kit/` に書いたもの（README・docs・スキル）を、新しいアプリへコピーする。
+Step 1〜4で `kit/` に書いたもの（ログ・研究・計画・README・スキル）を、新しいアプリへコピーする。`mvp/` もコピーされるが、見た目の参考に見るだけで、コードは使わない。
 
 ```bash
 rsync -a --exclude .gitignore --exclude setup.sh --exclude .env.example ../Aigassyuku07/kit/ ./
 ```
 
-`README.md` はテンプレートのものが、Step 1で書いた自分のREADMEに置き換わる。
+`README.md` はテンプレートのものが、Step 3で書いた自分のREADMEに置き換わる。
 
 ### 4. 鍵を置く（`.env.local`）
 

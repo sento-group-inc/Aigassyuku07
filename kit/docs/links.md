@@ -16,8 +16,8 @@
 
 | 用途 | リンク | 何をするか |
 |---|---|---|
-| Supabase | https://database.new | プロジェクト作成（Step 6） |
-| with-supabaseテンプレート | https://github.com/vercel/next.js/tree/canary/examples/with-supabase | ログイン付きアプリの土台（Step 6） |
+| Supabase | https://database.new | プロジェクト作成（Step 5） |
+| with-supabaseテンプレート | https://github.com/vercel/next.js/tree/canary/examples/with-supabase | ログイン付きアプリの土台（Step 5） |
 | Vercel | https://vercel.com/new | GitHub連携でImport |
 | GitHub | https://github.com/signup | アカウント作成 |
 

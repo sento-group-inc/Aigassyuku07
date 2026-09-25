@@ -42,8 +42,8 @@ RLS（行ごとの鍵）は必ず付ける。付けないと、公開キーを�
 テンプレートの `app/protected/page.tsx` が「ログインした人だけが見られるページ」。ここを一覧画面にする。
 
 ```text
-app/protected/page.tsx を、docs/prototype.html の一覧画面に置き換えて。
-データは Supabase の〈テーブル名〉から読んで。見た目は docs/ui-guidelines.md に従って。
+app/protected/page.tsx を、docs/roadmap.md の S1 のとおり一覧画面にして。
+データは Supabase の〈テーブル名〉から読んで。見た目は docs/ui-guidelines.md に従って。mvp/index.html は見た目の参考にだけして、コードは使わないで。
 トップページ（/）はログインしていれば /protected へ、していなければ /auth/login へ送って。
 ```
 

@@ -7,7 +7,7 @@
 ```
 左サイドバーを上から下へ辿れば2日間が過ごせる順（正本は `scripts/build-site.py` の `SECTIONS`）。
 
-0 はじめに（index）→ 1 合宿の前に（prep）→ 2 合宿中、手元に置く（schedule / skills / repos）→ 3 1日目の講義（why → setup → readme-driven → build → pstack）→ 4 2日目から（day2）
+0 はじめに（index）→ 1 合宿の前に（prep）→ 2 合宿中、手元に置く（schedule / skills / repos）→ 3 1日目の講義（why → setup → flow → build → pstack）→ 4 2日目から（day2）
 ```
 
 ## ページ一覧
@@ -18,9 +18,9 @@
 | `prep.html` | 事前準備 | 困りごとメモ（宿題）、道具、Codex、clone、アカウント、最終チェック |
 | `schedule.html` | 日程 | 2日間の全体図、時間割、チェックポイント、発表フォーマット |
 | `why.html` | 腹落ち | なぜ会社のシステムを自分で作るのか（本文は本人との対話まで据え置き） |
-| `setup.html` | 環境 | 当日の朝。setup.sh → キットを開く → 最初の一言。スキルの呼び方 |
-| `readme-driven.html` | 進め方 | 書いてから作る。grill-with-docs で README / CONTEXT.md / ADR に残す |
-| `build.html` | 実践 | 10ステップ。各Stepにたとえ・使うスキル・あなたがやること・終わりの状態 |
+| `setup.html` | 環境 | 当日の朝。キットを開く → 最初の一言。AIの初期設定（モデルの使い分け・恒久反映プロンプト） |
+| `flow.html` | 進め方 | 作り方の4段階（粗く作る→研究→計画→ゼロから作り直す）と、それを支える前提（ログ・ファイル引き継ぎ・MVPを捨てる） |
+| `build.html` | 実践 | 4段階・8ステップ。各Stepにたとえ・使うスキル・使うモデル・あなたがやること・終わりの状態 |
 | `pstack.html` | 開発の型 | 道具箱の全体図、いつ何を使うか、poteto-mode、原則、reflect |
 | `skills.html` | 道具 | キットのスキル16本（`scripts/check-skills.sh`と一致） |
 | `repos.html` | 一覧 | 当日使うリポジトリ・サービスと、スキルの出典 |
