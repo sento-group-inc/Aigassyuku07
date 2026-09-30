@@ -19,7 +19,7 @@ cd kit
 | `AGENTS.md` | Codex向けの入口。作業前に読むもの、守る決まり |
 | `CLAUDE.md` | Claude向けの入口。同じ内容をClaudeの読み方で |
 | `.claude/skills/` | この合宿で使うスキル一式（Claude Codeが読む） |
-| `.agents/skills/` | 同じスキルへのリンク（Codexが読む） |
+| `.agents/skills/` | `.claude/skills/` と同じスキルの実体コピー（Codexが読む。Windowsではリンクが効かないため） |
 | `docs/` | 設計ドキュメントの置き場。**作業前にAIが読む正本** |
 | `docs/guide-steps.md` | 当日の進行台本。ガイドはこれを見て次の一手を決める |
 | `docs/links.md` | まとめて開くリンク一覧 |

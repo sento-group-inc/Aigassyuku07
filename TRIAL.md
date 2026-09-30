@@ -47,8 +47,8 @@ Step 5〜7（ゼロから作り直して本番URLまで）は、時間があれ�
 ## 手順
 
 1. 講義サイト https://aigassyuku07.vercel.app を開き、左の目次の「事前準備」のとおりに進める。**ここからがテストです。** 迷った所は覚えておく（次の手順でAIに話す）。
-2. cloneできたら、Codex（またはClaude）で `書類/Aigassyuku07/kit` を開き、下の「キックオフ」を貼る。以降、AIが記録係を兼ねます。
-3. サイトの「1日目の講義」を上から順に進める。サイトのプロンプトをそのまま使う。気づいたら `メモ: 〜` と送る。
+2. cloneできたら、Codex（またはClaude）で、cloneした `Aigassyuku07/kit` を開き、下の「キックオフ」を貼る。以降、AIが記録係を兼ねます。
+3. サイトの「1日目の講義」を上から順に進める。**記録係は、賢いモデル（Opus / Astra）のセッションで続ける**（安いモデルに替えると記録が抜けやすい）。モデルを替える段階では、記録係のセッションは別に残しておく。サイトのプロンプトをそのまま使う。気づいたら `メモ: 〜` と送る。
 4. 残り30分になったら、下の「締め」を貼る。AIが記録を整理し、Issue と PR を作る。
 5. PRのURLを、和島にDiscordで送る。
 
@@ -63,8 +63,8 @@ Step 5〜7（ゼロから作り直して本番URLまで）は、時間があれ�
 ### 続き（Step 5 で `my-dashboard` を開き直したときに貼る）
 
 ```text
-~/Documents/Aigassyuku07/TRIAL.md を読んで、記録係を続けてください。
-記録ファイルは ~/Documents/Aigassyuku07/feedback/ にある、私のGitHubユーザー名のファイルです。
+cloneした Aigassyuku07 フォルダの TRIAL.md を読んで、記録係を続けてください。
+記録ファイルは Aigassyuku07/feedback/ にある、私のGitHubユーザー名のファイルです。
 ```
 
 ### 締め（残り30分で貼る）
@@ -82,7 +82,7 @@ TRIAL.md の「締めの手順」を実行してください。
 ### 役割
 
 1. **参加者として作業を進める。** 講義サイトとキットのスキル（`guide` など）を使い、ユーザーと一緒に Step 0 から進める。
-2. **記録係として、気づきをファイルに残す。** 記録先は、リポジトリ直下の `feedback/<GitHubユーザー名>.md`（`kit` フォルダから見ると `../feedback/`、Step 5以降は `~/Documents/Aigassyuku07/feedback/`）。ユーザー名は `gh api user --jq .login` で調べる。無ければ同じフォルダの `_template.md` をコピーして作る。
+2. **記録係として、気づきをファイルに残す。** 記録先は、リポジトリ直下の `feedback/<GitHubユーザー名>.md`（`kit` フォルダから見ると `../feedback/`、Step 5以降は、cloneした `Aigassyuku07/feedback/`）。ユーザー名は `gh api user --jq .login` で調べる。無ければ同じフォルダの `_template.md` をコピーして作る。
 
 ### 記録するとき
 
@@ -108,7 +108,7 @@ TRIAL.md の「締めの手順」を実行してください。
    ```
 
    作ったIssueの番号を、記録ファイルの該当の気づきに書き足す。
-3. 記録ファイルだけをPRにする。コマンドは `~/Documents/Aigassyuku07` で実行する（`my-dashboard` ではない）。**`git add` は記録ファイルだけ。** `kit/` の練習での変更はコミットしない（`git status` で確認してから）。
+3. 記録ファイルだけをPRにする。コマンドは、cloneした `Aigassyuku07` フォルダで実行する（`my-dashboard` ではない）。**`git add` は記録ファイルだけ。** `kit/` の練習での変更はコミットしない（`git status` で確認してから）。
 
    ```bash
    git switch -c feedback/<GitHubユーザー名>

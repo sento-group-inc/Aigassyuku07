@@ -22,7 +22,7 @@
 | `flow.html` | 進め方 | 作り方の4段階（粗く作る→研究→計画→ゼロから作り直す）と、それを支える前提（ログ・ファイル引き継ぎ・MVPを捨てる） |
 | `build.html` | 実践 | 4段階・8ステップ。各Stepにたとえ・使うスキル・使うモデル・あなたがやること・終わりの状態 |
 | `pstack.html` | 開発の型 | 道具箱の全体図、いつ何を使うか、poteto-mode、原則、reflect |
-| `skills.html` | 道具 | キットのスキル16本（`scripts/check-skills.sh`と一致） |
+| `skills.html` | 道具 | キットのスキル20本（`scripts/check-skills.sh`と一致） |
 | `repos.html` | 一覧 | 当日使うリポジトリ・サービスと、スキルの出典 |
 | `day2.html` | 自走 | 2日目以降の進め方と、詰まったときの聞き方 |
 

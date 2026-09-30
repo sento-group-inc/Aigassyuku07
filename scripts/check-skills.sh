@@ -35,8 +35,8 @@ for dir in "$skills"/*/; do
   fi
 done
 
-if [ ! -e "$root/kit/.agents/skills/guide/SKILL.md" ]; then
-  echo "MISSING  kit/.agents/skills（Codex用のリンク）が .claude/skills を指していない"
+if [ -L "$root/kit/.agents/skills" ] || ! diff -rq "$root/kit/.claude/skills" "$root/kit/.agents/skills" >/dev/null 2>&1; then
+  echo "DRIFT    kit/.agents/skills が kit/.claude/skills の実体コピーになっていない（cp -R で作り直す）"
   missing=$((missing + 1))
 fi
 
