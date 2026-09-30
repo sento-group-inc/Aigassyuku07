@@ -9,7 +9,7 @@
 当日の終了時（まる1日）に、参加者が次を持っていること。
 
 1. 自社ダッシュボードの本番URL（ログインして1画面が一覧・更新できる）
-2. 手元の環境（Codex または Claude、スキル16本、`setup.sh`）
+2. 手元の環境（Codex または Claude、スキル20本、`setup.sh`）
 3. `README.md` / `CONTEXT.md` / `AGENTS.md` / `CLAUDE.md` / `docs/schema.md` / `docs/ui-guidelines.md` / `docs/roadmap.md`
 4. 2日目以降に自分でスライスを足せる状態（ガイドエージェントに聞けば次が出る）
 
@@ -36,9 +36,9 @@
 | 環境セットアップと使い方 | `setup.html` | `kit/setup.sh`（`--check-services`） / `kit/.agents/skills`（Codex用） |
 | README駆動開発 | `readme-driven.html` | `grill-with-docs`（README / CONTEXT.md / ADR） |
 | pstack / poteto-mode / reflect / 原則 | `pstack.html` | `poteto-mode` / `pstack-guide` / `reflect` |
-| 配布スキル16本 | `skills.html` | `kit/.claude/skills/`（`scripts/check-skills.sh`で実在を検査） |
+| 配布スキル20本 | `skills.html` | `kit/.claude/skills/`（`scripts/check-skills.sh`で実在を検査） |
 | 使うリポジトリと出典 | `repos.html` | — |
-| ダッシュボードを作る10ステップ | `build.html` | `kit/.claude/skills/dashboard-*/` / `site/samples/`（見本） |
+| ダッシュボードを作る8ステップ | `build.html` | `kit/.claude/skills/dashboard-*/` / `site/samples/`（見本） |
 | 実例（会計事務所のダッシュボード） | `reference/case-accounting.md` | — |
 | 順番に案内する | 当日の進行 | `kit/.claude/skills/guide/` |
 

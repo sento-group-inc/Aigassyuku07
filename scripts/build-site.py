@@ -1,5 +1,6 @@
 import html
 import os
+import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -157,6 +158,7 @@ def page(key, body):
 </body>
 </html>
 """
+    doc = re.sub(r'<a href="(https?://[^"]+)"', r'<a href="\1" target="_blank" rel="noopener"', doc)
     with open(os.path.join(SITE, f"{key}.html"), "w") as f:
         f.write(doc)
 
@@ -254,6 +256,8 @@ flowchart LR
 
 {analogy("<b>料理教室の前の買い出し</b>です。材料（困りごとのメモ）と道具（ソフトとアカウント）が揃っていれば、教室の時間を全部「作る」に使えます。")}
 
+<div class="note warn"><p><b>AIは、Codex か Claude の「デスクトップアプリ」で使います。</b>Claude は VS Code の拡張機能ではなく、Claudeデスクトップアプリの <b>Code タブ</b>を使ってください。Windowsの人は、このページの最後の「Windowsの人へ」も読んでください。</p></div>
+
 <div class="note"><p><b>ターミナルの操作はほとんどありません。</b>Codexを入れたあとは、青い枠のプロンプトをコピーしてCodexに貼れば、AIが代わりに実行します。詰まったら当日の10:00〜に拾う時間もあります。</p></div>
 
 <h2>0. 宿題: 困りごとをメモする（いちばん大事）</h2>
@@ -261,7 +265,7 @@ flowchart LR
 <table>
   <tr><th>メモすること</th><th>例</th></tr>
   <tr><td>(a) 困りごとを1つ以上<br>誰が、何に困っていて、何が見えると嬉しいか</td><td>案件の進捗が誰にも見えず、毎朝口頭で確認している</td></tr>
-  <tr><td>(b) いま使っている帳票の項目名<br>スプレッドシートや紙の見出しをそのまま</td><td>顧客名 / 担当 / 受付日 / 見積金額 / 状況 / 次アクション</td></tr>
+  <tr><td>(b) いま使っている帳票の項目名（表の列名）<br>スプレッドシートや紙の見出しをそのまま</td><td>顧客名 / 担当 / 受付日 / 見積金額 / 状況 / 次アクション</td></tr>
 </table>
 <p>うまく書けないときは、ChatGPTやClaudeに次を貼ると、AIが質問しながら引き出してくれます。</p>
 {prompt('''私の仕事の困りごとを言語化したいです。業務で「面倒なこと」「誰にも見えていないこと」
@@ -271,7 +275,7 @@ flowchart LR
 
 <h2>1. Codexを入れてサインインする（10分）</h2>
 <p><a href="https://openai.com/codex/">openai.com/codex</a> からCodexアプリを入れ、会社のChatGPTアカウントでサインインします。Claudeを使う人は <a href="https://claude.ai/download">claude.ai/download</a> からClaudeのアプリを入れてください。</p>
-<p>入れたら、Codexで <b>書類（Documents）フォルダ</b>を作業フォルダとして開いておきます。</p>
+<p>入れたら、作業フォルダを<b>1つ決めます</b>。どこでもよいので、Macは <code>書類</code>（Documents）、Windowsはエクスプローラーの <code>ドキュメント</code> にして、そのフォルダをCodex / Claudeで開いておきます。<b>以後の手順の「このフォルダ」はここを指します。</b>すでに別の場所で作業している人はそこでも構いません（<code>Aigassyuku07</code> と、あとで作る <code>my-dashboard</code> は同じ場所に置きます）。</p>
 
 <h2>2. Homebrewを入れる（Mac・10分）</h2>
 <p>Homebrewは「道具を入れる道具」です。パスワードの入力が要るので、ここだけはターミナルで行います。</p>
@@ -286,6 +290,7 @@ flowchart LR
 2. このフォルダに https://github.com/sento-group-inc/Aigassyuku07 をcloneする
 3. Aigassyuku07/kit フォルダで ./setup.sh を実行し、結果を初心者にも分かる言葉で説明する
 NG が出たら、直し方を1つずつ教えてください。''')}
+<div class="note warn"><p><b>GitHub CLI（gh）などを入れたあとは、Codex / Claude のアプリとターミナルをいったん全部閉じて、開き直してください。</b>開き直さないと、AIから <code>gh: command not found</code> と言われることがあります。</p></div>
 {fig("assets/images/setup/01-setup-sh.png", "setup.shの実行結果", "AIが裏で実行する確認の中身（実際の出力）。最後が「要対応: 0」なら道具は揃っている")}
 
 <h2>4. アカウントを作る（15分）</h2>
@@ -313,6 +318,14 @@ NG が出たら、直し方を1つずつ教えてください。''')}
   <tr><td>AIの答え</td><td>「要対応: 0」で、GitHubが「サインイン済み」</td></tr>
   <tr><td>Vercel / Supabase</td><td>GitHubでサインインできる</td></tr>
 </table>
+
+<h2>Windowsの人へ</h2>
+<ul>
+<li>手順2（Homebrew）は不要です。道具は <code>winget</code> で入ります（手順3のプロンプトでAIが入れます）。</li>
+<li><code>rsync</code> など Mac 用のコマンドは使えません。当日の手順はAIがWindows向けに置き換えます。AIに「Windowsです」と伝えてください。</li>
+<li>AIがファイルを読んで日本語が文字化けしたら、「UTF-8で読み直して」と伝えてください。</li>
+<li>ClaudeでSonnetが選べない（グレーアウトする）ときは、選べるモデルのうち一番安いもの（Haiku など）で始めてかまいません。</li>
+</ul>
 
 <h2>うまくいかないとき</h2>
 <table>
@@ -513,7 +526,7 @@ flowchart LR
 <h2>当日使う</h2>
 <table>
   <tr><th>リポジトリ / サービス</th><th>何に使うか</th><th>いつ</th></tr>
-  <tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07">sento-group-inc/Aigassyuku07</a></td><td>この合宿のキット（スキル16本・docs雛形・setup.sh）と講義サイト</td><td>事前準備〜</td></tr>
+  <tr><td><a href="https://github.com/sento-group-inc/Aigassyuku07">sento-group-inc/Aigassyuku07</a></td><td>この合宿のキット（スキル20本・docs雛形・setup.sh）と講義サイト</td><td>事前準備〜</td></tr>
   <tr><td><a href="https://github.com/vercel/next.js/tree/canary/examples/with-supabase">vercel/next.js — with-supabase</a></td><td>ログイン画面つきのアプリの土台。Step 6でAIが作る</td><td>Step 6</td></tr>
   <tr><td><a href="https://supabase.com/dashboard">Supabase</a>（<a href="https://github.com/supabase/supabase">supabase/supabase</a>）</td><td>データベースとログイン（社員アカウント）</td><td>Step 6・8</td></tr>
   <tr><td><a href="https://vercel.com/new">Vercel</a>（<a href="https://github.com/vercel/vercel">vercel/vercel</a>）</td><td>GitHubにつなぐだけで本番URLを作る</td><td>Step 9</td></tr>
@@ -597,7 +610,7 @@ flowchart LR
   <tr><td>手伝い役のAI（サブエージェント）</td><td>本体より一段下</td><td>—</td><td>本体Opusなら Sonnet</td></tr>
   <tr><td>見直し役のAI（レビュー）</td><td>本体と同じ</td><td>—</td><td>本体と同じ</td></tr>
 </table>
-<p>モデルの名前は数か月で変わります。名前ではなく「安い／賢い」の役割で覚えてください。</p>
+<p>モデルの名前は数か月で変わります。名前ではなく「安い／賢い」の役割で覚えてください。<b>Claudeで Sonnet が選べない（グレーアウトする）ときは、選べるモデルのうちいちばん安いもの（Haiku など）</b>を「安くて速い」として使います。記録係のように、抜けると困る作業は賢いモデルのセッションに残します。</p>
 
 <h3>このキットでの前提</h3>
 <ul>
@@ -622,7 +635,7 @@ flowchart LR
 </div>
 
 <h2>スキルの呼び方</h2>
-<p>キットには16本のスキル（AIへの手順書）が入っています。呼び方は3通りあり、どれでも動きます。</p>
+<p>キットには20本のスキル（AIへの手順書）が入っています。呼び方は3通りあり、どれでも動きます。</p>
 {call("guide")}
 <p><b>覚えるのは <code>guide</code> だけ</b>で大丈夫です。次に使うスキルは、ガイドが教えてくれます。一覧は<a href="skills.html">道具（スキル一覧）</a>にあります。</p>
 
@@ -657,6 +670,8 @@ flowchart LR
 ''')}
 
 {analogy("<b>段ボールの模型→一級建築士の診断→図面→本物の建築</b>です。まず段ボールで置いてみて、プロに弱い所を洗い出してもらい、図面に起こしてから、本物は図面どおりに建てます。段ボールの模型は、本物の材料にはしません。")}
+
+<div class="note"><p><b>MVP（エムブイピー）＝触れる粗い試作。</b>完成品ではなく、触って声を集めるための段ボールの模型です。あとで捨てて、計画をもとに作り直します。</p></div>
 
 <h2>4つの段階</h2>
 <ol class="steps">
@@ -746,7 +761,7 @@ flowchart TB
 <h2>段階1 粗く作る（安いモデル）</h2>
 <ol class="steps">
 {step(1, "困りごとを1文にして、ログを始める", "何を作るかを1文にし、これから出る声を全部ためる入れ物（開発ログ）を作ります。", "dev-log",
- "事前準備で書いた困りごとメモと帳票の項目名を貼る",
+ "事前準備で書いた困りごとメモと帳票の項目名（表の列名。例: 会社名、提出日、金額）を貼る",
  "<code>docs/log.md</code> の最初に「〈誰〉が〈何〉に困っている。〈何〉が見えると嬉しい。」と帳票の項目名がある",
  prompt("""dev-log で、次の困りごとと帳票の項目名を docs/log.md の最初に書いて。
 困りごと: （ここに貼る）
@@ -783,9 +798,9 @@ flowchart TB
 {step(5, "土台を作る（DB・アプリ・リポジトリ）", "倉庫（Supabase）を借り、ログイン画面つきの店舗の箱（with-supabaseテンプレート）を建て、鍵を決まった場所にしまいます。", "dashboard-repo",
  """<ol>
 <li><b>ブラウザで:</b> <a href="https://database.new">database.new</a> でSupabaseのプロジェクトを作る（Project name は <code>my-dashboard</code>、Region は <code>Asia-Pacific</code>、<code>Enable automatic RLS</code> にチェック。パスワードは <code>Generate a password</code> で作ってパスワード管理ツールへ）</li>
-<li><b>AIに頼む:</b> 下のプロンプトを貼る。アプリの箱を作り、キットの中身（計画・ログ・スキル）をコピーし、<code>.env.local</code> を開いてくれる</li>
-<li><b>ブラウザで:</b> Supabaseの画面上部の <code>Connect</code> を押し、Project URL と Publishable key を、開いた <code>.env.local</code> に貼って保存する（値はチャットに貼らない）</li>
-<li><b>AIに頼む:</b> 「続けて」と送る。画面が開くか確かめ、GitHubにリポジトリを作ってくれる</li>
+<li><b>AIに頼む:</b> 下のプロンプトを貼る。アプリの箱を <code>Aigassyuku07</code> の隣に作り、キットの中身（計画・ログ・スキル）をコピーし、<code>.env.local</code> を開いてくれる（コピーはAIがするので、Windowsでも同じ）</li>
+<li><b>ブラウザで:</b> Supabaseの画面上部の <code>Connect</code> を押し、<code>Next.js</code> の <code>.env.local</code> 用の2行（Project URL と Publishable key）を、開いた <code>.env.local</code> に貼って保存する。見つからないときは <code>Connect</code> 内の <code>Server</code> や <code>Build APIs</code> などのタブを順に見る（値はチャットに貼らない）</li>
+<li><b>AIに頼む:</b> 「続けて」と送る。画面が開くか確かめ、GitHubにリポジトリを作ってくれる（<code>npm run dev</code> を起動すると <code>AGENTS.md</code> に英語のブロックが足されるが、そのままでよい）</li>
 </ol>""",
  "<a href=\"http://localhost:3000\">localhost:3000</a> で画面が開き、GitHubにリポジトリがある。<code>.env.local</code> はGitHubに上がっていない",
  fig("assets/images/build/07-supabase-new-project.png", "Supabaseで新しいプロジェクトを作る画面", "Supabaseの「Create a new project」。組織名は伏せてある。入力したら下の「Create new project」を押す") +
@@ -807,17 +822,20 @@ flowchart TB
 Supabaseでのサインアップ停止とユーザー作成は済ませました。mvp/ のコードは使わないでください。
 SQLは supabase/migrations/0001_init.sql に書き、何が作られるかを説明してから私に渡してください。""") +
  fig("assets/images/build/08-login.png", "ログイン画面", "テンプレートに付いているログイン画面（公式デモ）") +
+ '<div class="note"><p><b>SQLの <code>Run</code> は1回だけ押します。</b>成功すると <code>Success. No rows returned</code> と出ます。<code>already exists</code> と出たら、1回目で成功しています。<b><code>npm run dev</code> を動かしたまま、同じフォルダで <code>npm run build</code> をしない</b>でください。画面が再読み込みを繰り返します（そのときは止めて起動し直す）。</p></div>' +
  '<div class="note warn"><p><b>RLS（行ごとの鍵）は必ず付けます。</b>付けないと、公開キーを知っている人なら誰でもデータを読めてしまいます。<code>dashboard-auth</code> はRLS付きのSQLを書きます。</p></div>', CHEAP)}
 {step(7, "本番へ出す", "お店のシャッターを開けます。倉庫の棚（データベース）を先に整え、それから店（アプリ）を開けます。", "dashboard-deploy",
  """<ol>
 <li><b>ブラウザで:</b> <a href="https://vercel.com/new">vercel.com/new</a> → <code>my-dashboard</code> の <code>Import</code></li>
-<li><b>ブラウザで:</b> <code>Environment Variables</code> に <code>.env.local</code> と同じ2つを入れて <code>Deploy</code></li>
-<li><b>ブラウザで:</b> 出たURLを、Supabase → <code>Authentication</code> → <code>URL Configuration</code> の <code>Site URL</code> と <code>Redirect URLs</code> に入れる</li>
+<li><b>ブラウザで:</b> <code>Environment Variables</code> の <code>Key</code> に名前、<code>Value</code> に値を入れる（下の表）。<code>.env.local</code> の2行をまるごと <code>Key</code> の欄に貼ると自動で分かれる。入れたら <code>Deploy</code></li>
+<li><b>ブラウザで:</b> 出たURL（完了画面が出ないときは、プロジェクトの <code>Domains</code> の一番上）を、Supabase → <code>Authentication</code> → <code>URL Configuration</code> の <code>Site URL</code> と <code>Redirect URLs</code> に入れる</li>
 <li><b>AIに頼む:</b> 下のプロンプトで確認と記録をしてもらう</li>
 </ol>""",
  "<b>本番URLを開き、ログインして一覧が動く。</b>URLが <code>docs/infra.md</code> に書かれている",
  fig("assets/images/build/11-vercel-import.png", "VercelでGitHubのリポジトリをImportする画面", "「Import Git Repository」の検索欄にリポジトリ名を入れ、「Import」を押す") +
  fig("assets/images/build/12-vercel-ready.png", "Vercelのデプロイ完了画面", "StatusがReadyになったら、Domainsの本番URLを開く（この講義サイト自身のデプロイ画面。ユーザー名は伏せてある）") +
+ '<table><tr><th>Key（名前）</th><th>Value（値）</th></tr><tr><td><code>NEXT_PUBLIC_SUPABASE_URL</code></td><td><code>https://</code> で始まるURL</td></tr><tr><td><code>NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY</code></td><td>Publishable key</td></tr></table>' +
+ '<div class="note warn"><p><b>Vercelが「<code>NEXT_PUBLIC_</code> は公開される」と警告しても、名前から <code>NEXT_PUBLIC_</code> を外さないでください。</b>この2つは公開してよい値です。外すと本番に値が渡らず、<code>/protected</code> が「A server error occurred」になります。警告が出たら、名前はそのままで種類を <code>Config</code> にします。直したら <code>Deployments</code> から <code>Redeploy</code> が必要です。Deployを押しても <code>No Deployment</code> のままのときは、GitHubにPRを1つマージすると自動で本番ができます。<code>service_role</code> キーは入れません。</p></div>' +
  prompt("dashboard-deploy の手順で、本番URL（ここに貼る）でログインして一覧が動くか確かめる方法を教えて。動いたら docs/infra.md にURLを書いて、ログに［済］で残して。") +
  '<div class="note warn"><p>キーが写る画面は撮らないでください。撮る必要があるときは、値の部分を隠してから撮ります。</p></div>', CHEAP)}
 </ol>

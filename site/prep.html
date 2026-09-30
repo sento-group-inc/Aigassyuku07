@@ -59,6 +59,8 @@ flowchart LR
 
 <div class="analogy"><div class="k">たとえるなら</div><p><b>料理教室の前の買い出し</b>です。材料（困りごとのメモ）と道具（ソフトとアカウント）が揃っていれば、教室の時間を全部「作る」に使えます。</p></div>
 
+<div class="note warn"><p><b>AIは、Codex か Claude の「デスクトップアプリ」で使います。</b>Claude は VS Code の拡張機能ではなく、Claudeデスクトップアプリの <b>Code タブ</b>を使ってください。Windowsの人は、このページの最後の「Windowsの人へ」も読んでください。</p></div>
+
 <div class="note"><p><b>ターミナルの操作はほとんどありません。</b>Codexを入れたあとは、青い枠のプロンプトをコピーしてCodexに貼れば、AIが代わりに実行します。詰まったら当日の10:00〜に拾う時間もあります。</p></div>
 
 <h2>0. 宿題: 困りごとをメモする（いちばん大事）</h2>
@@ -66,7 +68,7 @@ flowchart LR
 <table>
   <tr><th>メモすること</th><th>例</th></tr>
   <tr><td>(a) 困りごとを1つ以上<br>誰が、何に困っていて、何が見えると嬉しいか</td><td>案件の進捗が誰にも見えず、毎朝口頭で確認している</td></tr>
-  <tr><td>(b) いま使っている帳票の項目名<br>スプレッドシートや紙の見出しをそのまま</td><td>顧客名 / 担当 / 受付日 / 見積金額 / 状況 / 次アクション</td></tr>
+  <tr><td>(b) いま使っている帳票の項目名（表の列名）<br>スプレッドシートや紙の見出しをそのまま</td><td>顧客名 / 担当 / 受付日 / 見積金額 / 状況 / 次アクション</td></tr>
 </table>
 <p>うまく書けないときは、ChatGPTやClaudeに次を貼ると、AIが質問しながら引き出してくれます。</p>
 <div class="prompt"><div class="prompt-head"><span>ChatGPT / Claude に貼る</span><button class="copy-btn" type="button">コピー</button></div><pre><code>私の仕事の困りごとを言語化したいです。業務で「面倒なこと」「誰にも見えていないこと」
@@ -75,8 +77,8 @@ flowchart LR
 <div class="note warn"><p><b>個人情報や実データは持ち込まないでください。</b>画面はダミーデータで作ります。項目名（見出し）だけで十分です。</p></div>
 
 <h2>1. Codexを入れてサインインする（10分）</h2>
-<p><a href="https://openai.com/codex/">openai.com/codex</a> からCodexアプリを入れ、会社のChatGPTアカウントでサインインします。Claudeを使う人は <a href="https://claude.ai/download">claude.ai/download</a> からClaudeのアプリを入れてください。</p>
-<p>入れたら、Codexで <b>書類（Documents）フォルダ</b>を作業フォルダとして開いておきます。</p>
+<p><a href="https://openai.com/codex/" target="_blank" rel="noopener">openai.com/codex</a> からCodexアプリを入れ、会社のChatGPTアカウントでサインインします。Claudeを使う人は <a href="https://claude.ai/download" target="_blank" rel="noopener">claude.ai/download</a> からClaudeのアプリを入れてください。</p>
+<p>入れたら、作業フォルダを<b>1つ決めます</b>。どこでもよいので、Macは <code>書類</code>（Documents）、Windowsはエクスプローラーの <code>ドキュメント</code> にして、そのフォルダをCodex / Claudeで開いておきます。<b>以後の手順の「このフォルダ」はここを指します。</b>すでに別の場所で作業している人はそこでも構いません（<code>Aigassyuku07</code> と、あとで作る <code>my-dashboard</code> は同じ場所に置きます）。</p>
 
 <h2>2. Homebrewを入れる（Mac・10分）</h2>
 <p>Homebrewは「道具を入れる道具」です。パスワードの入力が要るので、ここだけはターミナルで行います。</p>
@@ -91,14 +93,15 @@ flowchart LR
 2. このフォルダに https://github.com/sento-group-inc/Aigassyuku07 をcloneする
 3. Aigassyuku07/kit フォルダで ./setup.sh を実行し、結果を初心者にも分かる言葉で説明する
 NG が出たら、直し方を1つずつ教えてください。</code></pre></div>
+<div class="note warn"><p><b>GitHub CLI（gh）などを入れたあとは、Codex / Claude のアプリとターミナルをいったん全部閉じて、開き直してください。</b>開き直さないと、AIから <code>gh: command not found</code> と言われることがあります。</p></div>
 <figure><img src="assets/images/setup/01-setup-sh.png" alt="setup.shの実行結果" loading="lazy"><figcaption>AIが裏で実行する確認の中身（実際の出力）。最後が「要対応: 0」なら道具は揃っている</figcaption></figure>
 
 <h2>4. アカウントを作る（15分）</h2>
 <table>
   <tr><th>サービス</th><th>何に使うか</th><th>やること</th></tr>
-  <tr><td>GitHub</td><td>コードの置き場</td><td><a href="https://github.com/signup">github.com/signup</a> でアカウントを作る</td></tr>
-  <tr><td>Vercel</td><td>本番URLで公開する</td><td><a href="https://vercel.com/signup">vercel.com/signup</a> で <b>Continue with GitHub</b></td></tr>
-  <tr><td>Supabase</td><td>データベースとログイン</td><td><a href="https://supabase.com/dashboard/sign-in">supabase.com/dashboard/sign-in</a> で <b>Continue with GitHub</b></td></tr>
+  <tr><td>GitHub</td><td>コードの置き場</td><td><a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a> でアカウントを作る</td></tr>
+  <tr><td>Vercel</td><td>本番URLで公開する</td><td><a href="https://vercel.com/signup" target="_blank" rel="noopener">vercel.com/signup</a> で <b>Continue with GitHub</b></td></tr>
+  <tr><td>Supabase</td><td>データベースとログイン</td><td><a href="https://supabase.com/dashboard/sign-in" target="_blank" rel="noopener">supabase.com/dashboard/sign-in</a> で <b>Continue with GitHub</b></td></tr>
 </table>
 <div class="grid">
   <figure><img src="assets/images/prep/03-vercel-signup.png" alt="Vercelのサインアップ画面" loading="lazy"><figcaption>Vercel: 「Continue with GitHub」を押す</figcaption></figure>
@@ -118,6 +121,14 @@ NG が出たら、直し方を1つずつ教えてください。</code></pre></d
   <tr><td>AIの答え</td><td>「要対応: 0」で、GitHubが「サインイン済み」</td></tr>
   <tr><td>Vercel / Supabase</td><td>GitHubでサインインできる</td></tr>
 </table>
+
+<h2>Windowsの人へ</h2>
+<ul>
+<li>手順2（Homebrew）は不要です。道具は <code>winget</code> で入ります（手順3のプロンプトでAIが入れます）。</li>
+<li><code>rsync</code> など Mac 用のコマンドは使えません。当日の手順はAIがWindows向けに置き換えます。AIに「Windowsです」と伝えてください。</li>
+<li>AIがファイルを読んで日本語が文字化けしたら、「UTF-8で読み直して」と伝えてください。</li>
+<li>ClaudeでSonnetが選べない（グレーアウトする）ときは、選べるモデルのうち一番安いもの（Haiku など）で始めてかまいません。</li>
+</ul>
 
 <h2>うまくいかないとき</h2>
 <table>
