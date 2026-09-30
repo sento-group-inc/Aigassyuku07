@@ -24,6 +24,28 @@ cd Aigassyuku07/kit
 
 **公開URL（当日投影用）**: https://aigassyuku07.vercel.app
 
+## 講義サイトを直したとき（本番への出し方）
+
+**GitHubの `main` にマージしても、本番は自動では更新されません**（GitHub連携の自動デプロイは無い）。サイトを直したら、次の手順で手動で本番に出します。Vercelプロジェクトは `sento-group/aigassyuku07`（Root Directory `.`、Output Directory `.`）で、**`site/` フォルダの中身をそのまま出します**。
+
+`site/*.html` は `scripts/build-site.py` が生成します。HTMLを直接直さず、生成元を直してから再生成してください。
+
+```bash
+python3 scripts/build-site.py
+bash scripts/check-links.sh
+bash scripts/check-skills.sh
+```
+
+```bash
+vercel link --yes --project aigassyuku07 --scope sento-group --cwd site
+vercel deploy --prod --yes --scope sento-group --cwd site
+rm -rf site/.vercel
+```
+
+- 事前に `vercel login` 済みで、`sento-group` チームに入っている必要があります。
+- 出したあと、`curl -s https://aigassyuku07.vercel.app/prep` で直したはずの変更が入っているか確認し、シークレットウィンドウでも開いて確かめます。
+- `site/.vercel` はリンク用の一時フォルダです。コミットしないよう、最後に消します。
+
 ## 当日の流れ
 
 | Step | 段階 | やること | 使うスキル | モデル |
