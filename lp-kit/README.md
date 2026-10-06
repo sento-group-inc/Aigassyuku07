@@ -8,9 +8,11 @@
 
 ## 3ステップで始める
 
-1. このリポジトリを clone し、`lp-kit` フォルダを Claude Code（または Codex）で開く
-2. [PROMPT.md](PROMPT.md) の ＝＝＝ の間をコピーして貼る。最初は資料に `SAMPLE_BRIEF.md` を指定して試し運転する
-3. AI が参照の候補を出したら一言返す。あとは採点と磨き直しまで AI が進める
+1. Claude Code（または Codex）を開く
+2. [PROMPT.md](PROMPT.md) の ＝＝＝ の間をコピーして貼る（clone は AI がやる）。最初は資料に `SAMPLE_BRIEF.md` を指定して試し運転する
+3. AI が参照の候補を出したら一言返す。あとは採点と磨き直しまで AI が進める。**1本の目安は30〜40分**（標準モード）
+
+自分で clone する場合:
 
 ```bash
 git clone https://github.com/sento-group-inc/Aigassyuku07.git
@@ -30,7 +32,7 @@ npm i --prefix "$TMPDIR/lp-check" playwright-core && npx --prefix "$TMPDIR/lp-ch
 | 最初に | この README、[map.html](map.html) | 人 |
 | 作り始める時 | [PROMPT.md](PROMPT.md)（コピーして貼る） | 人 |
 | 試し運転 | [SAMPLE_BRIEF.md](SAMPLE_BRIEF.md)（架空の和菓子屋の定期便） | 人・AI |
-| 品質の基準を知りたい時 | [QUALITY_BAR.md](QUALITY_BAR.md)（3つの賞の審査基準・採点表・磨き直しのループ） | 人・AI |
+| 品質の基準を知りたい時 | [QUALITY_BAR.md](QUALITY_BAR.md)（3つの賞の審査基準・採点表・標準／本気モード・磨き直しのループ） | 人・AI |
 | AI が作る時（自動で読む） | [lp スキル](.claude/skills/lp/SKILL.md) | AI |
 | 参照サイト・部品を選ぶ時 | [component-catalog.md](references/component-catalog.md) | AI |
 | 動きを決める時 | [motion-roles.md](references/motion-roles.md) | AI |
@@ -62,7 +64,7 @@ Codex は `.agents/skills/` を読みます。中身は `.claude/skills/` と同
 | [templates/](templates/) | 案件ごとに作る5つの記録ファイルの雛形（Brief・Design・Reference・Verification・[Quality Scorecard](templates/quality-scorecard.md)） |
 | [scripts/new_lp_workspace.py](scripts/new_lp_workspace.py) | `workspaces/<商品名>/` に5つの記録ファイルを作る |
 | [scripts/validate_lp_workspace.py](scripts/validate_lp_workspace.py) | 記録ファイルの抜けを検査する |
-| [scripts/check-lp.js](scripts/check-lp.js) | PC・スマホで撮影し、横スクロール・小さすぎる文字・見えない文字・表示速度・フォーカス表示などを検査する |
+| [scripts/check-lp.js](scripts/check-lp.js) | PC・スマホで撮影し、横スクロール・小さすぎる文字・見えない文字・表示速度・フォーカス表示などを検査する（10秒前後） |
 | [scripts/check-kit.sh](scripts/check-kit.sh) | このキットの README から全ファイルへ辿れるか、`.agents` のコピーがずれていないかを検査する（キットを直す人向け） |
 | `workspaces/` | 作った LP と記録が入る場所（Git には入れない） |
 

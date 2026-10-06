@@ -11,8 +11,8 @@ fs.mkdirSync(outDir, { recursive: true });
 
 async function scrollThrough(p) {
   const h = await p.evaluate(() => document.documentElement.scrollHeight);
-  for (let y = 0; y < h; y += 400) { await p.evaluate(v => scrollTo(0, v), y); await p.waitForTimeout(120); }
-  await p.waitForTimeout(800);
+  for (let y = 0; y < h; y += 700) { await p.evaluate(v => scrollTo(0, v), y); await p.waitForTimeout(60); }
+  await p.waitForTimeout(500);
 }
 
 async function inspect(b, name, viewport, reducedMotion = 'no-preference') {
@@ -29,7 +29,7 @@ async function inspect(b, name, viewport, reducedMotion = 'no-preference') {
   });
   await p.goto(url, { waitUntil: 'load' });
   await p.evaluate(() => document.fonts.ready);
-  await p.waitForTimeout(1200);
+  await p.waitForTimeout(600);
   if (reducedMotion === 'no-preference') await p.screenshot({ path: path.join(outDir, `${name}_firstview.png`) });
   await scrollThrough(p);
   const r = await p.evaluate(() => {
@@ -55,16 +55,18 @@ async function inspect(b, name, viewport, reducedMotion = 'no-preference') {
     const s = getComputedStyle(e);
     return (s.outlineStyle !== 'none' && parseFloat(s.outlineWidth) > 0) || s.boxShadow !== 'none';
   });
-  if (reducedMotion === 'no-preference') await p.screenshot({ path: path.join(outDir, `${name}_full.png`), fullPage: true });
+  if (reducedMotion === 'no-preference') await p.screenshot({ path: path.join(outDir, `${name}_full.jpg`), fullPage: true, type: 'jpeg', quality: 70 });
   await ctx.close();
   return { ...r, errors };
 }
 
 (async () => {
   const b = await chromium.launch();
-  const pc = await inspect(b, 'pc', { width: 1440, height: 900 });
-  const mobile = await inspect(b, 'mobile', { width: 375, height: 812 });
-  const reduced = await inspect(b, 'reduced', { width: 1440, height: 900 }, 'reduce');
+  const [pc, mobile, reduced] = await Promise.all([
+    inspect(b, 'pc', { width: 1440, height: 900 }),
+    inspect(b, 'mobile', { width: 375, height: 812 }),
+    inspect(b, 'reduced', { width: 1440, height: 900 }, 'reduce'),
+  ]);
   await b.close();
   const problems = [];
   for (const [n, r] of [['pc', pc], ['mobile', mobile]]) {

@@ -32,7 +32,7 @@
 <body>
 <main>
   <h1>LP制作キットの流れ</h1>
-  <p class="lead">人が渡すのは資料だけ。オレンジの輪は、合格ラインを超えるまで AI が自分で回す磨き直しのループ。</p>
+  <p class="lead">人が渡すのは資料だけ。オレンジの輪は、合格ラインを超えるまで AI が自分で回す磨き直しのループ。標準モードで1本30〜40分が目安。</p>
   <svg viewBox="0 0 1000 560" role="img" aria-label="資料からLPができるまでの流れと採点ループ">
     <defs>
       <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8a94a0"/></marker>
@@ -50,7 +50,7 @@
     <path class="edge" d="M890,110 L890,208"/><text class="verb" x="930" y="165">組む</text>
 
     <g class="node loop"><rect x="520" y="210" width="200" height="70"/><text class="t" x="540" y="240">撮影＋機械検査</text><text x="540" y="264">check-lp.js</text></g>
-    <g class="node loop"><rect x="270" y="210" width="190" height="70"/><text class="t" x="290" y="240">審査員3人が採点</text><text x="290" y="264">別文脈・賞の配点</text></g>
+    <g class="node loop"><rect x="270" y="210" width="190" height="70"/><text class="t" x="290" y="240">審査員が採点</text><text x="290" y="264">別文脈・3つの視点</text></g>
     <g class="node loop"><rect x="400" y="380" width="200" height="70"/><text class="t" x="420" y="410">トップ3だけ直す</text><text x="420" y="434">下がったら戻す</text></g>
     <path class="edge" d="M800,245 L722,245"/><text class="verb" x="761" y="234">渡す</text>
     <path class="edge loop" d="M520,245 L462,245"/><text class="verb loop" x="491" y="234">見せる</text>
@@ -60,9 +60,9 @@
     <g class="node out"><rect x="20" y="210" width="170" height="70"/><text class="t" x="40" y="240">完成</text><text x="40" y="264">8.0以上で合格</text></g>
     <path class="edge" d="M270,245 L192,245"/><text class="verb" x="231" y="234">合格</text>
 
-    <g class="node"><rect x="20" y="380" width="300" height="70"/><text class="t" x="40" y="410">2周伸びない時</text><text x="40" y="434">構図・書体・署名の瞬間を作り直す</text></g>
+    <g class="node"><rect x="20" y="380" width="300" height="70"/><text class="t" x="40" y="410">1周で伸びない時</text><text x="40" y="434">構図・書体・署名の瞬間を作り直す</text></g>
     <path class="edge" d="M398,415 L322,415"/><text class="verb" x="360" y="404">停滞</text>
-    <g class="node"><rect x="20" y="480" width="300" height="60"/><text class="t" x="40" y="505">8周で届かない時</text><text x="40" y="527">点を盛らずに足りない所を報告</text></g>
+    <g class="node"><rect x="20" y="480" width="300" height="60"/><text class="t" x="40" y="505">上限（標準3周）で届かない時</text><text x="40" y="527">点を盛らずに足りない所を報告</text></g>
   </svg>
 
   <div class="scroll"><table>
