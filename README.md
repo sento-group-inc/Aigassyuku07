@@ -78,6 +78,7 @@ rm -rf site/.vercel
 Aigassyuku07/
 ├── site/        講義サイト（当日投影。Vercelで配信）
 ├── kit/         参加者がcloneして使う雛形（AGENTS.md / CLAUDE.md / .claude/skills / docs）
+├── lp-kit/      LP制作キット（資料から、賞の審査基準で採点して磨くLPまで。入口は lp-kit/README.md）
 ├── docs/        制作ロードマップ・設計・スクリーンショット台帳
 ├── reference/   実例（会計事務所のダッシュボード）のサニタイズ済み解説
 └── assets/      画像

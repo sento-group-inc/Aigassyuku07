@@ -1,0 +1,4 @@
+workspaces/*
+!workspaces/.gitkeep
+lp-check/
+__pycache__/

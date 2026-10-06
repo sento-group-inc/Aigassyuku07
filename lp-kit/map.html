@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LP制作キットの流れ</title>
+<style>
+  :root { --ink:#1b1f24; --sub:#5b6470; --line:#c9d0d8; --accent:#c2410c; --soft:#fff4ec; --blue:#1d4ed8; --bsoft:#eef3ff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#fff; color:var(--ink); font-family:"Hiragino Sans","Noto Sans JP",system-ui,sans-serif; line-height:1.7; }
+  main { max-width:1040px; margin:0 auto; padding:40px 16px 64px; }
+  h1 { font-size:28px; margin:0 0 4px; }
+  .lead { color:var(--sub); margin:0 0 28px; font-size:16px; }
+  svg { width:100%; height:auto; display:block; }
+  .node rect { fill:#fff; stroke:var(--line); stroke-width:1.5; rx:10; }
+  .node.loop rect { fill:var(--soft); stroke:var(--accent); }
+  .node.out rect { fill:var(--bsoft); stroke:var(--blue); }
+  .node text { font-size:15px; fill:var(--ink); }
+  .node .t { font-weight:700; font-size:16px; }
+  .edge { stroke:#8a94a0; stroke-width:1.5; fill:none; marker-end:url(#arrow); }
+  .edge.loop { stroke:var(--accent); stroke-width:2; marker-end:url(#arrowA); }
+  .verb { font-size:13px; fill:var(--sub); text-anchor:middle; }
+  .verb.loop { fill:var(--accent); font-weight:700; }
+  .scroll { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; margin-top:32px; font-size:15px; }
+  th, td { border-bottom:1px solid #e5e9ee; padding:10px 8px; text-align:left; vertical-align:top; }
+  th { color:var(--sub); font-weight:600; }
+  td code { white-space:normal; word-break:break-all; }
+  code { background:#f3f5f7; padding:1px 6px; border-radius:4px; font-size:14px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>LP制作キットの流れ</h1>
+  <p class="lead">人が渡すのは資料だけ。オレンジの輪は、合格ラインを超えるまで AI が自分で回す磨き直しのループ。</p>
+  <svg viewBox="0 0 1000 560" role="img" aria-label="資料からLPができるまでの流れと採点ループ">
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8a94a0"/></marker>
+      <marker id="arrowA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c2410c"/></marker>
+    </defs>
+    <g class="node"><rect x="20" y="40" width="170" height="70"/><text class="t" x="40" y="70">人：資料</text><text x="40" y="94">PROMPT.md を貼る</text></g>
+    <g class="node"><rect x="270" y="40" width="190" height="70"/><text class="t" x="290" y="70">Brief</text><text x="290" y="94">誰の何がどう変わるか</text></g>
+    <g class="node"><rect x="540" y="40" width="190" height="70"/><text class="t" x="560" y="70">参照</text><text x="560" y="94">実在LP＋受賞サイト</text></g>
+    <g class="node"><rect x="800" y="40" width="180" height="70"/><text class="t" x="820" y="70">完成像3画面</text><text x="820" y="94">署名の瞬間を1行で</text></g>
+    <path class="edge" d="M190,75 L268,75"/><text class="verb" x="229" y="64">読み解く</text>
+    <path class="edge" d="M460,75 L538,75"/><text class="verb" x="499" y="64">選ぶ</text>
+    <path class="edge" d="M730,75 L798,75"/><text class="verb" x="764" y="64">固める</text>
+
+    <g class="node"><rect x="800" y="210" width="180" height="70"/><text class="t" x="820" y="240">実装</text><text x="820" y="264">開けるHTML</text></g>
+    <path class="edge" d="M890,110 L890,208"/><text class="verb" x="930" y="165">組む</text>
+
+    <g class="node loop"><rect x="520" y="210" width="200" height="70"/><text class="t" x="540" y="240">撮影＋機械検査</text><text x="540" y="264">check-lp.js</text></g>
+    <g class="node loop"><rect x="270" y="210" width="190" height="70"/><text class="t" x="290" y="240">審査員3人が採点</text><text x="290" y="264">別文脈・賞の配点</text></g>
+    <g class="node loop"><rect x="400" y="380" width="200" height="70"/><text class="t" x="420" y="410">トップ3だけ直す</text><text x="420" y="434">下がったら戻す</text></g>
+    <path class="edge" d="M800,245 L722,245"/><text class="verb" x="761" y="234">渡す</text>
+    <path class="edge loop" d="M520,245 L462,245"/><text class="verb loop" x="491" y="234">見せる</text>
+    <path class="edge loop" d="M365,280 C365,350 400,400 398,410"/><text class="verb loop" x="290" y="345">8.0未満なら弱点を返す</text>
+    <path class="edge loop" d="M600,415 C650,400 640,320 620,282"/><text class="verb loop" x="700" y="360">直して撮り直す</text>
+
+    <g class="node out"><rect x="20" y="210" width="170" height="70"/><text class="t" x="40" y="240">完成</text><text x="40" y="264">8.0以上で合格</text></g>
+    <path class="edge" d="M270,245 L192,245"/><text class="verb" x="231" y="234">合格</text>
+
+    <g class="node"><rect x="20" y="380" width="300" height="70"/><text class="t" x="40" y="410">2周伸びない時</text><text x="40" y="434">構図・書体・署名の瞬間を作り直す</text></g>
+    <path class="edge" d="M398,415 L322,415"/><text class="verb" x="360" y="404">停滞</text>
+    <g class="node"><rect x="20" y="480" width="300" height="60"/><text class="t" x="40" y="505">8周で届かない時</text><text x="40" y="527">点を盛らずに足りない所を報告</text></g>
+  </svg>
+
+  <div class="scroll"><table>
+    <tr><th>段階</th><th>使うもの</th><th>残る記録</th></tr>
+    <tr><td>資料 → Brief</td><td><code>lp</code> <code>nattoku</code> <code>haraochi</code></td><td>01_LP_BRIEF.md</td></tr>
+    <tr><td>参照 → 完成像</td><td><code>shakuyo</code> <code>extract-design</code> <code>component-catalog.md</code></td><td>02_DESIGN_CONTRACT.md / 03_REFERENCE_CONTRACT.md</td></tr>
+    <tr><td>実装</td><td><code>design-taste-frontend</code> <code>refactoring-ui</code> <code>motion-roles.md</code>（上級は <code>oil-motion</code>）</td><td>site/index.html</td></tr>
+    <tr><td>採点ループ</td><td><code>check-lp.js</code> <code>QUALITY_BAR.md</code></td><td>05_QUALITY_SCORECARD.md</td></tr>
+    <tr><td>最終確認・人の赤入れ</td><td><code>akaire</code></td><td>04_VERIFICATION_RECORD.md</td></tr>
+  </table></div>
+</main>
+</body>
+</html>
